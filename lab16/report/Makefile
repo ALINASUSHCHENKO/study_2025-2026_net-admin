@@ -1,8 +1,8 @@
 all:
-	-@quarto render
+	pdflatex --shell-escape report -interaction=scrollmode
 
-clean:
-	-rm -rf _output
+draft:
+	pdflatex --shell-escape report -interaction=scrollmode -draftmode
 
-cleanall: clean
-	-rm -rf .quarto
+print:
+	ls report.*

@@ -1,8 +1,8 @@
 all:
-	-@quarto render
+	pdflatex --shell-escape presentation -interaction=scrollmode
 
-clean:
-	-rm -rf _output
+draft:
+	pdflatex --shell-escape presentation interaction=scrollmode -draftmode
 
-cleanall: clean
-	-rm -rf .quarto
+print:
+	ls presentation.*

@@ -1,0 +1,351 @@
+\input{preamble.tex}
+
+\title{Лабораторная работа № 16. \\ Базовая защита от атак типа "brute force"}
+\author{Сущенко Алина \\ НПИбд-01-23}
+\institute{Российский университет дружбы народов имени Патриса Лумумбы}
+\date{2025}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}
+\frametitle{Цель работы}
+\begin{itemize}
+    \item Получить навыки работы с программным средством Fail2ban для обеспечения базовой защиты от атак типа "brute force".
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Защита с помощью Fail2ban}
+На сервере установили {\tt fail2ban}:
+\begin{minted}{bash}
+    dnf -y install fail2ban
+\end{minted}
+    \centering
+    \includegraphics[width=\textwidth]{../images/01.png}
+    \captionof{figure}{Запуск сервиса \texttt{fail2ban}.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Защита с помощью Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/02.png}
+    \captionof{figure}{Просмотр журнала событий \texttt{fail2ban}.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Защита с помощью Fail2ban}
+\begin{itemize}
+\item Создали файл с новой конфигурацией {\tt fail2ban}:
+\begin{minted}{bash}
+    touch /etc/fail2ban/jail.d/customisation.local
+\end{minted}
+\item Задали время блокирования на 1 час (время задаётся в секундах):
+\begin{minted}{bash}
+      [DEFAULT]
+      bantime = 3600
+\end{minted}
+  \item включили защиту SSH:
+\begin{minted}{bash}
+      [sshd]
+      port = ssh,2022
+      enabled = true
+      [sshd-dos]
+      filter = sshd
+      enabled = true
+      [selinux-ssh]
+      enabled = true
+\end{minted}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Защита с помощью Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/03.png}
+    \captionof{figure}{Просмотр журнала событий после первоначальной настройки \texttt{fail2ban}.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Защита с помощью Fail2ban}
+В файле {\tt /etc/fail2ban/jail.d/customisation.local} включите защиту HTTP:
+\begin{minted}[fontsize=\footnotesize]{bash}
+    # HTTP servers
+    [apache-auth]
+    enabled = true
+    [apache-badbots]
+    enabled = true
+    [apache-noscript]
+    enabled = true
+    [apache-overflows]
+    enabled = true
+    [apache-nohome]
+    enabled = true
+    [apache-botsearch]
+    enabled = true
+    [apache-fakegooglebot]
+    enabled = true
+    [apache-modsecurity]
+    enabled = true
+    [apache-shellshock]
+    enabled = true
+\end{minted}
+\end{frame}
+
+\begin{frame}
+\frametitle{Защита с помощью Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/04.png}
+    \captionof{figure}{Логи, связанные с защитой HTTP (Часть 1).}
+\end{frame}
+
+\begin{frame}
+\frametitle{Защита с помощью Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/05.png}
+    \captionof{figure}{Логи, связанные с защитой HTTP (Часть 2).}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Защита с помощью Fail2ban}
+В файле {\tt /etc/fail2ban/jail.d/customisation.local} включите защиту почты:
+\begin{minted}{bash}
+    #
+    # Mail servers
+    #
+    [postfix]
+    enabled = true
+    [postfix-rbl]
+    enabled = true
+    [dovecot]
+    enabled = true
+    [postfix-sasl]
+    enabled = true
+\end{minted}
+\end{frame}
+
+\begin{frame}
+\frametitle{Защита с помощью Fail2ban}
+  \centering
+  \includegraphics[width=\textwidth]{../images/06.png}
+  \captionof{figure}{Логи, связанные с защитой почты.}
+\end{frame}
+
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/07.png}
+    \captionof{figure}{Просмотр статуса \texttt{fail2ban}.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/08.png}
+    \captionof{figure}{Просмотр статуса защиты SSH.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/09.png}
+    \captionof{figure}{Установка максимального количества ошибок для SSH.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/10.png}
+    \captionof{figure}{Попытка зайти на сервер через SSH с неправильным паролем.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/11.png}
+    \captionof{figure}{Просмотр статуса защиты SSH.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/12.png}
+    \captionof{figure}{Разблокировка ip-адреса клиента.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/13.png}
+    \captionof{figure}{Проверка снятия блокировки.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Проверка работы Fail2ban}
+На сервере внесли изменение в конфигурационный файл {\tt /etc/fail2ban/jail.d/customisation.local}, добавив в раздел по умолчанию игнорирование адреса клиента
+\begin{minted}{bash}
+    [DEFAULT]
+    bantime = 3600
+    ingoreip = 127.0.0.1/8 192.168.1.30
+\end{minted}
+
+    \centering
+    \includegraphics[width=\textwidth]{../images/14.png}
+    \captionof{figure}{Логи журнала об игнорировании адреса клиента.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/15.png}
+    \captionof{figure}{Демонстрация игнорирования безуспешных попыток подключения по SSH.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы Fail2ban}
+    \centering
+    \includegraphics[width=\textwidth]{../images/16.png}
+    \captionof{figure}{Просмотр информации о защите SSH.}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+\begin{minted}{bash}
+    #!/bin/bash
+    echo "Provisioning script $0"
+    echo " Install needed packages"
+    dnf -y install fail2ban
+    echo "Copy configuration files"
+    cp -R /vagrant/provision/server/protect/etc/* /etc
+    restorecon -vR /etc
+    echo "Start fail2ban service"
+    systemctl enable fail2ban
+    systemctl start fail2ban
+\end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+\begin{minted}{bash}
+    server.vm.provision "server protect",
+        type: "shell",
+        preserve_order: true,
+        path: "provision/server/protect.sh"
+\end{minted}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+1. Поясните принцип работы Fail2ban.
+\begin{itemize}
+    \item Fail2ban сканирует логи служб (SSH, Apache, Postfix и др.) на предмет неудачных попыток аутентификации.
+    \item При превышении заданного количества попыток (\texttt{maxretry}) в течение определённого времени (\texttt{findtime}) система добавляет IP-адрес нарушителя в черный список.
+    \item Блокировка осуществляется через встроенные механизмы (iptables, firewalld) на заданное время (\texttt{bantime}).
+    \item После истечения времени блокировки IP-адрес автоматически разблокируется.
+\end{itemize}
+
+2. Настройки какого файла более приоритетны: jail.conf или jail.local?
+\begin{itemize}
+    \item Настройки файла \texttt{jail.local} имеют более высокий приоритет.
+    \item Fail2ban читает сначала \texttt{jail.conf}, затем \texttt{jail.local}, перезаписывая совпадающие параметры.
+    \item Рекомендуется редактировать \texttt{jail.local} для внесения изменений, оставляя \texttt{jail.conf} в исходном состоянии.
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы (продолжение)}
+3. Как настроить оповещение администратора при срабатывании Fail2ban?
+\begin{itemize}
+    \item Использовать действие \texttt{action\_mwl} в конфигурации jail: \texttt{action = \%\texttt{(action\_mwl)}s}
+    \item Настроить параметры почты в секции \texttt{[DEFAULT]}:
+    \begin{itemize}
+        \item \texttt{mta = sendmail} (или postfix, exim)
+        \item \texttt{destemail = admin@example.com}
+        \item \texttt{sender = fail2ban@example.com}
+    \end{itemize}
+    \item Для более сложных уведомлений можно создать собственное действие в \texttt{/etc/fail2ban/action.d/}
+\end{itemize}
+\end{frame}
+4. Поясните построчно настройки по умолчанию в конфигурационном файле /etc/fail2ban/jail.conf, относящиеся к веб-службе.
+\begin{itemize}
+\begin{frame}
+    \item \texttt{[apache-auth]} - защита от перебора паролей аутентификации Apache
+    \item \texttt{enabled = false} - по умолчанию отключено
+    \item \texttt{port = http,https} - порты для мониторинга
+    \item \texttt{filter = apache-auth} - используемый фильтр
+    \item \texttt{logpath = /var/log/apache*/*error*.log} - путь к логам
+    \item \texttt{maxretry = 6} - максимальное количество попыток
+    \item \texttt{bantime = 600} - время блокировки (600 секунд)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы (продолжение)}
+5. Поясните построчно настройки по умолчанию в конфигурационном файле /etc/fail2ban/jail.conf, относящиеся к почтовой службе.
+\begin{itemize}
+    \item \texttt{[postfix]} - защита сервера Postfix
+    \item \texttt{enabled = false} - по умолчанию отключено
+    \item \texttt{port = smtp,ssmtp,submission} - порты SMTP
+    \item \texttt{filter = postfix} - фильтр для анализа логов Postfix
+    \item \texttt{logpath = /var/log/mail.log} - путь к почтовым логам
+    \item \texttt{maxretry = 5} - максимальное количество попыток
+    \item \texttt{[dovecot]} - аналогично для Dovecot IMAP/POP3 сервера
+    \item \texttt{port = pop3,pop3s,imap,imaps} - порты IMAP/POP3
+    \item \texttt{filter = dovecot} - фильтр для логов Dovecot
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+6. Какие действия может выполнять Fail2ban при обнаружении атакующего IP-адреса? Где можно посмотреть описание действий для последующего использования в настройках Fail2ban?
+\begin{itemize}
+    \item Основные действия:
+    \begin{itemize}
+        \item Блокировка через iptables/firewalld
+        \item Отправка email уведомлений
+        \item Выполнение произвольных команд
+        \item Отправка сообщений в syslog
+        \item Уведомление через Telegram, Slack и др.
+    \end{itemize}
+    \item Описание действий находится в директории \texttt{/etc/fail2ban/action.d/}
+    \item Например, \texttt{iptables.conf}, \texttt{mail.conf}, \texttt{sendmail.conf}
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы (продолжение)}
+7. Как получить список действующих правил Fail2ban?
+\begin{itemize}
+    \item Команда: \texttt{fail2ban-client status}
+    \item Для конкретной службы: \texttt{fail2ban-client status sshd}
+    \item Просмотр через iptables: \texttt{iptables -L -n} или \texttt{iptables -S}
+    \item Для firewalld: \texttt{firewall-cmd --list-all}
+\end{itemize}
+
+8. Как получить статистику заблокированных Fail2ban адресов?
+\begin{itemize}
+    \item \texttt{fail2ban-client status <jail-name>} - показывает количество заблокированных IP
+    \item \texttt{fail2ban-client get <jail-name> banned} - список заблокированных IP
+    \item \texttt{journalctl -u fail2ban} - журнал событий Fail2ban
+    \item \texttt{/var/log/fail2ban.log} - основной лог-файл
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+9. Как разблокировать IP-адрес?
+\begin{itemize}
+    \item Команда: \texttt{fail2ban-client set <jail> unbanip <IP>}
+    \item Пример: \texttt{fail2ban-client set sshd unbanip 192.168.1.100}
+    \item Удаление правила iptables вручную: \texttt{iptables -D fail2ban-sshd -s <IP> -j DROP}
+    \item Перезагрузка службы: \texttt{systemctl restart fail2ban} (разблокирует все адреса)
+\end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Выводы}
+\begin{itemize}
+    \item Во время выполнения лабораторной работы получили навыки настройки обеспечения базовой защиты от атак типа "brute force" с помощью программы Fail2ban.
+\end{itemize}
+\end{frame}
+\end{document}

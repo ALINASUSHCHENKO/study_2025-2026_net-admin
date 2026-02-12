@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{      }\PYG{o}{[}DEFAULT\PYG{o}{]}
+\PYG{+w}{      }\PYG{n+nv}{bantime}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m}{3600}
+\end{Verbatim}

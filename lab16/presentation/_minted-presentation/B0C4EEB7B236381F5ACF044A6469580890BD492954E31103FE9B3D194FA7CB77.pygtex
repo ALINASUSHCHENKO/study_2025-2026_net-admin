@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }touch\PYG{+w}{ }/etc/fail2ban/jail.d/customisation.local
+\end{Verbatim}

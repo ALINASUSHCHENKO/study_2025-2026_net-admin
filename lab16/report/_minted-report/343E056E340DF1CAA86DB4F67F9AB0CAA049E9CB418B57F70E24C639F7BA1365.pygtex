@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }\PYG{o}{[}DEFAULT\PYG{o}{]}
+\PYG{+w}{    }\PYG{n+nv}{bantime}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m}{3600}
+
+\PYG{+w}{    }\PYG{n+nv}{ingoreip}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m}{127}.0.0.1/8\PYG{+w}{ }\PYG{l+m}{192}.168.1.30
+\end{Verbatim}

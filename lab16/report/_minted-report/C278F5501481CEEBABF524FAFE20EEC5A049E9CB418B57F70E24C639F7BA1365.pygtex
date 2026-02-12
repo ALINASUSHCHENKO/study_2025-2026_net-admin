@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{      }\PYG{o}{[}sshd\PYG{o}{]}
+\PYG{+w}{      }\PYG{n+nv}{port}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }ssh,2022
+\PYG{+w}{      }\PYG{n+nv}{enabled}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}
+
+\PYG{+w}{      }\PYG{o}{[}sshd\PYGZhy{}dos\PYG{o}{]}
+\PYG{+w}{      }\PYG{n+nv}{filter}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }sshd
+\PYG{+w}{      }\PYG{n+nv}{enabled}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}
+
+\PYG{+w}{      }\PYG{o}{[}selinux\PYGZhy{}ssh\PYG{o}{]}
+\PYG{+w}{      }\PYG{n+nv}{enabled}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nb}{true}
+\end{Verbatim}

@@ -1,0 +1,7 @@
+\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+\begin{minted}{bash}
+    server.vm.provision "server protect",
+        type: "shell",
+        preserve_order: true,
+        path: "provision/server/protect.sh"
+\end{minted}
