@@ -1,10 +1,10 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 8. \\ Настройка SMTP-сервера}
+\title{Лабораторная работа № 2. \\ Предварительная настройка оборудования Cisco}
 \author{Сущенко Алина \\ НПИбд-01-23}
 
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -13,337 +13,208 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение практических навыков по установке и конфигурированию SMTP-сервера.
+    \item Получить основные навыки по начальному конфигурированию оборудования Cisco.
 \end{itemize}
 \end{frame}
 
 \begin{frame}[containsverbatim]
-\frametitle{Установка Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
+\frametitle{Выполнение работы}
+В логической рабочей области \texttt{Packet Tracer} разместим коммутатор, маршрутизатор и 2 оконечных устройства типа PC (PC0 и PC1), соединим один PC с маршрутизатором, другой PC — с коммутатором, как показано на схеме.
     \centering
     \includegraphics[width=\textwidth]{../images/01.png}
-    \captionof{figure}{Конфигурирование межсетевого экрана.}
+    \captionof{figure}{Схема подключения оборудования для проведения его предварительной настройки.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
+\frametitle{Конфигурация маршрутизатора}
     \centering
     \includegraphics[width=\textwidth]{../images/02.png}
-    \captionof{figure}{Восстановление контекста безопасности SELinux.}
+    \captionof{figure}{Настройка маршрутизатора.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
+\frametitle{Конфигурация коммутатора}
     \centering
     \includegraphics[width=\textwidth]{../images/03.png}
-    \captionof{figure}{Запуск службы Postfix.}
+    \captionof{figure}{Настройка коммутатора.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Проверка PC0}
     \centering
     \includegraphics[width=\textwidth]{../images/04.png}
-    \captionof{figure}{Просмотр текущих настроек Postfix.}
+    \captionof{figure}{Просмотр текущих настроек PC0.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Проверка PC1}
     \centering
     \includegraphics[width=\textwidth]{../images/05.png}
-    \captionof{figure}{Замена значений параметров Postfix.}
+    \captionof{figure}{Просмотр текущих настроек PC1.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\begin{frame}[containsverbatim]
+\frametitle{Проверка работоспособности соединений}
+Теперь проверим связь при помощи наших PC. На PC0 выполним команды:
+\begin{minted}{bash}
+ping 192.168.2.10
+telnet 192.168.2.1
+ssh -l admin 192.168.2.1
+\end{minted}
     \centering
     \includegraphics[width=\textwidth]{../images/06.png}
-    \captionof{figure}{Проверка корректности содержания конфигурационного файла \texttt{main.cf}.}
+    \captionof{figure}{Проверка работоспособности для PC0.}
 \end{frame}
 
-\begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\begin{frame}[containsverbatim]
+\frametitle{Проверка работоспособности соединений}
+Затем то же самое, но для PC1:
+\begin{minted}{bash}
+ping 192.168.1.254
+telnet 192.168.1.254
+ssh -l admin 192.168.1.254
+\end{minted}
     \centering
     \includegraphics[width=\textwidth]{../images/07.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/08.png}
-    \captionof{figure}{Просмотр всех параметров Postfix с отличиями от начальных.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/09.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-\begin{minted}{bash}
-echo .| mail -s test1 ansusenko@server.ansusenko.net
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Просмотр логов почтовой службы при отправке сообщения.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Установка Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/13.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4 на клиенте.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/14.png}
-    \captionof{figure}{Перезапуск службы Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/16.png}
-    \captionof{figure}{Логи при попытке отправить сообщение с клиента.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/17.png}
-    \captionof{figure}{Просмотр значений параметров сетевых интерфейсов.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/18.png}
-    \captionof{figure}{Добавление адреса внутренней сети для разрешения пересылки сообщений между узлами сети.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/19.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при повторной отправке сообщения с клиента.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при отправке сообщения на доменный адрес.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/21.png}
-    \captionof{figure}{Просмотр сообщений в очереди на отправление.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/22.png}
-    \captionof{figure}{Обновление конфигурации Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/23.png}
-    \captionof{figure}{Логи при отправке сообщения.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-    \centering
-    \includegraphics[width=\textwidth]{../images/24.png}
-    \captionof{figure}{Создание каталога для настроек внутреннего окружения.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-#!/bin/bash
-echo "Provisioning script $0"
-echo "Install needed packages"
-dnf -y install postfix
-dnf -y install s-nail
-echo "Copy configuration files"
-cp -R /vagrant/provision/server/mail/etc/* /etc
-echo "Configure firewall"
-firewall-cmd --add-service=smtp --permanent
-firewall-cmd --reload
-restorecon -vR /etc
-echo "Start postfix service"
-systemctl enable postfix
-systemctl start postfix
-\end{minted}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-echo "Configure postfix"
-postconf -e 'mydomain = dastarikov.net'
-postconf -e 'myorigin = $mydomain'
-postconf -e 'inet_protocols = ipv4'
-postconf -e 'inet_interfaces = all'
-postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-postfix set-permissions
-restorecon -vR /etc
-systemctl stop postfix
-systemctl start postfix
-\end{minted}
-\end{frame}
-
-\begin{frame}
-\frametitle{Выводы}
-\begin{itemize}
-    \item В результате выполнения лабораторной работы приобрели практические навыки по установке и конфигурированию SMTP-сервера.
-\end{itemize}
+    \captionof{figure}{Проверка работоспособности для PC1.}
 \end{frame}
 
 \begin{frame}
 \frametitle{Контрольные вопросы}
-
-\begin{block}{1. В каком каталоге и в каком файле следует смотреть конфигурацию Postfix?}
-Основная конфигурация Postfix находится в каталоге \texttt{/etc/postfix/}:
+\begin{block}{1. Какие существуют способы подключения к сетевому оборудованию?}
+Существуют следующие способы подключения к сетевому оборудованию:
 \begin{itemize}
-\item \texttt{/etc/postfix/main.cf} — основной файл конфигурации с параметрами сервера
-\item \texttt{/etc/postfix/master.cf} — конфигурация процессов и служб
-\item \texttt{/etc/aliases} — файл псевдонимов почтовых ящиков
-\item \texttt{/etc/postfix/access} — контроль доступа к серверу
+    \item \textbf{Консольное подключение (Console)} — через порт RS-232 с использованием консольного кабеля (синий кабель в Packet Tracer). Требуется для первоначальной настройки, не требует сетевых настроек.
+    \item \textbf{Telnet} — удалённое подключение по протоколу Telnet (порт 23). Работает поверх IP-сети, но данные передаются в незашифрованном виде.
+    \item \textbf{SSH} — защищённое удалённое подключение (порт 22). Использует шифрование, требует настройки домена и генерации RSA-ключей.
+    \item \textbf{AUX-порт} — дополнительный порт для подключения через модем (используется редко).
 \end{itemize}
 \end{block}
-
-\begin{block}{2. Каким образом можно проверить корректность синтаксиса в конфигурационном файле Postfix?}
-\begin{itemize}
-\item \texttt{postfix check} — проверка синтаксиса всех конфигурационных файлов
-\item \texttt{postconf -n} — просмотр всех измененных параметров
-\item \texttt{postconf <параметр>} — проверка конкретного параметра
-\item \texttt{systemctl status postfix} — проверка статуса службы
-\item Просмотр логов: \texttt{tail -f /var/log/maillog}
-\end{itemize}
-\end{block}
-
 \end{frame}
 
 \begin{frame}
 \frametitle{Контрольные вопросы}
-
-\begin{block}{3. В каких параметрах конфигурации Postfix требуется внести изменения для настройки отправки писем на доменные адреса?}
+\begin{block}{2. Какие режимы работы командной строки существуют в оборудовании Cisco?}
+В оборудовании Cisco существуют следующие основные режимы:
 \begin{itemize}
-\item \texttt{mydomain = example.com} — установка доменного имени
-\item \texttt{myorigin = \$mydomain} — домен для исходящей почты
-\item \texttt{mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain} — домены для локальной доставки
-\item \texttt{inet\_interfaces = all} — прослушивание всех интерфейсов
-\item \texttt{mynetworks = 127.0.0.0/8, 192.168.0.0/16} — разрешенные сети для релейинга
-\item \texttt{relay\_domains = \$mydestination} — домены для релейинга
+    \item \textbf{Пользовательский режим (User EXEC Mode)} — режим с ограниченными правами, обозначается символом \texttt{>} (например, \texttt{Router>}). Доступны только команды для просмотра базовой информации.
+    \item \textbf{Привилегированный режим (Privileged EXEC Mode)} — режим с полным доступом к командам просмотра и отладки, обозначается символом \texttt{#} (например, \texttt{Router#}). Вход осуществляется командой \texttt{enable}.
+    \item \textbf{Режим глобальной конфигурации (Global Configuration Mode)} — режим для изменения конфигурации устройства, обозначается \texttt{(config)\#}. Вход осуществляется командой \texttt{configure terminal}.
+    \item \textbf{Режимы конфигурации интерфейсов} — подрежимы для настройки конкретных интерфейсов (\texttt{(config-if)\#}).
+    \item \textbf{Режимы конфигурации линий} — подрежимы для настройки консольного порта и VTY-линий (\texttt{(config-line)\#}).
 \end{itemize}
 \end{block}
-
 \end{frame}
 
-\begin{frame}[containsverbatim]
+\begin{frame}
 \frametitle{Контрольные вопросы}
-
-\begin{block}{4. Примеры работы с утилитой mail}
-\begin{minted}{bash}
-# Отправка письма с темой и текстом
-echo "Текст письма" | mail -s "Тема письма" user@example.com
-
-# Отправка письма с содержимым файла
-mail -s "Тема" user@example.com < file.txt
-
-# Просмотр списка писем
-mail
-
-# Просмотр конкретного письма (внутри mail)
-print 1
-
-# Удаление письма (внутри mail)
-delete 1
-
-# Выход из mail с сохранением писем
-quit
-
-# Выход с удалением прочитанных писем
-exit
-\end{minted}
+\begin{block}{3. Какие команды используются для просмотра конфигурации оборудования?}
+Для просмотра конфигурации используются следующие команды:
+\begin{itemize}
+    \item \texttt{show running-config} — просмотр текущей конфигурации в оперативной памяти (изменённой, но не сохранённой).
+    \item \texttt{show startup-config} — просмотр конфигурации, сохранённой в NVRAM (загружается при перезагрузке).
+    \item \texttt{show ip interface brief} — краткая информация по всем интерфейсам: IP-адреса, статус, протокол.
+    \item \texttt{show interfaces} — детальная информация по всем интерфейсам.
+    \item \texttt{show interfaces fastEthernet 0/1} — детальная информация по конкретному интерфейсу.
+    \item \texttt{show vlan brief} — просмотр информации о VLAN на коммутаторе.
+    \item \texttt{show ip route} — просмотр таблицы маршрутизации.
+    \item \texttt{show version} — информация о версии IOS и оборудовании.
+\end{itemize}
 \end{block}
-
 \end{frame}
 
-\begin{frame}[containsverbatim]
+\begin{frame}
 \frametitle{Контрольные вопросы}
-
-\begin{block}{5. Примеры работы с утилитой postqueue}
-\begin{minted}{bash}
-# Просмотр всей очереди сообщений
-postqueue -p
-
-# Подсчет числа сообщений в очереди
-postqueue -p | grep -c "^[A-F0-9]"
-
-# Альтернативный способ подсчета
-mailq | wc -l
-
-# Принудительная отправка всех сообщений в очереди
-postqueue -f
-
-# Принудительная отправка сообщений для определенного домена
-postqueue -s example.com
-
-# Удаление всех сообщений из очереди
-postsuper -d ALL
-
-# Удаление конкретного сообщения по ID
-postsuper -d A1B2C3D4E5
-
-# Удаление всех отложенных сообщений
-postsuper -d ALL deferred
-\end{minted}
+\begin{block}{4. Каково назначение команд \texttt{no shutdown} и \texttt{shutdown}?}
+\begin{itemize}
+    \item \texttt{shutdown} — административно отключает интерфейс. Порт перестаёт передавать данные, статус становится \texttt{administratively down}.
+    \item \texttt{no shutdown} — включает интерфейс. Порт активируется и начинает передавать данные (при наличии физического подключения статус становится \texttt{up}).
+\end{itemize}
+Эти команды выполняются в режиме конфигурации интерфейса (\texttt{interface}).
 \end{block}
+\end{frame}
 
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{5. Что такое VLAN и для чего он используется?}
+\textbf{VLAN (Virtual Local Area Network)} — технология виртуальных локальных сетей, позволяющая логически разделять устройства в одной физической сети на изолированные группы.
+
+Основные назначения VLAN:
+\begin{itemize}
+    \item \textbf{Сегментация сети} — разделение на логические сегменты (например, отделы компании).
+    \item \textbf{Безопасность} — изоляция трафика между разными VLAN.
+    \item \textbf{Уменьшение широковещательного домена} — широковещательный трафик не выходит за пределы своего VLAN.
+    \item \textbf{Гибкость} — устройства из одного VLAN могут находиться на разных коммутаторах.
+\end{itemize}
+В лабораторной работе был создан \textbf{VLAN 2} для подсети \texttt{192.168.2.0/24}, в которую вошли порт Fa0/1 (к маршрутизатору) и порт Fa0/2 (к PC1).
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{6. Как настроить доступ к оборудованию по протоколу SSH?}
+Для настройки SSH необходимо выполнить следующие шаги:
+\begin{enumerate}
+    \item Задать имя устройства: \texttt{hostname имя}
+    \item Задать доменное имя: \texttt{ip domain-name имя.домена}
+    \item Сгенерировать RSA-ключи: \texttt{crypto key generate rsa}
+    \item Создать локального пользователя: \texttt{username admin privilege 1 secret пароль}
+    \item Настроить линии VTY: \texttt{line vty 0 4}
+    \item Включить только SSH: \texttt{transport input ssh}
+    \item Указать метод аутентификации: \texttt{login local}
+\end{enumerate}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{7. В чём различие между Telnet и SSH?}
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{3cm}|p{5cm}|}
+\hline
+\textbf{Telnet} & \textbf{SSH} \\
+\hline
+Порт 23 & Порт 22 \\
+\hline
+Не шифрует данные (передаёт в открытом виде, включая пароли) & Шифрует все передаваемые данные \\
+\hline
+Уязвим к перехвату трафика & Защищён от перехвата \\
+\hline
+Не требует генерации ключей & Требует генерации RSA-ключей \\
+\hline
+Проще в настройке & Сложнее в настройке, но безопаснее \\
+\hline
+\end{tabular}
+\end{table}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{8. Для чего используется команда \texttt{ping}?}
+Команда \texttt{ping} (Packet Internet Groper) используется для проверки сетевой связности между устройствами. Она отправляет ICMP-запросы (Echo Request) и ожидает ICMP-ответы (Echo Reply).
+
+Позволяет:
+\begin{itemize}
+    \item Проверить доступность удалённого узла.
+    \item Оценить время прохождения пакета (RTT — Round Trip Time).
+    \item Выявить потерю пакетов.
+    \item Диагностировать проблемы с маршрутизацией и подключением.
+\end{itemize}
+Пример вывода успешного пинга: \texttt{Reply from 192.168.1.254: bytes=32 time<1ms TTL=255}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Вывод}
+В результате выполнения лабораторной работы были настроены маршрутизатор и коммутатор Cisco в среде Packet Tracer: 
+\begin{itemize}
+    \item настроены интерфейсы и VLAN 2;
+    \item обеспечена связность между двумя ПК из разных подсетей;
+    \item настроены пароли, Telnet и SSH для удалённого доступа.
+\end{itemize}
+Проверка командой \texttt{ping} подтвердила работоспособность сети, удалённое подключение выполняется успешно.
 \end{frame}
 
 \end{document}

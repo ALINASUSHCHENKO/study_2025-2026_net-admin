@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }ping\PYG{+w}{ }\PYG{l+m}{192}.168.1.254
+\PYG{+w}{    }telnet\PYG{+w}{ }\PYG{l+m}{192}.168.1.254
+\PYG{+w}{    }ssh\PYG{+w}{ }\PYGZhy{}l\PYG{+w}{ }admin\PYG{+w}{ }\PYG{l+m}{192}.168.1.254
+\end{Verbatim}

@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+
+\PYG{l+s+se}{\PYGZbs{}b}egin\PYG{o}{\PYGZob{}}frame\PYG{o}{\PYGZcb{}}
+Затем\PYG{+w}{ }то\PYG{+w}{ }же\PYG{+w}{ }самое,\PYG{+w}{ }но\PYG{+w}{ }для\PYG{+w}{ }РС1:
+\PYG{l+s+se}{\PYGZbs{}b}egin\PYG{o}{\PYGZob{}}minted\PYG{o}{\PYGZcb{}\PYGZob{}}bash\PYG{o}{\PYGZcb{}}
+\PYG{+w}{    }ping\PYG{+w}{ }\PYG{l+m}{192}.168.1.254
+\PYG{+w}{    }telnet\PYG{+w}{ }\PYG{l+m}{192}.168.1.254
+\PYG{+w}{    }ssh\PYG{+w}{ }\PYGZhy{}l\PYG{+w}{ }admin\PYG{+w}{ }\PYG{l+m}{192}.168.1.254
+\end{Verbatim}
