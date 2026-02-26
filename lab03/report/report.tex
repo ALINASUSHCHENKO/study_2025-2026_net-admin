@@ -1,8 +1,8 @@
 \input{preamble.tex}
 
-\title{Отчет по лабораторной работе № 8. \\ Настройка SMTP-сервера}
-\author{Сущенко Алина \\ НПИбд-01-23}
-\date{2025}
+\title{Отчет по лабораторной работе № 3. \\ Планирование локальной сети организации}
+\author{Сущенко Алина Николаевна \\ НПИбд-01-23}
+\date{2026}
 
 \begin{document}
 
@@ -13,487 +13,197 @@
 
 \newpage
 \section{Цель работы}
-Приобретение практических навыков по установке и конфигурированию SMTP-сервера.
+Познакомиться с принципами планирования локальной сети организации на примере учебного заведения с двумя территориально распределенными площадками.
 
 \newpage
 \section{Выполнение работы}
 
-\subsection{Установка Postfix}
-\begin{enumerate}
-\item На виртуальной машине \texttt{server} вошли под пользователем и открыли терминал. Перешли в режим суперпользователя:
-  \begin{minted}{bash}
-    sudo -i
-  \end{minted}
-
-\item Установили необходимые для работы пакеты:
-  \begin{minted}{bash}
-    dnf -y install postfix
-    dnf -y install s-nail
-  \end{minted}
-
-\item Сконфигурировали межсетевой экран, разрешив работать службе протокола SMTP (Рис. \ref{01}):
-  \begin{minted}{bash}
-    firewall-cmd --add-service=smtp
-    firewall-cmd --add-service=smtp --permanent
-    firewall-cmd --list-services
-  \end{minted}
+\subsection{Физическая структура сети (L1)}
+В логической рабочей области \texttt{Packet Tracer} разместим оборудование в соответствии с иерархической моделью:
+\begin{itemize}
+    \item \textbf{Уровень ядра (Core):} маршрутизатор Cisco 2811 (\texttt{msk-ansusenko-gw-1}).
+    \item \textbf{Уровень распределения (Distribution):} коммутаторы Cisco 2960 (\texttt{msk-ansusenko-sw-1}, \texttt{msk-ansusenko-sw-2}, \texttt{msk-ansusenko-sw-3}, \texttt{msk-ansusenko-sw-4}).
+    \item \textbf{Уровень доступа (Access):} коммутатор Cisco 2950 (\texttt{msk-ansusenko-1}) и оконечные устройства (серверы, ПК пользователей).
+\end{itemize}
+Схема физических подключений с указанием номеров портов представлена на рис. \ref{01}. Номера портов подписаны рядом с каждой линией связи, что является отличительной особенностью схемы физического уровня.
 
 \begin{center}
     \centering
     \includegraphics[width=\textwidth]{../images/01.png}
-    \captionof{figure}{Конфигурирование межсетевого экрана.}
+    \captionof{figure}{Физическая схема сети (L1) с указанием портов подключения.}
     \label{01}
 \end{center}
 
-\item Восстановили контекст безопасности в SELinux (Рис. \ref{02}):
-  \begin{minted}{bash}
-    restorecon -vR /etc
-  \end{minted}
+\subsection{Логическая структура сети (L2) и план VLAN}
+В соответствии с заданием, сеть разделена на виртуальные локальные сети (VLAN) для изоляции трафика различных групп пользователей и служебных сегментов. План VLAN представлен в табл. \ref{tab:vlan}.
+
+\begin{table}[h]
+    \centering
+    \caption{План VLAN}
+    \label{tab:vlan}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{№ VLAN} & \textbf{Имя VLAN} & \textbf{Примечание} \\
+        \hline
+        1 & default & Не используется \\
+        \hline
+        2 & management & Для управления устройствами \\
+        \hline
+        3 & servers & Для серверной фермы \\
+        \hline
+        4-100 & - & Зарезервировано \\
+        \hline
+        101 & dk & Дисплейные классы (ДК) \\
+        \hline
+        102 & departments & Кафедры \\
+        \hline
+        103 & adm & Администрация \\
+        \hline
+        104 & other & Для других пользователей \\
+        \hline
+    \end{tabular}
+\end{table}
+
+Схема распределения VLAN по магистральным каналам (trunk) и портам доступа представлена на рис. \ref{02}.
 
 \begin{center}
     \centering
     \includegraphics[width=\textwidth]{../images/02.png}
-    \captionof{figure}{Восстановление контекста безопасности SELinux.}
+    \captionof{figure}{Схема VLAN (L2).}
     \label{02}
 \end{center}
 
-\item Запустили Postfix (Рис. \ref{06}):
-  \begin{minted}{bash}
-    systemctl enable postfix
-    systemctl start postfix
-  \end{minted}
+\subsection{План IP-адресации (L3)}
+План IP-адресации разработан для трех частных диапазонов: исходного \texttt{10.128.0.0/16}, а также для \texttt{172.16.0.0/12} и \texttt{192.168.0.0/16}. Структура сетей и VLAN сохранена, изменяются только номера подсетей.
+
+\subsubsection{План для сети 10.128.0.0/16 (исходный)}
+Схема маршрутизации для исходного проекта представлена на рис. \ref{03}. Детальный план IP-адресов приведен в табл. \ref{tab:ip1}.
+
 \begin{center}
     \centering
     \includegraphics[width=\textwidth]{../images/03.png}
-    \captionof{figure}{Запуск службы Postfix.}
-    \label{06}
-\end{center}
-
-\end{enumerate}
-
-\subsection{Изменение параметров Postfix с помощью postconf}
-Первоначальную настройку Postfix осуществили, используя \texttt{postconf}.
-
-\begin{enumerate}
-\item Для просмотра списка текущих настроек Postfix ввели:
-  \begin{minted}{bash}
-    postconf
-  \end{minted}
-\item Посмотрели текущее значение параметра \texttt{myorigin} (Рис. \ref{03}):
-  \begin{minted}{bash}
-    postconf myorigin
-  \end{minted}
-\item Посмотрели текущее значение параметра \texttt{mydomain} (Рис. \ref{03}):
-  \begin{minted}{bash}
-    postconf mydomain
-  \end{minted}
-
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/04.png}
-    \captionof{figure}{Просмотр текущих настроек Postfix.}
+    \captionof{figure}{Схема маршрутизации (L3) для сети 10.128.0.0/16.}
     \label{03}
 \end{center}
 
-\item Заменили значение параметра \texttt{myorigin} на значение параметра \texttt{mydomain} (Рис. \ref{04}):
-  \begin{minted}{bash}
-    postconf -e 'myorigin = $mydomain'
-  \end{minted}
-\item Повторите команду
-  \begin{minted}{bash}
-    postconf myorigin
-  \end{minted}
+\begin{table}[h]
+    \centering
+    \caption{План IP-адресов для сети 10.128.0.0/16}
+    \label{tab:ip1}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Название подсети} & \textbf{IP-сеть} & \textbf{VLAN} & \textbf{Адрес шлюза} \\
+        \hline
+        Серверная ферма & 10.128.0.0/24 & 3 & 10.128.0.1 \\
+        Управление & 10.128.1.0/24 & 2 & 10.128.1.1 \\
+        Point-to-Point & 10.128.2.0/24 & - & 10.128.2.1 \\
+        Дисплейные классы (ДК) & 10.128.3.0/24 & 101 & 10.128.3.1 \\
+        Кафедры (К) & 10.128.4.0/24 & 102 & 10.128.4.1 \\
+        Администрация (А) & 10.128.5.0/24 & 103 & 10.128.5.1 \\
+        Другие пользователи (Д) & 10.128.6.0/24 & 104 & 10.128.6.1 \\
+        \hline
+    \end{tabular}
+\end{table}
 
+\subsubsection{План для сети 172.16.0.0/12}
+Для данного диапазона выбрана базовая сеть \texttt{172.16.0.0/16} для сохранения структуры /24 подсетей. План адресации представлен в табл. \ref{tab:ip2}. Физическая схема (L1) и схема VLAN (L2) полностью аналогичны рис. \ref{01} и \ref{02}.
+
+\begin{table}[h]
+    \centering
+    \caption{План IP-адресов для сети 172.16.0.0/12 (на базе 172.16.0.0/16)}
+    \label{tab:ip2}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Название подсети} & \textbf{IP-сеть} & \textbf{VLAN} & \textbf{Адрес шлюза} \\
+        \hline
+        Серверная ферма & 172.16.0.0/24 & 3 & 172.16.0.1 \\
+        Управление & 172.16.1.0/24 & 2 & 172.16.1.1 \\
+        Point-to-Point & 172.16.2.0/24 & - & 172.16.2.1 \\
+        Дисплейные классы (ДК) & 172.16.3.0/24 & 101 & 172.16.3.1 \\
+        Кафедры (К) & 172.16.4.0/24 & 102 & 172.16.4.1 \\
+        Администрация (А) & 172.16.5.0/24 & 103 & 172.16.5.1 \\
+        Другие пользователи (Д) & 172.16.6.0/24 & 104 & 172.16.6.1 \\
+        \hline
+    \end{tabular}
+\end{table}
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/05.png}
-    \captionof{figure}{Замена значений параметров Postfix.}
-    \label{04}
+    \includegraphics[width=\textwidth]{../images/04.png}
+    \captionof{figure}{Схема маршрутизации (L4) для сети 172.16.0.0/12.}
+    \label{03}
 \end{center}
+\subsubsection{План для сети 192.168.0.0/16}
+Данный диапазон идеально подходит под структуру /16. План адресации представлен в табл. \ref{tab:ip3}.
 
-% Убедитесь, что замена параметра была произведена.
-\item Проверили корректность содержания конфигурационного файла \texttt{main.cf} (Рис. \ref{05}):
-  \begin{minted}{bash}
-    postfix check
-  \end{minted}
-\begin{center}
+\begin{table}[h]
     \centering
-    \includegraphics[width=\textwidth]{../images/06.png}
-    \captionof{figure}{Проверка корректности содержания конфигурационного файла \texttt{main.cf}.}
-    \label{05}
-\end{center}
+    \caption{План IP-адресов для сети 192.168.0.0/16}
+    \label{tab:ip3}
+    \begin{tabular}{|c|c|c|c|}
+        \hline
+        \textbf{Название подсети} & \textbf{IP-сеть} & \textbf{VLAN} & \textbf{Адрес шлюза} \\
+        \hline
+        Серверная ферма & 192.168.0.0/24 & 3 & 192.168.0.1 \\
+        Управление & 192.168.1.0/24 & 2 & 192.168.1.1 \\
+        Point-to-Point & 192.168.2.0/24 & - & 192.168.2.1 \\
+        Дисплейные классы (ДК) & 192.168.3.0/24 & 101 & 192.168.3.1 \\
+        Кафедры (К) & 192.168.4.0/24 & 102 & 192.168.4.1 \\
+        Администрация (А) & 192.168.5.0/24 & 103 & 192.168.5.1 \\
+        Другие пользователи (Д) & 192.168.6.0/24 & 104 & 192.168.6.1 \\
+        \hline
+    \end{tabular}
+\end{table}
 
-\item Перезагрузили конфигурационные файлы Postfix (Рис. \ref{07}):
-  \begin{minted}{bash}
-    systemctl reload postfix
-  \end{minted}
-\begin{center}
+\subsection{План подключения интерфейсов оборудования}
+План распределения портов коммутаторов по VLAN и магистральным каналам является единым для всех трех проектов, так как физическая и логическая топология не меняются. Детальный план представлен в табл. \ref{tab:ports}.
+
+\begin{table}[h]
     \centering
-    \includegraphics[width=\textwidth]{../images/07.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-    \label{07}
-\end{center}
+    \caption{План подключения портов оборудования}
+    \label{tab:ports}
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline
+        \textbf{Устройство} & \textbf{Порт} & \textbf{Примечание} & \textbf{Access VLAN} & \textbf{Trunk VLAN} \\
+        \hline
+        \texttt{msk-ansusenko-gw-1} & f0/0 & UpLink & - & 2,3,101,102,103,104 \\
+        & f0/1 & к \texttt{msk-ansusenko-sw-1} & - & 2,3,101,102,103,104 \\
+        \hline
+        \multirow{4}{*}{\texttt{msk-ansusenko-sw-1}} & f0/24 & к \texttt{gw-1} & - & 2,3,101,102,103,104 \\
+        & g0/1 & к \texttt{sw-2} & - & 2,3 \\
+        & g0/2 & к \texttt{sw-4} & - & 2,101,102,103,104 \\
+        & f0/1 & к \texttt{ansusenko-sw-1} & - & 2,101,104 \\
+        \hline
+        \multirow{2}{*}{\texttt{msk-ansusenko-sw-2}} & g0/1 & к \texttt{sw-1} & - & 2,3 \\
+        & g0/2 & к \texttt{sw-3} & - & 2,3 \\
+        \hline
+        \multirow{5}{*}{\texttt{msk-ansusenko-sw-3}} & g0/1 & к \texttt{sw-2} & - & 2,3 \\
+        & f0/1 & Web-сервер & 3 & - \\
+        & f0/2 & File-сервер & 3 & - \\
+        & f0/3 & Mail-сервер & 3 & - \\
+        & f0/4 & DNS-сервер & 3 & - \\
+        \hline
+        \multirow{5}{*}{\texttt{msk-ansusenko-sw-4}} & g0/1 & к \texttt{sw-1} & - & 2,101,102,103,104 \\
+        & f0/1-5 & Пользователи ДК & 101 & - \\
+        & f0/6-10 & Пользователи кафедр & 102 & - \\
+        & f0/11-15 & Администрация & 103 & - \\
+        & f0/16-24 & Другие пользователи & 104 & - \\
+        \hline
+        \multirow{3}{*}{\texttt{msk-ansusenko-sw-1}} & f0/24 & к \texttt{sw-1} (Донская) & - & 2,101,104 \\
+        & f0/1-15 & Пользователи ДК & 101 & - \\
+        & f0/16-24 & Другие пользователи & 104 & - \\
+        \hline
+    \end{tabular}
+\end{table}
 
-\item Просмотрели все параметры с значением, отличным от значения по умолчанию (Рис. \ref{08}):
-  \begin{minted}{bash}
-    postconf -n
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/08.png}
-    \captionof{figure}{Просмотр всех параметров Postfix с отличиями от начальных.}
-    \label{08}
-\end{center}
-
-\item Задали жёстко значение домена:
-  \begin{minted}{bash}
-    postconf -e 'mydomain = ansusenko.net'
-  \end{minted}
-\item Отключили IPv6 в списке разрешённых в работе Postfix протоколов и оставили только IPv4 (Рис. \ref{09}):
-  \begin{minted}{bash}
-    postconf inet_protocols
-    postconf -e 'inet_protocols = ipv4'
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/09.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4.}
-    \label{09}
-\end{center}
-
-\item Перезагрузили конфигурацию Postfix (Рис. \ref{10}):
-  \begin{minted}{bash}
-    postfix check
-    systemctl reload postfix
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-    \label{10}
-\end{center}
-
-\end{enumerate}
-
-\subsection{Проверка работы Postfix}
-\begin{enumerate}
-
-\item На сервере под учётной записью пользователя отправили себе письмо, используя утилиту \texttt{mail}:
-  \begin{minted}{bash}
-    echo .| mail -s test1 ansusenko@server.ansusenko.net
-  \end{minted}
-\item На втором терминале запустили мониторинг работы почтовой службы и посмотрели, что произошло с сообщением (Рис. \ref{11}):
-  \begin{minted}{bash}
-    tail -f /var/log/maillog
-  \end{minted}
-
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Просмотр логов почтовой службы при отправке сообщения.}
-    \label{11}
-\end{center}
-
-Сообщение доставлено, в логе есть строка "status=sent (delivered to mailbox)".
-
-\item На виртуальной машине \texttt{client} вошли под пользователем и открыли терминал. Перешли в режим суперпользователя:
-  \begin{minted}{bash}
-    sudo -i
-  \end{minted}
-\item На клиенте установили необходимые для работы пакеты:
-  \begin{minted}{bash}
-    dnf -y install postfix
-    dnf -y install s-nail
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Установка Postfix.}
-    \label{13}
-\end{center}
-
-\item Отключили IPv6 в списке разрешённых в работе Postfix протоколов и оставьте только IPv4 (Рис. \ref{13}):
-  \begin{minted}{bash}
-    postconf inet_protocols
-    postconf -e 'inet_protocols = ipv4'
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/13.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4 на клиенте.}
-    \label{13}
-\end{center}
-
-\item На клиенте запускаем Postfix (Рис. \ref{14}):
-  \begin{minted}{bash}
-    systemctl enable postfix
-    systemctl start postfix
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/14.png}
-    \captionof{figure}{Перезапуск службы Postfix.}
-    \label{14}
-\end{center}
-
-\item На клиенте под учётной записью пользователя так же отправили себе второе письмо, используя утилиту \texttt{mail} (Рис. \ref{15}):
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/16.png}
-    \captionof{figure}{Логи при попытке отправить сообщение с клиента.}
-    \label{15}
-\end{center}
-Сообщение не доставлено из-за отказа в доступе к серверу, о чем свидетельствует строка "status=deferred (connect to server <...> Connection refused".
-
-\item На сервере в конфигурации Postfix посмотрели значения параметров сетевых интерфейсов \texttt{inet\_interfaces} и сетевых адресов \texttt{mynetworks} (Рис. \ref{16}):
-  \begin{minted}{bash}
-    postconf inet_interfaces
-    postconf mynetworks
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/17.png}
-    \captionof{figure}{Просмотр значений параметров сетевых интерфейсов.}
-    \label{16}
-\end{center}
-
-\item Разрешили Postfix прослушивать соединения не только с локального узла, но и с других интерфейсов сети (Рис. \ref{17}):
-  \begin{minted}{bash}
-    postconf -e 'inet_interfaces = all'
-  \end{minted}
-\item Добавили адрес внутренней сети, разрешив таким образом пересылку сообщений между узлами сети (Рис. \ref{17}):
-  \begin{minted}{bash}
-    postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/18.png}
-    \captionof{figure}{Добавление адреса внутренней сети для разрешения пересылки сообщений между узлами сети.}
-    \label{17}
-\end{center}
-
-\item Перезагрузили конфигурацию Postfix и перезапустили Postfix (Рис. \ref{18}):
-  \begin{minted}{bash}
-    postfix check
-    systemctl reload postfix
-    systemctl stop postfix
-    systemctl start postfix
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/19.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-    \label{18}
-\end{center}
-
-\item Повторите отправку сообщения с клиента (Рис. \ref{19} и \ref{20}):
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при повторной отправке сообщения с клиента.}
-    \label{19}
-\end{center}
-
-\subsection{Конфигурация Postfix для домена}
-\begin{enumerate}
-\item С клиента отправили письмо на свой доменный адрес:
-  \begin{minted}{bash}
-    echo .| mail -s test4 dastarikov@dastarikov.net
-  \end{minted}
-
-\item Запустили мониторинг работы почтовой службы и посмотрели, что произошло с сообщением (Рис. \ref{21}):
-  \begin{minted}{bash}
-    tail -f /var/log/maillog
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при отправке сообщения на доменный адрес.}
-    \label{21}
-\end{center}
-
-
-\item Дополнительно посмотрели, какие сообщения ожидают в очереди на отправление (Рис. \ref{22}):
-  \begin{minted}{bash}
-    postqueue -p
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/21.png}
-    \captionof{figure}{Просмотр сообщений в очереди на отправление.}
-    \label{22}
-\end{center}
-
-\item Для настройки возможности отправки сообщений не на конкретный узел сети, а на доменный адрес прописали MX-запись с указанием имени почтового сервера mail.ansusenko.net в файле прямой DNS-зоны:
-  \begin{minted}{bash}
-  $TTL 1D
-  @       IN SOA    @ server.ansusenko.net. (
-                    2025102100             ; serial
-                    1D                     ; refresh
-                    1H                     ; retry
-                    1W                     ; expire
-                    3H )                   ; minimum
-          NS        @
-          A         192.168.1.1
-          MX 10     mail.ansusenko.net.
-  $ORIGIN ansusenko.net.
-  server  A         192.168.1.1
-  ns      A         192.168.1.1
-  dhcp    A         192.168.1.1
-  www     A         192.168.1.1
-  mail    A         192.168.1.1
-  \end{minted}
-и в файле обратной DNS-зоны:
-\begin{minted}{bash}
-  $TTL 1D
-  @       IN SOA    @ server.ansusenko.net. (
-                    2020110500             ; serial
-                    1D                     ; refresh
-                    1H                     ; retry
-                    1W                     ; expire
-                    3H )                   ; minimum
-          NS        @
-          A         192.168.1.1
-          PTR       server.ansusenko.net.
-          MX 10     mail.ansusenko.net.
-  $ORIGIN 1.168.192.in-addr.arpa.
-  1       PTR       server.ansusenko.net.
-  1       PTR       ns.ansusenko.net.
-  1       PTR       dhcp.ansusenko.net.
-  1       PTR       www.ansusenko.net.
-  1       PTR       mail.ansusenko.net.
-\end{minted}
-
-\item В конфигурации Postfix добавили домен в список элементов сети, для которых данный сервер является конечной точкой доставки почты (Рис. \ref{25}):
-  \begin{minted}{bash}
-    postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-  \end{minted}
-\item Перезагрузили конфигурацию Postfix (Рис. \ref{25}):
-  \begin{minted}{bash}
-    postfix check
-    systemctl reload postfix
-  \end{minted}
-\item Восстановили контекст безопасности в SELinux (Рис. \ref{25}):
-  \begin{minted}{bash}
-    restorecon -vR /etc
-    restorecon -vR /var/named
-  \end{minted}
-\item Перезапустили DNS (Рис. \ref{25}):
-  \begin{minted}{bash}
-    systemctl restart named
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/22.png}
-    \captionof{figure}{Обновление конфигурации Postfix.}
-    \label{25}
-\end{center}
-
-\item Попробовали отправить сообщения, находящиеся в очереди на отправление:
-  \begin{minted}{bash}
-    postqueue -f
-  \end{minted}
-\item Проверили отправку почты с клиента на доменный адрес (Рис. \ref{26} и \ref{27})
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/23.png}
-    \captionof{figure}{Логи при отправке сообщения.}
-    \label{26}
-
-\end{center}
-
-\end{enumerate}
-\subsection{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{enumerate}
-
-\item На виртуальной машине \texttt{server} перейдите в каталог для внесения изменений в настройки внутреннего окружения
-\texttt{/vagrant/provision/server/}.
-\item Заменили конфигурационные файлы DNS-сервера (Рис. \ref{28}):
-  \begin{minted}{bash}
-    cd /vagrant/provision/server/dns/var/named
-    cp -R /var/named/* /vagrant/provision/server/dns/var/named
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/24.png}
-    \captionof{figure}{Создание каталога для настроек внутреннего окружения.}
-    \label{28}
-\end{center}
-
-\item В каталоге \texttt{/vagrant/provision/server} создали исполняемый файл \texttt{mail.sh}:
-  \begin{minted}{bash}
-    cd /vagrant/provision/server
-    touch mail.sh
-    chmod +x mail.sh
-  \end{minted}
-Открыв его на редактирование, прописали в нём следующий скрипт:
-\begin{minted}{bash}
-  #!/bin/bash
-  echo "Provisioning script $0"
-
-  echo "Install needed packages"
-  dnf -y install postfix
-  dnf -y install s-nail
-  echo "Copy configuration files"
-  #cp -R /vagrant/provision/server/mail/etc/* /etc
-  echo "Configure firewall"
-  firewall-cmd --add-service=smtp --permanent
-  firewall-cmd --reload
-  restorecon -vR /etc
-  echo "Start postfix service"
-  systemctl enable postfix
-  systemctl start postfix
-  echo "Configure postfix"
-  postconf -e 'mydomain = dastarikov.net'
-  postconf -e 'myorigin = $mydomain'
-  postconf -e 'inet_protocols = ipv4'
-  postconf -e 'inet_interfaces = all'
-  postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-  postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-  postfix set-permissions
-  restorecon -vR /etc
-  systemctl stop postfix
-  systemctl start postfix
-\end{minted}
-\item На виртуальной машине \texttt{client} перешли в каталог для внесения изменений в настройки внутреннего окружения \texttt{/vagrant/provision/client/}:
-  \begin{minted}{bash}
-    cd /vagrant/provision/client
-  \end{minted}
-\item В каталоге \texttt{/vagrant/provision/client} создали исполняемый файл \texttt{mail.sh}:
-  \begin{minted}{bash}
-    touch mail.sh
-    chmod +x mail.sh
-  \end{minted}
-Открыв его на редактирование, прописали в нём следующий скрипт:
-\begin{minted}{bash}
-  #!/bin/bash
-  echo "Provisioning script $0"
-  echo "Install needed packages"
-  dnf -y install postfix
-  dnf -y install s-nail
-  echo "Configure postfix"
-  postconf -e 'inet_protocols = ipv4'
-  echo "Start postfix service"
-  systemctl enable postfix
-  systemctl start postfix
-\end{minted}
-
-\item Для отработки созданного скрипта во время загрузки виртуальной машины \texttt{server} в конфигурационном файле Vagrantfile добавили в разделе конфигурации для сервера:
-  \begin{minted}{bash}
-    server.vm.provision "server mail",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/server/mail.sh"
-  \end{minted}
-\item Для отработки созданного скрипта во время загрузки виртуальной машины \texttt{client} в конфигурационном файле Vagrantfile добавили в разделе конфигурации для клиента:
-  \begin{minted}{bash}
-    client.vm.provision "client mail",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/client/mail.sh"
-  \end{minted}
-\end{enumerate}
-
+\newpage
 \section{Выводы}
-В результате выполнения лабораторной работы приобрели практические навыки по установке и конфигурированию SMTP-сервера.
+В результате выполнения лабораторной работы были изучены принципы иерархического проектирования локальных сетей.
+\begin{enumerate}
+    \item Разработана физическая схема сети (L1) для организации с двумя площадками, с четким разделением оборудования по уровням (ядро, распределение, доступ) и указанием номеров портов.
+    \item Составлен план VLAN (L2), обеспечивающий логическую сегментацию сети на группы пользователей и служебные сегменты (управление, серверы), что повышает безопасность и управляемость сети.
+    \item Разработаны планы IP-адресации (L3) для трех частных диапазонов: \texttt{10.128.0.0/16}, \texttt{172.16.0.0/12} и \texttt{192.168.0.0/16}. Продемонстрирована универсальность разработанной логической структуры: при смене адресного пространства физическая топология и план VLAN остаются неизменными, меняются только IP-адреса подсетей.
+    \item Составлен детальный план подключения интерфейсов оборудования, позволяющий однозначно определить конфигурацию каждого порта (access/trunk, принадлежность к VLAN).
+\end{enumerate}
+Таким образом, поставленные задачи выполнены в полном объеме, полученные навыки могут быть применены при реальном проектировании и развертывании сети предприятия.
+
 \end{document}

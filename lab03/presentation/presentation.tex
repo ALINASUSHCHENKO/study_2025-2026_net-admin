@@ -1,10 +1,10 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 8. \\ Настройка SMTP-сервера}
+\title{Лабораторная работа № 3. \\ Планирование локальной сети организации}
 \author{Сущенко Алина \\ НПИбд-01-23}
 
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -13,337 +13,471 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение практических навыков по установке и конфигурированию SMTP-сервера.
+    \item Ознакомление с принципами планирования локальной сети организации на примере учебного заведения с двумя территориально распределенными площадками.
+    \item Получение навыков разработки иерархической структуры сети (уровни ядра, распределения и доступа).
+    \item Освоение методик планирования VLAN, IP-адресации и портов подключения оборудования.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{Установка Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/01.png}
-    \captionof{figure}{Конфигурирование межсетевого экрана.}
+\begin{frame}
+\frametitle{Физическая структура сети (L1)}
+\begin{itemize}
+    \item Разработана физическая схема сети в соответствии с иерархической моделью.
+    \item На схеме указаны все устройства и номера портов подключения.
+    \item \textbf{Уровень ядра:} маршрутизатор Cisco 2811 (msk-ansusenko-gw-1)
+    \item \textbf{Уровень распределения:} коммутаторы Cisco 2960 (msk-ansusenko-sw-1, sw-2, sw-3, sw-4)
+    \item \textbf{Уровень доступа:} коммутатор Cisco 2950 (msk-ansusenko-sw-1)
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{../images/01.png}
+\end{center}
+\caption{Физические устройства сети с номерами портов (L1)}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/02.png}
-    \captionof{figure}{Восстановление контекста безопасности SELinux.}
+\frametitle{Схема VLAN (L2)}
+\begin{itemize}
+    \item Сеть разделена на логические сегменты для изоляции трафика различных групп пользователей.
+    \item Магистральные каналы (trunk) передают трафик нескольких VLAN между коммутаторами.
+    \item Порты доступа (access) привязаны к конкретным VLAN для подключения оконечных устройств.
+\end{itemize}
+\begin{table}[h]
+\centering
+\caption{План VLAN}
+\begin{tabular}{|c|c|c|}
+\hline
+\textbf{№ VLAN} & \textbf{Имя VLAN} & \textbf{Примечание} \\
+\hline
+1 & default & Не используется \\
+2 & management & Управление устройствами \\
+3 & servers & Серверная ферма \\
+101 & dk & Дисплейные классы (ДК) \\
+102 & departments & Кафедры \\
+103 & adm & Администрация \\
+104 & other & Другие пользователи \\
+\hline
+\end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/03.png}
-    \captionof{figure}{Запуск службы Postfix.}
+\frametitle{Схема VLAN (L2)}
+\begin{center}
+    \includegraphics[width=0.6\textwidth]{../images/02.png}
+\end{center}
+\caption{Схема VLAN сети (L2)}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/04.png}
-    \captionof{figure}{Просмотр текущих настроек Postfix.}
+\frametitle{Схема маршрутизации для сети 10.128.0.0/16 (L3)}
+\begin{itemize}
+    \item Для исходного проекта используется адресное пространство 10.128.0.0/16.
+    \item Каждому VLAN выделена отдельная подсеть /24.
+    \item Над каждой группой пользователей указаны сеть и адрес шлюза.
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{../images/03.png}
+\end{center}
+\caption{Схема маршрутизации сети (L3)}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/05.png}
-    \captionof{figure}{Замена значений параметров Postfix.}
+\frametitle{План IP-адресации для сети 10.128.0.0/16}
+\begin{table}[h]
+\centering
+\caption{IP-адресация для 10.128.0.0/16}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Подсеть} & \textbf{IP-сеть} & \textbf{VLAN} & \textbf{Шлюз} \\
+\hline
+Серверная ферма & 10.128.0.0/24 & 3 & 10.128.0.1 \\
+Управление & 10.128.1.0/24 & 2 & 10.128.1.1 \\
+Point-to-Point & 10.128.2.0/24 & - & 10.128.2.1 \\
+ДК & 10.128.3.0/24 & 101 & 10.128.3.1 \\
+Кафедры & 10.128.4.0/24 & 102 & 10.128.4.1 \\
+Администрация & 10.128.5.0/24 & 103 & 10.128.5.1 \\
+Другие & 10.128.6.0/24 & 104 & 10.128.6.1 \\
+\hline
+\end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/06.png}
-    \captionof{figure}{Проверка корректности содержания конфигурационного файла \texttt{main.cf}.}
+\frametitle{План IP-адресации для сети 172.16.0.0/12}
+\begin{itemize}
+    \item Для диапазона 172.16.0.0/12 выбрана базовая сеть 172.16.0.0/16 для сохранения структуры /24 подсетей.
+    \item Физическая схема (L1) и схема VLAN (L2) полностью аналогичны предыдущему проекту.
+\end{itemize}
+\begin{table}[h]
+\centering
+\caption{IP-адресация для 172.16.0.0/12}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Подсеть} & \textbf{IP-сеть} & \textbf{VLAN} & \textbf{Шлюз} \\
+\hline
+Серверная ферма & 172.16.0.0/24 & 3 & 172.16.0.1 \\
+Управление & 172.16.1.0/24 & 2 & 172.16.1.1 \\
+Point-to-Point & 172.16.2.0/24 & - & 172.16.2.1 \\
+ДК & 172.16.3.0/24 & 101 & 172.16.3.1 \\
+Кафедры & 172.16.4.0/24 & 102 & 172.16.4.1 \\
+Администрация & 172.16.5.0/24 & 103 & 172.16.5.1 \\
+Другие & 172.16.6.0/24 & 104 & 172.16.6.1 \\
+\hline
+\end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/07.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+\frametitle{План IP-адресации для сети 192.168.0.0/16}
+\begin{itemize}
+    \item Диапазон 192.168.0.0/16 идеально подходит под структуру /16.
+    \item Сохранена та же логическая структура VLAN.
+\end{itemize}
+\begin{table}[h]
+\centering
+\caption{IP-адресация для 192.168.0.0/16}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Подсеть} & \textbf{IP-сеть} & \textbf{VLAN} & \textbf{Шлюз} \\
+\hline
+Серверная ферма & 192.168.0.0/24 & 3 & 192.168.0.1 \\
+Управление & 192.168.1.0/24 & 2 & 192.168.1.1 \\
+Point-to-Point & 192.168.2.0/24 & - & 192.168.2.1 \\
+ДК & 192.168.3.0/24 & 101 & 192.168.3.1 \\
+Кафедры & 192.168.4.0/24 & 102 & 192.168.4.1 \\
+Администрация & 192.168.5.0/24 & 103 & 192.168.5.1 \\
+Другие & 192.168.6.0/24 & 104 & 192.168.6.1 \\
+\hline
+\end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/08.png}
-    \captionof{figure}{Просмотр всех параметров Postfix с отличиями от начальных.}
+\frametitle{План подключения портов оборудования}
+\begin{table}[h]
+\centering
+\caption{План портов (фрагмент)}
+\begin{tabular}{|c|c|c|c|}
+\hline
+\textbf{Устройство} & \textbf{Порт} & \textbf{Назначение} & \textbf{VLAN} \\
+\hline
+msk-donskaya-gw-1 & f0/0 & UpLink & Trunk 2,3,101-104 \\
+msk-donskaya-sw-1 & f0/24 & к gw-1 & Trunk 2,3,101-104 \\
+msk-donskaya-sw-1 & g0/1 & к sw-2 & Trunk 2,3 \\
+msk-donskaya-sw-1 & f0/1 & к pavlovskaya-sw-1 & Trunk 2,101,104 \\
+msk-donskaya-sw-3 & f0/1 & Web-сервер & Access 3 \\
+msk-donskaya-sw-4 & f0/1-5 & Пользователи ДК & Access 101 \\
+msk-pavlovskaya-sw-1 & f0/1-15 & Пользователи ДК & Access 101 \\
+\hline
+\end{tabular}
+\end{table}
+\begin{itemize}
+    \item План портов является единым для всех трех проектов, так как физическая топология не меняется.
+    \item Четко разделены access-порты (для конечных устройств) и trunk-порты (межкоммутаторные соединения).
+\end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/09.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 1: Что такое модель OSI? Какие уровни в ней есть?}
+\textbf{OSI (Open Systems Interconnection)} - эталонная модель взаимодействия открытых систем, разработанная ISO для стандартизации сетевых протоколов.
+\vspace{0.3cm}
+
+\textbf{Уровни модели OSI (сверху вниз):}
+\begin{enumerate}
+    \item \textbf{Прикладной (Application)} - взаимодействие пользовательских приложений с сетью (HTTP, FTP, SMTP)
+    \item \textbf{Представительский (Presentation)} - преобразование данных, шифрование, сжатие
+    \item \textbf{Сеансовый (Session)} - управление сеансами связи, установка/завершение соединений
+    \item \textbf{Транспортный (Transport)} - надежная доставка данных, контроль потока (TCP, UDP)
+    \item \textbf{Сетевой (Network)} - маршрутизация, логическая адресация (IP, ICMP, маршрутизаторы)
+    \item \textbf{Канальный (Data Link)} - физическая адресация (MAC), коммутация (Ethernet, коммутаторы)
+    \item \textbf{Физический (Physical)} - передача битов по среде, электрические/оптические сигналы
+\end{enumerate}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-\begin{minted}{bash}
-echo .| mail -s test1 ansusenko@server.ansusenko.net
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Просмотр логов почтовой службы при отправке сообщения.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Установка Postfix.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 2: Какие функции выполняет коммутатор?}
+\textbf{Коммутатор (Switch)} - устройство канального уровня (L2), выполняющее следующие функции:
+\vspace{0.2cm}
+\begin{itemize}
+    \item \textbf{Коммутация кадров} - передача Ethernet-кадров между портами на основе MAC-адресов
+    \item \textbf{Построение таблицы MAC-адресов} - изучение и хранение соответствий MAC-адресов портам
+    \item \textbf{Сегментация сети} - разделение сети на коллизионные домены (каждый порт — отдельный домен)
+    \item \textbf{Фильтрация трафика} - передача кадров только целевому устройству, а не всем портам
+    \item \textbf{Поддержка VLAN} - логическое разделение сети на изолированные широковещательные домены
+    \item \textbf{Агрегирование каналов} - объединение нескольких портов для увеличения пропускной способности
+    \item \textbf{Обнаружение петель} - поддержка протокола Spanning Tree (STP) для предотвращения широковещательных штормов
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/13.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4 на клиенте.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 3: Какие функции выполняет маршрутизатор?}
+\textbf{Маршрутизатор (Router)} - устройство сетевого уровня (L3), выполняющее следующие функции:
+\vspace{0.2cm}
+\begin{itemize}
+    \item \textbf{Маршрутизация} - определение оптимального пути передачи пакетов между различными сетями
+    \item \textbf{Объединение сетей} - соединение различных IP-подсетей и сетевых технологий
+    \item \textbf{NAT (Network Address Translation)} - преобразование частных IP-адресов в публичные
+    \item \textbf{Межсетевое экранирование} - фильтрация трафика на основе ACL (Access Control Lists)
+    \item \textbf{Поддержка протоколов маршрутизации} - RIP, OSPF, EIGRP, BGP для динамического обновления таблиц
+    \item \textbf{Фрагментация пакетов} - разбиение пакетов при передаче между сетями с разным MTU
+    \item \textbf{Обеспечение QoS} - приоритезация трафика для критичных приложений
+    \item \textbf{Поддержка VPN} - создание защищенных туннелей через публичные сети
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/14.png}
-    \captionof{figure}{Перезапуск службы Postfix.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 4: В чём отличие коммутаторов третьего уровня от коммутаторов второго уровня?}
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{4cm}|p{4cm}|}
+\hline
+\textbf{Коммутатор L2 (уровень 2)} & \textbf{Коммутатор L3 (уровень 3)} \\
+\hline
+Работает на канальном уровне & Работает на канальном и сетевом уровнях \\
+\hline
+Принимает решения на основе MAC-адресов & Принимает решения на основе MAC и IP-адресов \\
+\hline
+Не поддерживает маршрутизацию между VLAN & Поддерживает маршрутизацию между VLAN (межVLAN-роутинг) \\
+\hline
+Не поддерживает статические/динамические протоколы маршрутизации & Поддерживает протоколы маршрутизации (OSPF, EIGRP, RIP) \\
+\hline
+Ограничен одним широковещательным доменом (без VLAN) & Может выступать как шлюз по умолчанию для устройств \\
+\hline
+Более низкая стоимость & Более высокая стоимость \\
+\hline
+Используется на уровне доступа & Используется на уровне распределения и ядра \\
+\hline
+\end{tabular}
+\end{table}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/16.png}
-    \captionof{figure}{Логи при попытке отправить сообщение с клиента.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 5: Что такое сетевой интерфейс?}
+\textbf{Сетевой интерфейс} - точка соединения устройства с сетью, представленная программными и/или аппаратными средствами.
+\vspace{0.2cm}
+
+\textbf{Основные характеристики:}
+\begin{itemize}
+    \item Имеет уникальный идентификатор на уровне L2 (MAC-адрес)
+    \item Может иметь один или несколько IP-адресов на уровне L3
+    \item Может быть физическим (сетевая карта) или виртуальным (loopback, VLAN interface, tunnel)
+    \item Обеспечивает передачу и прием пакетов данных
+\end{itemize}
+
+\textbf{Примеры:}
+\begin{itemize}
+    \item Физические: Ethernet-порт (eth0, FastEthernet0/0), Wi-Fi адаптер (wlan0)
+    \item Виртуальные: Loopback (lo), VLAN-интерфейс (vlan10), интерфейс туннеля (tun0)
+    \item На маршрутизаторах: интерфейсы SVI (Switch Virtual Interface) для маршрутизации между VLAN
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/17.png}
-    \captionof{figure}{Просмотр значений параметров сетевых интерфейсов.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 6: Что такое сетевой порт?}
+\textbf{Сетевой порт} - термин, имеющий два основных значения в компьютерных сетях:
+\vspace{0.2cm}
+
+\textbf{1. Физический порт:}
+\begin{itemize}
+    \item Аппаратный разъем на сетевом устройстве для подключения кабеля
+    \item Примеры: RJ-45 (Ethernet), SFP (оптика), Console-порт, USB
+    \item Идентифицируется номером (FastEthernet 0/1, GigabitEthernet 1/0/24)
+\end{itemize}
+
+\textbf{2. Программный порт (транспортного уровня):}
+\begin{itemize}
+    \item Логическая единица для идентификации приложений на устройстве
+    \item 16-битное число (от 0 до 65535) в заголовках TCP/UDP
+    \item Используется для мультиплексирования соединений
+    \item Примеры: порт 80 (HTTP), порт 443 (HTTPS), порт 22 (SSH)
+\end{itemize}
+
+\textbf{Важно различать:} физический порт (L1) и программный порт (L4)!
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/18.png}
-    \captionof{figure}{Добавление адреса внутренней сети для разрешения пересылки сообщений между узлами сети.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 7: Кратко охарактеризуйте технологии Ethernet, Fast Ethernet, Gigabit Ethernet.}
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{2cm}|p{3cm}|p{3cm}|p{1.5cm}|}
+\hline
+\textbf{Технология} & \textbf{Стандарт} & \textbf{Скорость} & \textbf{Кабель} \\
+\hline
+\textbf{Ethernet} & 10BASE-T (IEEE 802.3) & 10 Мбит/с & CAT3, CAT5 (до 100 м) \\
+\hline
+\textbf{Fast Ethernet} & 100BASE-TX (IEEE 802.3u) & 100 Мбит/с & CAT5 (до 100 м) \\
+\hline
+\textbf{Gigabit Ethernet} & 1000BASE-T (IEEE 802.3ab) & 1000 Мбит/с (1 Гбит/с) & CAT5e, CAT6 (до 100 м) \\
+ & 1000BASE-SX (оптика) & 1 Гбит/с & Многомодовое оптоволокно (до 550 м) \\
+\hline
+\textbf{10 Gigabit Ethernet} & 10GBASE-T (IEEE 802.3an) & 10 Гбит/с & CAT6a, CAT7 (до 100 м) \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Основные различия:}
+\begin{itemize}
+    \item Скорость передачи данных (от 10 Мбит/с до 10+ Гбит/с)
+    \item Методы кодирования сигнала
+    \item Типы используемых кабелей и максимальные расстояния
+    \item Все технологии сохраняют совместимость формата кадров (frame format)
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/19.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 8: Что такое IP-адрес? Определите понятия сеть, подсеть, маска подсети.}
+\textbf{IP-адрес (IPv4)} - 32-битное число, уникально идентифицирующее устройство в сети. Записывается в виде четырех десятичных чисел, разделенных точками (например, 192.168.1.1).
+\vspace{0.2cm}
+
+\textbf{Основные понятия:}
+\begin{itemize}
+    \item \textbf{Сеть} - группа устройств, которые могут взаимодействовать напрямую без маршрутизации. Определяется IP-адресом и маской.
+    \item \textbf{Подсеть} - логическое разделение крупной сети на более мелкие сегменты для оптимизации маршрутизации и управления.
+    \item \textbf{Маска подсети} - 32-битное число, определяющее, какая часть IP-адреса относится к адресу сети, а какая — к адресу узла (host).
+\end{itemize}
+
+\textbf{Служебные IP-адреса:}
+\begin{itemize}
+    \item \textbf{Адрес сети} - все биты хостовой части равны 0 (например, 192.168.1.0/24)
+    \item \textbf{Широковещательный адрес (broadcast)} - все биты хостовой части равны 1 (например, 192.168.1.255/24)
+    \item \textbf{Адрес шлюза по умолчанию} - обычно первый или последний доступный адрес в подсети
+    \item \textbf{Loopback} - 127.0.0.0/8 (обычно 127.0.0.1) для самопроверки
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при повторной отправке сообщения с клиента.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 8 (продолжение): Пример разбиения сети на подсети}
+\textbf{Исходная сеть:} 192.168.1.0/24 (256 адресов, 254 хоста)
+
+\textbf{Задача:} разделить на 4 подсети
+
+\textbf{Решение:} увеличиваем маску на 2 бита (/26)
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+\textbf{Подсеть} & \textbf{Адрес сети} & \textbf{Маска} & \textbf{Широковещ.} & \textbf{Хосты} \\
+\hline
+1 & 192.168.1.0 & 255.255.255.192 & 192.168.1.63 & 62 (1-62) \\
+2 & 192.168.1.64 & 255.255.255.192 & 192.168.1.127 & 62 (65-126) \\
+3 & 192.168.1.128 & 255.255.255.192 & 192.168.1.191 & 62 (129-190) \\
+4 & 192.168.1.192 & 255.255.255.192 & 192.168.1.255 & 62 (193-254) \\
+\hline
+\end{tabular}
+\end{table}
+
+\textbf{Формула расчета:} количество хостов = 2\^(32 - маска) - 2
+\begin{itemize}
+    \item Для /26: 2\^(32-26) - 2 = 2\^6 - 2 = 64 - 2 = 62 хоста
+    \item Вычитаем 2 адреса: адрес сети и широковещательный
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при отправке сообщения на доменный адрес.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 9: Дайте определение понятию VLAN. Для чего применяется VLAN?}
+\textbf{VLAN (Virtual Local Area Network)} - технология, позволяющая логически разделить одну физическую сеть на несколько изолированных широковещательных доменов.
+\vspace{0.2cm}
+
+\textbf{Цели применения VLAN:}
+\begin{itemize}
+    \item \textbf{Безопасность} - изоляция трафика разных отделов (бухгалтерия, HR, администрация)
+    \item \textbf{Уменьшение широковещательного трафика} - ограничение broadcast-домена
+    \item \textbf{Гибкость} - группировка пользователей по функциям, а не по физическому расположению
+    \item \textbf{Упрощение управления} - централизованное применение политик
+\end{itemize}
+
+\textbf{Преимущества:}
+\begin{itemize}
+    \item Логическая группировка пользователей независимо от местоположения
+    \item Повышение безопасности за счет изоляции чувствительных данных
+    \item Снижение нагрузки на сеть
+    \item Простота добавления, перемещения и изменения сотрудников
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/21.png}
-    \captionof{figure}{Просмотр сообщений в очереди на отправление.}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 9 (продолжение): Примеры применения VLAN}
+\textbf{Пример 1: Многоэтажное офисное здание}
+\begin{itemize}
+    \item На каждом этаже физически находятся сотрудники разных отделов
+    \item VLAN объединяет всех сотрудников отдела продаж, независимо от этажа
+    \item Трафик отдела разработки изолирован от трафика бухгалтерии
+\end{itemize}
+
+\textbf{Пример 2: Гостевая сеть}
+\begin{itemize}
+    \item Выделенный VLAN для гостевого Wi-Fi
+    \item Доступ только в интернет, без доступа к корпоративным ресурсам
+    \item Ограничение скорости и применение дополнительных политик безопасности
+\end{itemize}
+
+\textbf{Пример 3: IP-телефония}
+\begin{itemize}
+    \item Отдельный VLAN для VoIP-трафика
+    \item Приоритезация голосового трафика (QoS)
+    \item Гарантированное качество связи независимо от загрузки сети данными
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/22.png}
-    \captionof{figure}{Обновление конфигурации Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/23.png}
-    \captionof{figure}{Логи при отправке сообщения.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-    \centering
-    \includegraphics[width=\textwidth]{../images/24.png}
-    \captionof{figure}{Создание каталога для настроек внутреннего окружения.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-#!/bin/bash
-echo "Provisioning script $0"
-echo "Install needed packages"
-dnf -y install postfix
-dnf -y install s-nail
-echo "Copy configuration files"
-cp -R /vagrant/provision/server/mail/etc/* /etc
-echo "Configure firewall"
-firewall-cmd --add-service=smtp --permanent
-firewall-cmd --reload
-restorecon -vR /etc
-echo "Start postfix service"
-systemctl enable postfix
-systemctl start postfix
-\end{minted}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-echo "Configure postfix"
-postconf -e 'mydomain = dastarikov.net'
-postconf -e 'myorigin = $mydomain'
-postconf -e 'inet_protocols = ipv4'
-postconf -e 'inet_interfaces = all'
-postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-postfix set-permissions
-restorecon -vR /etc
-systemctl stop postfix
-systemctl start postfix
-\end{minted}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 10: В чём отличие Trunk Port от Access Port?}
+\begin{table}[h]
+\centering
+\begin{tabular}{|p{4cm}|p{4cm}|}
+\hline
+\textbf{Access Port} & \textbf{Trunk Port} \\
+\hline
+Принадлежит только одному VLAN & Может передавать трафик нескольких VLAN \\
+\hline
+Удаляет тег VLAN при отправке конечному устройству & Сохраняет теги VLAN (802.1Q) для идентификации принадлежности \\
+\hline
+Используется для подключения конечных устройств (ПК, принтеры, IP-телефоны) & Используется для соединения коммутаторов между собой или с маршрутизаторами \\
+\hline
+Устройство на другом конце обычно не знает о VLAN & Устройство на другом конце должно понимать тегирование 802.1Q \\
+\hline
+Конфигурация: \texttt{switchport mode access} \newline \texttt{switchport access vlan 10} & Конфигурация: \texttt{switchport mode trunk} \newline \texttt{switchport trunk allowed vlan 10,20,30} \\
+\hline
+Трафик поступает на устройство без метки VLAN & Трафик передается с меткой VLAN (тегом) \\
+\hline
+\end{tabular}
+\end{table}
+\end{block}
 \end{frame}
 
 \begin{frame}
 \frametitle{Выводы}
 \begin{itemize}
-    \item В результате выполнения лабораторной работы приобрели практические навыки по установке и конфигурированию SMTP-сервера.
+    \item Разработана физическая схема сети (L1) для организации с двумя площадками, с четким разделением оборудования по уровням иерархической модели.
+    \item Составлен план VLAN (L2), обеспечивающий логическую сегментацию сети и повышение безопасности.
+    \item Разработаны планы IP-адресации (L3) для трех частных диапазонов: 10.128.0.0/16, 172.16.0.0/12 и 192.168.0.0/16.
+    \item Продемонстрирована универсальность разработанной логической структуры: при смене адресного пространства физическая топология и план VLAN остаются неизменными.
+    \item Составлен детальный план подключения интерфейсов оборудования, позволяющий однозначно определить конфигурацию каждого порта.
+    \item Полученные навыки могут быть применены при реальном проектировании и развертывании сети предприятия.
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{1. В каком каталоге и в каком файле следует смотреть конфигурацию Postfix?}
-Основная конфигурация Postfix находится в каталоге \texttt{/etc/postfix/}:
-\begin{itemize}
-\item \texttt{/etc/postfix/main.cf} — основной файл конфигурации с параметрами сервера
-\item \texttt{/etc/postfix/master.cf} — конфигурация процессов и служб
-\item \texttt{/etc/aliases} — файл псевдонимов почтовых ящиков
-\item \texttt{/etc/postfix/access} — контроль доступа к серверу
-\end{itemize}
-\end{block}
-
-\begin{block}{2. Каким образом можно проверить корректность синтаксиса в конфигурационном файле Postfix?}
-\begin{itemize}
-\item \texttt{postfix check} — проверка синтаксиса всех конфигурационных файлов
-\item \texttt{postconf -n} — просмотр всех измененных параметров
-\item \texttt{postconf <параметр>} — проверка конкретного параметра
-\item \texttt{systemctl status postfix} — проверка статуса службы
-\item Просмотр логов: \texttt{tail -f /var/log/maillog}
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{3. В каких параметрах конфигурации Postfix требуется внести изменения для настройки отправки писем на доменные адреса?}
-\begin{itemize}
-\item \texttt{mydomain = example.com} — установка доменного имени
-\item \texttt{myorigin = \$mydomain} — домен для исходящей почты
-\item \texttt{mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain} — домены для локальной доставки
-\item \texttt{inet\_interfaces = all} — прослушивание всех интерфейсов
-\item \texttt{mynetworks = 127.0.0.0/8, 192.168.0.0/16} — разрешенные сети для релейинга
-\item \texttt{relay\_domains = \$mydestination} — домены для релейинга
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{4. Примеры работы с утилитой mail}
-\begin{minted}{bash}
-# Отправка письма с темой и текстом
-echo "Текст письма" | mail -s "Тема письма" user@example.com
-
-# Отправка письма с содержимым файла
-mail -s "Тема" user@example.com < file.txt
-
-# Просмотр списка писем
-mail
-
-# Просмотр конкретного письма (внутри mail)
-print 1
-
-# Удаление письма (внутри mail)
-delete 1
-
-# Выход из mail с сохранением писем
-quit
-
-# Выход с удалением прочитанных писем
-exit
-\end{minted}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{5. Примеры работы с утилитой postqueue}
-\begin{minted}{bash}
-# Просмотр всей очереди сообщений
-postqueue -p
-
-# Подсчет числа сообщений в очереди
-postqueue -p | grep -c "^[A-F0-9]"
-
-# Альтернативный способ подсчета
-mailq | wc -l
-
-# Принудительная отправка всех сообщений в очереди
-postqueue -f
-
-# Принудительная отправка сообщений для определенного домена
-postqueue -s example.com
-
-# Удаление всех сообщений из очереди
-postsuper -d ALL
-
-# Удаление конкретного сообщения по ID
-postsuper -d A1B2C3D4E5
-
-# Удаление всех отложенных сообщений
-postsuper -d ALL deferred
-\end{minted}
-\end{block}
-
 \end{frame}
 
 \end{document}
