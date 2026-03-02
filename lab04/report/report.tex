@@ -1,8 +1,8 @@
 \input{preamble.tex}
 
-\title{Отчет по лабораторной работе № 8. \\ Настройка SMTP-сервера}
+\title{Отчет по лабораторной работе № 4 \\ Первоначальное конфигурирование сети}
 \author{Сущенко Алина \\ НПИбд-01-23}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -10,490 +10,284 @@
 \newpage
 
 \tableofcontents
-
 \newpage
+
 \section{Цель работы}
-Приобретение практических навыков по установке и конфигурированию SMTP-сервера.
+Провести подготовительную работу по первоначальной настройке коммутаторов сети.
 
-\newpage
+\section{Задание}
+Сделать первоначальную настройку коммутаторов сети, представленной на схеме L1. Под первоначальной настройкой понимается указание имени устройства, его IP-адреса, настройка доступа по паролю к виртуальным терминалам и консоли, настройка удалённого доступа к устройству по ssh. При выполнении работы необходимо учитывать соглашение об именовании.
+
 \section{Выполнение работы}
 
-\subsection{Установка Postfix}
-\begin{enumerate}
-\item На виртуальной машине \texttt{server} вошли под пользователем и открыли терминал. Перешли в режим суперпользователя:
-  \begin{minted}{bash}
-    sudo -i
-  \end{minted}
-
-\item Установили необходимые для работы пакеты:
-  \begin{minted}{bash}
-    dnf -y install postfix
-    dnf -y install s-nail
-  \end{minted}
-
-\item Сконфигурировали межсетевой экран, разрешив работать службе протокола SMTP (Рис. \ref{01}):
-  \begin{minted}{bash}
-    firewall-cmd --add-service=smtp
-    firewall-cmd --add-service=smtp --permanent
-    firewall-cmd --list-services
-  \end{minted}
+\subsection{Размещение коммутаторов и оконечных устройств}
+В логической рабочей области \texttt{Packet Tracer} разместили коммутаторы и оконечные устройства согласно схеме сети L1. Выдали им названия в соответствии с соглашением об именовании \texttt{ansusenko} (Рис. \ref{01}):
 
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/01.png}
-    \captionof{figure}{Конфигурирование межсетевого экрана.}
+    \includegraphics[width=0.9\textwidth]{../images/01.png}
+    \captionof{figure}{Размещение коммутаторов и оконечных устройств согласно схеме сети L1}
     \label{01}
 \end{center}
 
-\item Восстановили контекст безопасности в SELinux (Рис. \ref{02}):
-  \begin{minted}{bash}
-    restorecon -vR /etc
-  \end{minted}
+\subsection{Настройка коммутатора msk-ansusenko-sw-01}
+Произвели первоначальную настройку первого коммутатора. Вошли в режим глобальной конфигурации, задали имя устройства, настроили VLAN 2 с IP-адресом, указали шлюз по умолчанию (Рис. \ref{02}):
 
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/02.png}
-    \captionof{figure}{Восстановление контекста безопасности SELinux.}
+    \includegraphics[width=0.9\textwidth]{../images/02.png}
+    \captionof{figure}{Настройка имени, IP-адреса и шлюза на msk-ansusenko-sw-01}
     \label{02}
 \end{center}
 
-\item Запустили Postfix (Рис. \ref{06}):
-  \begin{minted}{bash}
-    systemctl enable postfix
-    systemctl start postfix
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/03.png}
-    \captionof{figure}{Запуск службы Postfix.}
-    \label{06}
-\end{center}
+Настроили пароли для доступа к виртуальным терминалам (VTY) и консоли, установили секретный пароль для привилегированного режима, включили шифрование паролей
+\begin{itemize}
+    \item Пароль на линии VTY 0-4: \texttt{cisco}
+    \item Пароль на консоли: \texttt{cisco}
+    \item Секретный пароль enable: \texttt{cisco}
+    \item Включено шифрование паролей командой \texttt{service password-encryption}
+\end{itemize}
 
-\end{enumerate}
-
-\subsection{Изменение параметров Postfix с помощью postconf}
-Первоначальную настройку Postfix осуществили, используя \texttt{postconf}.
-
-\begin{enumerate}
-\item Для просмотра списка текущих настроек Postfix ввели:
-  \begin{minted}{bash}
-    postconf
-  \end{minted}
-\item Посмотрели текущее значение параметра \texttt{myorigin} (Рис. \ref{03}):
-  \begin{minted}{bash}
-    postconf myorigin
-  \end{minted}
-\item Посмотрели текущее значение параметра \texttt{mydomain} (Рис. \ref{03}):
-  \begin{minted}{bash}
-    postconf mydomain
-  \end{minted}
+Проверим как настроена конфигурация на \texttt{msk-ansusenko-sw-01} (Рис. \ref{03}-\ref{05}):
 
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/04.png}
-    \captionof{figure}{Просмотр текущих настроек Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/03.png}
+    \captionof{figure}{Просмотр текущей конфигурации msk-ansusenko-sw-01}
     \label{03}
 \end{center}
 
-\item Заменили значение параметра \texttt{myorigin} на значение параметра \texttt{mydomain} (Рис. \ref{04}):
-  \begin{minted}{bash}
-    postconf -e 'myorigin = $mydomain'
-  \end{minted}
-\item Повторите команду
-  \begin{minted}{bash}
-    postconf myorigin
-  \end{minted}
-
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/05.png}
-    \captionof{figure}{Замена значений параметров Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/04.png}
+    \captionof{figure}{Продолжение конфигурации msk-ansusenko-sw-01 1}
     \label{04}
 \end{center}
 
-% Убедитесь, что замена параметра была произведена.
-\item Проверили корректность содержания конфигурационного файла \texttt{main.cf} (Рис. \ref{05}):
-  \begin{minted}{bash}
-    postfix check
-  \end{minted}
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/06.png}
-    \captionof{figure}{Проверка корректности содержания конфигурационного файла \texttt{main.cf}.}
+    \includegraphics[width=0.9\textwidth]{../images/05.png}
+    \captionof{figure}{Продолжение конфигурации msk-ansusenko-sw-01 2}
     \label{05}
 \end{center}
 
-\item Перезагрузили конфигурационные файлы Postfix (Рис. \ref{07}):
-  \begin{minted}{bash}
-    systemctl reload postfix
-  \end{minted}
+\subsection{Настройка коммутатора msk-ansusenko-sw-1}
+Произвели настройку второго коммутатора с именем \texttt{msk-ansusenko-sw-1}, присвоили ему IP-адрес 10.128.1.6 (Рис. \ref{06}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/07.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/06.png}
+    \captionof{figure}{Настройка коммутатора msk-ansusenko-sw-1}
+    \label{06}
+\end{center}
+
+После настройки проверили текущую конфигурацию и состояние интерфейсов (Рис. \ref{07}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/07.png}
+    \captionof{figure}{Просмотр running-config и состояния интерфейсов на msk-ansusenko-sw-1}
     \label{07}
 \end{center}
 
-\item Просмотрели все параметры с значением, отличным от значения по умолчанию (Рис. \ref{08}):
-  \begin{minted}{bash}
-    postconf -n
-  \end{minted}
+Просмотрели информацию о VLAN и транках (Рис. \ref{08}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/08.png}
-    \captionof{figure}{Просмотр всех параметров Postfix с отличиями от начальных.}
+    \includegraphics[width=0.9\textwidth]{../images/08.png}
+    \captionof{figure}{Информация о VLAN и транках на msk-ansusenko-sw-1}
     \label{08}
 \end{center}
 
-\item Задали жёстко значение домена:
-  \begin{minted}{bash}
-    postconf -e 'mydomain = ansusenko.net'
-  \end{minted}
-\item Отключили IPv6 в списке разрешённых в работе Postfix протоколов и оставили только IPv4 (Рис. \ref{09}):
-  \begin{minted}{bash}
-    postconf inet_protocols
-    postconf -e 'inet_protocols = ipv4'
-  \end{minted}
+\subsection{Настройка коммутатора msk-ansusenko-sw-2}
+Настроили коммутатор \texttt{msk-ansusenko-sw-2} с IP-адресом 10.128.1.3 (Рис. \ref{09}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/09.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4.}
+    \includegraphics[width=0.9\textwidth]{../images/09.png}
+    \captionof{figure}{Настройка коммутатора msk-ansusenko-sw-2}
     \label{09}
 \end{center}
 
-\item Перезагрузили конфигурацию Postfix (Рис. \ref{10}):
-  \begin{minted}{bash}
-    postfix check
-    systemctl reload postfix
-  \end{minted}
+Проверили конфигурацию и состояние интерфейсов (Рис. \ref{10}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/10.png}
+    \captionof{figure}{Просмотр конфигурации и интерфейсов на msk-ansusenko-sw-2}
     \label{10}
 \end{center}
 
-\end{enumerate}
-
-\subsection{Проверка работы Postfix}
-\begin{enumerate}
-
-\item На сервере под учётной записью пользователя отправили себе письмо, используя утилиту \texttt{mail}:
-  \begin{minted}{bash}
-    echo .| mail -s test1 ansusenko@server.ansusenko.net
-  \end{minted}
-\item На втором терминале запустили мониторинг работы почтовой службы и посмотрели, что произошло с сообщением (Рис. \ref{11}):
-  \begin{minted}{bash}
-    tail -f /var/log/maillog
-  \end{minted}
+Просмотрели информацию о VLAN и транках на данном коммутаторе (Рис. \ref{11}):
 
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Просмотр логов почтовой службы при отправке сообщения.}
+    \includegraphics[width=0.9\textwidth]{../images/11.png}
+    \captionof{figure}{Информация о VLAN и транках на msk-ansusenko-sw-2}
     \label{11}
 \end{center}
 
-Сообщение доставлено, в логе есть строка "status=sent (delivered to mailbox)".
+\subsection{Настройка коммутатора msk-ansusenko-sw-3}
+Настроили коммутатор \texttt{msk-ansusenko-sw-3} и проверили информацию о VLAN (Рис. \ref{12}-\ref{14}):
 
-\item На виртуальной машине \texttt{client} вошли под пользователем и открыли терминал. Перешли в режим суперпользователя:
-  \begin{minted}{bash}
-    sudo -i
-  \end{minted}
-\item На клиенте установили необходимые для работы пакеты:
-  \begin{minted}{bash}
-    dnf -y install postfix
-    dnf -y install s-nail
-  \end{minted}
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Установка Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/12.png}
+    \captionof{figure}{Настройка msk-ansusenko-sw-3}
+    \label{12}
+\end{center}
+
+\begin{center}
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/13.png}
+    \captionof{figure}{Информация об msk-ansusenko-sw-3}
     \label{13}
 \end{center}
 
-\item Отключили IPv6 в списке разрешённых в работе Postfix протоколов и оставьте только IPv4 (Рис. \ref{13}):
-  \begin{minted}{bash}
-    postconf inet_protocols
-    postconf -e 'inet_protocols = ipv4'
-  \end{minted}
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/13.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4 на клиенте.}
-    \label{13}
-\end{center}
-
-\item На клиенте запускаем Postfix (Рис. \ref{14}):
-  \begin{minted}{bash}
-    systemctl enable postfix
-    systemctl start postfix
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/14.png}
-    \captionof{figure}{Перезапуск службы Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/14.png}
+    \captionof{figure}{Информация о VLAN на msk-ansusenko-sw-3}
     \label{14}
 \end{center}
 
-\item На клиенте под учётной записью пользователя так же отправили себе второе письмо, используя утилиту \texttt{mail} (Рис. \ref{15}):
+\subsection{Настройка коммутатора msk-ansusenko-sw-4}
+Настроили коммутатор \texttt{msk-ansusenko-sw-4} (Рис. \ref{15}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/16.png}
-    \captionof{figure}{Логи при попытке отправить сообщение с клиента.}
+    \includegraphics[width=0.9\textwidth]{../images/15.png}
+    \captionof{figure}{Настройка коммутатора msk-ansusenko-sw-4}
     \label{15}
 \end{center}
-Сообщение не доставлено из-за отказа в доступе к серверу, о чем свидетельствует строка "status=deferred (connect to server <...> Connection refused".
 
-\item На сервере в конфигурации Postfix посмотрели значения параметров сетевых интерфейсов \texttt{inet\_interfaces} и сетевых адресов \texttt{mynetworks} (Рис. \ref{16}):
-  \begin{minted}{bash}
-    postconf inet_interfaces
-    postconf mynetworks
-  \end{minted}
+Просмотрели информацию о VLAN на последнем коммутаторе (Рис. \ref{16}-\ref{17}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/17.png}
-    \captionof{figure}{Просмотр значений параметров сетевых интерфейсов.}
+    \includegraphics[width=0.9\textwidth]{../images/16.png}
+    \captionof{figure}{Информация на msk-ansusenko-sw-4}
     \label{16}
 \end{center}
 
-\item Разрешили Postfix прослушивать соединения не только с локального узла, но и с других интерфейсов сети (Рис. \ref{17}):
-  \begin{minted}{bash}
-    postconf -e 'inet_interfaces = all'
-  \end{minted}
-\item Добавили адрес внутренней сети, разрешив таким образом пересылку сообщений между узлами сети (Рис. \ref{17}):
-  \begin{minted}{bash}
-    postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-  \end{minted}
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/18.png}
-    \captionof{figure}{Добавление адреса внутренней сети для разрешения пересылки сообщений между узлами сети.}
+    \includegraphics[width=0.9\textwidth]{../images/17.png}
+    \captionof{figure}{Информация о VLAN на msk-ansusenko-sw-4}
     \label{17}
 \end{center}
 
-\item Перезагрузили конфигурацию Postfix и перезапустили Postfix (Рис. \ref{18}):
-  \begin{minted}{bash}
-    postfix check
-    systemctl reload postfix
-    systemctl stop postfix
-    systemctl start postfix
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/19.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-    \label{18}
-\end{center}
+\subsection{Сводная информация по настройкам}
+В процессе выполнения работы все коммутаторы были настроены в соответствии с планом IP-адресации (Таблица \ref{tab:ip}):
 
-\item Повторите отправку сообщения с клиента (Рис. \ref{19} и \ref{20}):
-\begin{center}
+\begin{table}[h]
     \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при повторной отправке сообщения с клиента.}
-    \label{19}
-\end{center}
+    \caption{Назначенные IP-адреса коммутаторов}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Устройство} & \textbf{Имя} & \textbf{IP-адрес} \\
+        \hline
+        Коммутатор 1 & msk-ansusenko-sw-01 & 10.128.1.2 \\
+        \hline
+        Коммутатор 2 & msk-ansusenko-sw-1 & 10.128.1.6 \\
+        \hline
+        Коммутатор 3 & msk-ansusenko-sw-2 & 10.128.1.3 \\
+        \hline
+        Коммутатор 4 & msk-ansusenko-sw-3 & 10.128.1.4 \\
+        \hline
+        Коммутатор 4 & msk-ansusenko-sw-4 & 10.128.1.5 \\
+    \end{tabular}
+    \label{tab:ip}
+\end{table}
 
-\subsection{Конфигурация Postfix для домена}
+\section{Контрольные вопросы}
+
+\subsection{Вопрос 1: При помощи каких команд можно посмотреть конфигурацию сетевого оборудования?}
+Для просмотра конфигурации сетевого оборудования Cisco используются следующие команды:
+
+\begin{itemize}
+    \item \texttt{show running-config} (или сокращенно \texttt{show run}) - отображает текущую конфигурацию, находящуюся в оперативной памяти (RAM) и используемую устройством в данный момент.
+    
+    \item \texttt{show startup-config} (или \texttt{show start}) - отображает стартовую конфигурацию, сохраненную в энергонезависимой памяти (NVRAM), которая загружается при включении устройства.
+    
+    \item \texttt{show ip interface brief} - показывает краткую информацию по всем интерфейсам, включая IP-адреса и статус (up/down).
+    
+    \item \texttt{show vlan} - отображает информацию о настроенных VLAN и принадлежности портов к ним (как показано на Рис. \ref{fig:08}, \ref{fig:11}, \ref{fig:14}, \ref{fig:17}).
+    
+    \item \texttt{show interfaces trunk} - показывает информацию о транковых портах и разрешенных VLAN на них (Рис. \ref{fig:08}, \ref{fig:11}).
+    
+    \item \texttt{show ssh} - отображает информацию о настроенном SSH и активных соединениях.
+\end{itemize}
+
+\subsection{Вопрос 2: При помощи каких команд можно посмотреть стартовый конфигурационный файл оборудования?}
+Стартовый конфигурационный файл (startup-config) просматривается командой:
+\begin{verbatim}
+    show startup-config
+\end{verbatim}
+или сокращенно:
+\begin{verbatim}
+    show start
+\end{verbatim}
+Эта конфигурация хранится в NVRAM и загружается при включении или перезагрузке устройства. В отличие от running-config, startup-config сохраняется после выключения питания.
+
+\subsection{Вопрос 3: При помощи каких команд можно экспортировать конфигурационный файл оборудования?}
+Для экспорта (сохранения) конфигурации используются следующие команды:
+
 \begin{enumerate}
-\item С клиента отправили письмо на свой доменный адрес:
-  \begin{minted}{bash}
-    echo .| mail -s test4 dastarikov@dastarikov.net
-  \end{minted}
-
-\item Запустили мониторинг работы почтовой службы и посмотрели, что произошло с сообщением (Рис. \ref{21}):
-  \begin{minted}{bash}
-    tail -f /var/log/maillog
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при отправке сообщения на доменный адрес.}
-    \label{21}
-\end{center}
-
-
-\item Дополнительно посмотрели, какие сообщения ожидают в очереди на отправление (Рис. \ref{22}):
-  \begin{minted}{bash}
-    postqueue -p
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/21.png}
-    \captionof{figure}{Просмотр сообщений в очереди на отправление.}
-    \label{22}
-\end{center}
-
-\item Для настройки возможности отправки сообщений не на конкретный узел сети, а на доменный адрес прописали MX-запись с указанием имени почтового сервера mail.ansusenko.net в файле прямой DNS-зоны:
-  \begin{minted}{bash}
-  $TTL 1D
-  @       IN SOA    @ server.ansusenko.net. (
-                    2025102100             ; serial
-                    1D                     ; refresh
-                    1H                     ; retry
-                    1W                     ; expire
-                    3H )                   ; minimum
-          NS        @
-          A         192.168.1.1
-          MX 10     mail.ansusenko.net.
-  $ORIGIN ansusenko.net.
-  server  A         192.168.1.1
-  ns      A         192.168.1.1
-  dhcp    A         192.168.1.1
-  www     A         192.168.1.1
-  mail    A         192.168.1.1
-  \end{minted}
-и в файле обратной DNS-зоны:
-\begin{minted}{bash}
-  $TTL 1D
-  @       IN SOA    @ server.ansusenko.net. (
-                    2020110500             ; serial
-                    1D                     ; refresh
-                    1H                     ; retry
-                    1W                     ; expire
-                    3H )                   ; minimum
-          NS        @
-          A         192.168.1.1
-          PTR       server.ansusenko.net.
-          MX 10     mail.ansusenko.net.
-  $ORIGIN 1.168.192.in-addr.arpa.
-  1       PTR       server.ansusenko.net.
-  1       PTR       ns.ansusenko.net.
-  1       PTR       dhcp.ansusenko.net.
-  1       PTR       www.ansusenko.net.
-  1       PTR       mail.ansusenko.net.
-\end{minted}
-
-\item В конфигурации Postfix добавили домен в список элементов сети, для которых данный сервер является конечной точкой доставки почты (Рис. \ref{25}):
-  \begin{minted}{bash}
-    postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-  \end{minted}
-\item Перезагрузили конфигурацию Postfix (Рис. \ref{25}):
-  \begin{minted}{bash}
-    postfix check
-    systemctl reload postfix
-  \end{minted}
-\item Восстановили контекст безопасности в SELinux (Рис. \ref{25}):
-  \begin{minted}{bash}
-    restorecon -vR /etc
-    restorecon -vR /var/named
-  \end{minted}
-\item Перезапустили DNS (Рис. \ref{25}):
-  \begin{minted}{bash}
-    systemctl restart named
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/22.png}
-    \captionof{figure}{Обновление конфигурации Postfix.}
-    \label{25}
-\end{center}
-
-\item Попробовали отправить сообщения, находящиеся в очереди на отправление:
-  \begin{minted}{bash}
-    postqueue -f
-  \end{minted}
-\item Проверили отправку почты с клиента на доменный адрес (Рис. \ref{26} и \ref{27})
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/23.png}
-    \captionof{figure}{Логи при отправке сообщения.}
-    \label{26}
-
-\end{center}
-
+    \item \textbf{Сохранение в NVRAM устройства:}
+    \begin{verbatim}
+        write memory
+    \end{verbatim}
+    или
+    \begin{verbatim}
+        copy running-config startup-config
+    \end{verbatim}
+    Эта команда сохраняет текущую конфигурацию в энергонезависимую память, чтобы она загружалась при перезагрузке (использовалась в работе, см. Рис. \ref{fig:06}, \ref{fig:15}).
+    
+    \item \textbf{Экспорт на внешний TFTP-сервер:}
+    \begin{verbatim}
+        copy running-config tftp:
+    \end{verbatim}
+    После ввода команды потребуется указать IP-адрес TFTP-сервера и имя файла для сохранения.
+    
+    \item \textbf{Экспорт на FTP/SCP сервер:}
+    \begin{verbatim}
+        copy running-config ftp:
+        copy running-config scp:
+    \end{verbatim}
 \end{enumerate}
-\subsection{Внесение изменений в настройки внутреннего окружения виртуальной машины}
+
+\subsection{Вопрос 4: При помощи каких команд можно импортировать конфигурационный файл оборудования?}
+Для импорта (загрузки) конфигурации используются следующие команды:
+
 \begin{enumerate}
-
-\item На виртуальной машине \texttt{server} перейдите в каталог для внесения изменений в настройки внутреннего окружения
-\texttt{/vagrant/provision/server/}.
-\item Заменили конфигурационные файлы DNS-сервера (Рис. \ref{28}):
-  \begin{minted}{bash}
-    cd /vagrant/provision/server/dns/var/named
-    cp -R /var/named/* /vagrant/provision/server/dns/var/named
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/24.png}
-    \captionof{figure}{Создание каталога для настроек внутреннего окружения.}
-    \label{28}
-\end{center}
-
-\item В каталоге \texttt{/vagrant/provision/server} создали исполняемый файл \texttt{mail.sh}:
-  \begin{minted}{bash}
-    cd /vagrant/provision/server
-    touch mail.sh
-    chmod +x mail.sh
-  \end{minted}
-Открыв его на редактирование, прописали в нём следующий скрипт:
-\begin{minted}{bash}
-  #!/bin/bash
-  echo "Provisioning script $0"
-
-  echo "Install needed packages"
-  dnf -y install postfix
-  dnf -y install s-nail
-  echo "Copy configuration files"
-  #cp -R /vagrant/provision/server/mail/etc/* /etc
-  echo "Configure firewall"
-  firewall-cmd --add-service=smtp --permanent
-  firewall-cmd --reload
-  restorecon -vR /etc
-  echo "Start postfix service"
-  systemctl enable postfix
-  systemctl start postfix
-  echo "Configure postfix"
-  postconf -e 'mydomain = dastarikov.net'
-  postconf -e 'myorigin = $mydomain'
-  postconf -e 'inet_protocols = ipv4'
-  postconf -e 'inet_interfaces = all'
-  postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-  postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-  postfix set-permissions
-  restorecon -vR /etc
-  systemctl stop postfix
-  systemctl start postfix
-\end{minted}
-\item На виртуальной машине \texttt{client} перешли в каталог для внесения изменений в настройки внутреннего окружения \texttt{/vagrant/provision/client/}:
-  \begin{minted}{bash}
-    cd /vagrant/provision/client
-  \end{minted}
-\item В каталоге \texttt{/vagrant/provision/client} создали исполняемый файл \texttt{mail.sh}:
-  \begin{minted}{bash}
-    touch mail.sh
-    chmod +x mail.sh
-  \end{minted}
-Открыв его на редактирование, прописали в нём следующий скрипт:
-\begin{minted}{bash}
-  #!/bin/bash
-  echo "Provisioning script $0"
-  echo "Install needed packages"
-  dnf -y install postfix
-  dnf -y install s-nail
-  echo "Configure postfix"
-  postconf -e 'inet_protocols = ipv4'
-  echo "Start postfix service"
-  systemctl enable postfix
-  systemctl start postfix
-\end{minted}
-
-\item Для отработки созданного скрипта во время загрузки виртуальной машины \texttt{server} в конфигурационном файле Vagrantfile добавили в разделе конфигурации для сервера:
-  \begin{minted}{bash}
-    server.vm.provision "server mail",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/server/mail.sh"
-  \end{minted}
-\item Для отработки созданного скрипта во время загрузки виртуальной машины \texttt{client} в конфигурационном файле Vagrantfile добавили в разделе конфигурации для клиента:
-  \begin{minted}{bash}
-    client.vm.provision "client mail",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/client/mail.sh"
-  \end{minted}
+    \item \textbf{Загрузка из NVRAM в оперативную память:}
+    \begin{verbatim}
+        copy startup-config running-config
+    \end{verbatim}
+    Эта команда загружает сохраненную конфигурацию в текущую (используется для отката изменений).
+    
+    \item \textbf{Загрузка с внешнего TFTP-сервера:}
+    \begin{verbatim}
+        copy tftp: running-config
+        copy tftp: startup-config
+    \end{verbatim}
+    В первом случае конфигурация загружается в текущую сессию, во втором — сразу сохраняется как стартовая.
+    
+    \item \textbf{Загрузка с FTP/SCP сервера:}
+    \begin{verbatim}
+        copy ftp: running-config
+        copy scp: startup-config
+    \end{verbatim}
+    
+    \item \textbf{Перезагрузка устройства для применения стартовой конфигурации:}
+    \begin{verbatim}
+        reload
+    \end{verbatim}
+    При перезагрузке устройство загружает конфигурацию из startup-config.
 \end{enumerate}
 
 \section{Выводы}
-В результате выполнения лабораторной работы приобрели практические навыки по установке и конфигурированию SMTP-сервера.
+В результате выполнения лабораторной работы приобрели практические навыки по первоначальной настройке коммутаторов Cisco в среде Packet Tracer.
+
 \end{document}

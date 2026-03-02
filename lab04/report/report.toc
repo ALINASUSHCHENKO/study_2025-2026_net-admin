@@ -1,9 +1,17 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
-\contentsline {section}{\numberline {2}Выполнение работы}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Установка Postfix}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Изменение параметров Postfix с помощью postconf}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Проверка работы Postfix}{8}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Конфигурация Postfix для домена}{11}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Внесение изменений в настройки внутреннего окружения виртуальной машины}{13}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Выводы}{15}{section.3}%
+\contentsline {section}{\numberline {2}Задание}{3}{section.2}%
+\contentsline {section}{\numberline {3}Выполнение работы}{3}{section.3}%
+\contentsline {subsection}{\numberline {3.1}Размещение коммутаторов и оконечных устройств}{3}{subsection.3.1}%
+\contentsline {subsection}{\numberline {3.2}Настройка коммутатора msk-ansusenko-sw-01}{3}{subsection.3.2}%
+\contentsline {subsection}{\numberline {3.3}Настройка коммутатора msk-ansusenko-sw-1}{9}{subsection.3.3}%
+\contentsline {subsection}{\numberline {3.4}Настройка коммутатора msk-ansusenko-sw-2}{11}{subsection.3.4}%
+\contentsline {subsection}{\numberline {3.5}Настройка коммутатора msk-ansusenko-sw-3}{14}{subsection.3.5}%
+\contentsline {subsection}{\numberline {3.6}Настройка коммутатора msk-ansusenko-sw-4}{17}{subsection.3.6}%
+\contentsline {subsection}{\numberline {3.7}Сводная информация по настройкам}{20}{subsection.3.7}%
+\contentsline {section}{\numberline {4}Контрольные вопросы}{21}{section.4}%
+\contentsline {subsection}{\numberline {4.1}Вопрос 1: При помощи каких команд можно посмотреть конфигурацию сетевого оборудования?}{21}{subsection.4.1}%
+\contentsline {subsection}{\numberline {4.2}Вопрос 2: При помощи каких команд можно посмотреть стартовый конфигурационный файл оборудования?}{21}{subsection.4.2}%
+\contentsline {subsection}{\numberline {4.3}Вопрос 3: При помощи каких команд можно экспортировать конфигурационный файл оборудования?}{22}{subsection.4.3}%
+\contentsline {subsection}{\numberline {4.4}Вопрос 4: При помощи каких команд можно импортировать конфигурационный файл оборудования?}{22}{subsection.4.4}%
+\contentsline {section}{\numberline {5}Выводы}{23}{section.5}%

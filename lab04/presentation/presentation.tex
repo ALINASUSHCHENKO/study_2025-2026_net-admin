@@ -1,10 +1,10 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 8. \\ Настройка SMTP-сервера}
+\title{Лабораторная работа № 4 \\ Первоначальное конфигурирование сети}
 \author{Сущенко Алина \\ НПИбд-01-23}
 
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -13,337 +13,180 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение практических навыков по установке и конфигурированию SMTP-сервера.
+    \item Провести подготовительную работу по первоначальной настройке коммутаторов сети
 \end{itemize}
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{Установка Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
+\begin{frame}
+\frametitle{Схема подключения оборудования}
     \centering
-    \includegraphics[width=\textwidth]{../images/01.png}
-    \captionof{figure}{Конфигурирование межсетевого экрана.}
+    \includegraphics[width=0.9\textwidth]{../images/01.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/02.png}
-    \captionof{figure}{Восстановление контекста безопасности SELinux.}
+    \includegraphics[width=0.8\textwidth]{../images/02.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/03.png}
-    \captionof{figure}{Запуск службы Postfix.}
+    \includegraphics[width=0.8\textwidth]{../images/03.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
     \centering
-    \includegraphics[width=\textwidth]{../images/04.png}
-    \captionof{figure}{Просмотр текущих настроек Postfix.}
+    \includegraphics[width=0.8\textwidth]{../images/04.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
     \centering
-    \includegraphics[width=\textwidth]{../images/05.png}
-    \captionof{figure}{Замена значений параметров Postfix.}
+    \includegraphics[width=0.8\textwidth]{../images/05.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
     \centering
-    \includegraphics[width=\textwidth]{../images/06.png}
-    \captionof{figure}{Проверка корректности содержания конфигурационного файла \texttt{main.cf}.}
+    \includegraphics[width=0.8\textwidth]{../images/06.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
     \centering
-    \includegraphics[width=\textwidth]{../images/07.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+    \includegraphics[width=0.8\textwidth]{../images/07.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
     \centering
-    \includegraphics[width=\textwidth]{../images/08.png}
-    \captionof{figure}{Просмотр всех параметров Postfix с отличиями от начальных.}
+    \includegraphics[width=0.8\textwidth]{../images/08.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
     \centering
-    \includegraphics[width=\textwidth]{../images/09.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4.}
+    \includegraphics[width=0.8\textwidth]{../images/09.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
     \centering
-    \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-\begin{minted}{bash}
-echo .| mail -s test1 ansusenko@server.ansusenko.net
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Просмотр логов почтовой службы при отправке сообщения.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Установка Postfix.}
+    \includegraphics[width=0.8\textwidth]{../images/10.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/13.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4 на клиенте.}
+    \includegraphics[width=0.8\textwidth]{../images/11.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/14.png}
-    \captionof{figure}{Перезапуск службы Postfix.}
+    \includegraphics[width=0.8\textwidth]{../images/12.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/16.png}
-    \captionof{figure}{Логи при попытке отправить сообщение с клиента.}
+    \includegraphics[width=0.8\textwidth]{../images/13.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/17.png}
-    \captionof{figure}{Просмотр значений параметров сетевых интерфейсов.}
+    \includegraphics[width=0.8\textwidth]{../images/14.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/18.png}
-    \captionof{figure}{Добавление адреса внутренней сети для разрешения пересылки сообщений между узлами сети.}
+    \includegraphics[width=0.8\textwidth]{../images/15.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/19.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+    \includegraphics[width=0.8\textwidth]{../images/16.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
     \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при повторной отправке сообщения с клиента.}
+    \includegraphics[width=0.8\textwidth]{../images/17.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Конфигурация Postfix для домена}
+\frametitle{Сводная информация по настройкам}
+В процессе выполнения работы все коммутаторы были настроены в соответствии с планом IP-адресации:
+
+\begin{table}[h]
     \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при отправке сообщения на доменный адрес.}
+    \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Устройство} & \textbf{Имя} & \textbf{IP-адрес} \\
+        \hline
+        Коммутатор 1 & msk-ansusenko-sw-01 & 10.128.1.2 \\
+        \hline
+        Коммутатор 2 & msk-ansusenko-sw-1 & 10.128.1.6 \\
+        \hline
+        Коммутатор 3 & msk-ansusenko-sw-2 & 10.128.1.3 \\
+        \hline
+        Коммутатор 4 & msk-ansusenko-sw-3 & 10.128.1.4 \\
+        \hline
+        Коммутатор 4 & msk-ansusenko-sw-4 & 10.128.1.5 \\
+        \hline
+    \end{tabular}
+\end{table}
 \end{frame}
 
 \begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/21.png}
-    \captionof{figure}{Просмотр сообщений в очереди на отправление.}
+\frametitle{Контрольные вопросы}
+
+\begin{block}{Вопрос 1: При помощи каких команд можно посмотреть конфигурацию сетевого оборудования?}
+Для просмотра конфигурации сетевого оборудования Cisco используются следующие команды:
+\begin{itemize}
+    \item \texttt{show running-config} (или \texttt{show run}) — отображает текущую конфигурацию
+    \item \texttt{show startup-config} (или \texttt{show start}) — отображает стартовую конфигурацию
+    \item \texttt{show ip interface brief} — показывает информацию по интерфейсам
+    \item \texttt{show vlan} — отображает информацию о VLAN
+    \item \texttt{show interfaces trunk} — показывает информацию о транковых портах
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/22.png}
-    \captionof{figure}{Обновление конфигурации Postfix.}
+\frametitle{Контрольные вопросы}
+
+\begin{block}{Вопрос 2: При помощи каких команд можно посмотреть стартовый конфигурационный файл оборудования?}
+Стартовый конфигурационный файл (startup-config) просматривается командой:
+\begin{itemize}
+    \item \texttt{show startup-config}
+    \item \texttt{show start} (сокращенный вариант)
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/23.png}
-    \captionof{figure}{Логи при отправке сообщения.}
+\frametitle{Контрольные вопросы}
+
+\begin{block}{Вопрос 3: При помощи каких команд можно экспортировать конфигурационный файл оборудования?}
+Для экспорта конфигурации используются следующие команды:
+\begin{itemize}
+    \item \texttt{write memory}
+    \item \texttt{copy running-config startup-config}
+    \item \texttt{copy running-config tftp:}
+    \item \texttt{copy startup-config tftp:}
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-    \centering
-    \includegraphics[width=\textwidth]{../images/24.png}
-    \captionof{figure}{Создание каталога для настроек внутреннего окружения.}
-\end{frame}
+\frametitle{Контрольные вопросы}
 
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-#!/bin/bash
-echo "Provisioning script $0"
-echo "Install needed packages"
-dnf -y install postfix
-dnf -y install s-nail
-echo "Copy configuration files"
-cp -R /vagrant/provision/server/mail/etc/* /etc
-echo "Configure firewall"
-firewall-cmd --add-service=smtp --permanent
-firewall-cmd --reload
-restorecon -vR /etc
-echo "Start postfix service"
-systemctl enable postfix
-systemctl start postfix
-\end{minted}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-echo "Configure postfix"
-postconf -e 'mydomain = dastarikov.net'
-postconf -e 'myorigin = $mydomain'
-postconf -e 'inet_protocols = ipv4'
-postconf -e 'inet_interfaces = all'
-postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-postfix set-permissions
-restorecon -vR /etc
-systemctl stop postfix
-systemctl start postfix
-\end{minted}
+\begin{block}{Вопрос 4: При помощи каких команд можно импортировать конфигурационный файл оборудования?}
+Для импорта конфигурации используются следующие команды:
+\begin{itemize}
+    \item \texttt{copy startup-config running-config}
+    \item \texttt{copy tftp: running-config}
+    \item \texttt{copy tftp: startup-config}
+    \item \texttt{reload}
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
 \frametitle{Выводы}
 \begin{itemize}
-    \item В результате выполнения лабораторной работы приобрели практические навыки по установке и конфигурированию SMTP-сервера.
+    \item В результате выполнения работы мы успешно воссоздали схему подключения оборудования, настроили её и провели проверку текущих настроек.
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{1. В каком каталоге и в каком файле следует смотреть конфигурацию Postfix?}
-Основная конфигурация Postfix находится в каталоге \texttt{/etc/postfix/}:
-\begin{itemize}
-\item \texttt{/etc/postfix/main.cf} — основной файл конфигурации с параметрами сервера
-\item \texttt{/etc/postfix/master.cf} — конфигурация процессов и служб
-\item \texttt{/etc/aliases} — файл псевдонимов почтовых ящиков
-\item \texttt{/etc/postfix/access} — контроль доступа к серверу
-\end{itemize}
-\end{block}
-
-\begin{block}{2. Каким образом можно проверить корректность синтаксиса в конфигурационном файле Postfix?}
-\begin{itemize}
-\item \texttt{postfix check} — проверка синтаксиса всех конфигурационных файлов
-\item \texttt{postconf -n} — просмотр всех измененных параметров
-\item \texttt{postconf <параметр>} — проверка конкретного параметра
-\item \texttt{systemctl status postfix} — проверка статуса службы
-\item Просмотр логов: \texttt{tail -f /var/log/maillog}
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{3. В каких параметрах конфигурации Postfix требуется внести изменения для настройки отправки писем на доменные адреса?}
-\begin{itemize}
-\item \texttt{mydomain = example.com} — установка доменного имени
-\item \texttt{myorigin = \$mydomain} — домен для исходящей почты
-\item \texttt{mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain} — домены для локальной доставки
-\item \texttt{inet\_interfaces = all} — прослушивание всех интерфейсов
-\item \texttt{mynetworks = 127.0.0.0/8, 192.168.0.0/16} — разрешенные сети для релейинга
-\item \texttt{relay\_domains = \$mydestination} — домены для релейинга
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{4. Примеры работы с утилитой mail}
-\begin{minted}{bash}
-# Отправка письма с темой и текстом
-echo "Текст письма" | mail -s "Тема письма" user@example.com
-
-# Отправка письма с содержимым файла
-mail -s "Тема" user@example.com < file.txt
-
-# Просмотр списка писем
-mail
-
-# Просмотр конкретного письма (внутри mail)
-print 1
-
-# Удаление письма (внутри mail)
-delete 1
-
-# Выход из mail с сохранением писем
-quit
-
-# Выход с удалением прочитанных писем
-exit
-\end{minted}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{5. Примеры работы с утилитой postqueue}
-\begin{minted}{bash}
-# Просмотр всей очереди сообщений
-postqueue -p
-
-# Подсчет числа сообщений в очереди
-postqueue -p | grep -c "^[A-F0-9]"
-
-# Альтернативный способ подсчета
-mailq | wc -l
-
-# Принудительная отправка всех сообщений в очереди
-postqueue -f
-
-# Принудительная отправка сообщений для определенного домена
-postqueue -s example.com
-
-# Удаление всех сообщений из очереди
-postsuper -d ALL
-
-# Удаление конкретного сообщения по ID
-postsuper -d A1B2C3D4E5
-
-# Удаление всех отложенных сообщений
-postsuper -d ALL deferred
-\end{minted}
-\end{block}
-
 \end{frame}
 
 \end{document}
