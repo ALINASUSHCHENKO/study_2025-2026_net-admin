@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  22 OCT 2025 11:56
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  11 MAR 2026 12:59
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -840,11 +840,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 \l__color_backend_stack_int=\count335
 \l__pdf_internal_box=\box65
 )
-(./report.aux
-
-LaTeX Warning: Label `13' multiply defined.
-
-)
+(./report.aux)
 \openout1 = `report.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 7.
@@ -868,7 +864,8 @@ LaTeX Font Info:    ... okay on input line 7.
 LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 7.
 LaTeX Font Info:    ... okay on input line 7.
 LaTeX Info: Redefining \th on input line 7.
- (/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
+
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count336
 \scratchdimen=\dimen268
@@ -951,688 +948,696 @@ dvips/cm-super/cm-super-t2a.enc}] (./report.toc)
 \tf@toc=\write6
 \openout6 = `report.toc'.
 
- [2]
-Overfull \hbox (5.68857pt too wide) in paragraph at lines 16--17
-[]\T2A/cmr/m/n/12 Приобретение прак-ти-че-ских на-вы-ков по уста-нов-ке и кон-ф
-и-гу-ри-ро-ва-нию SMTP-сервера. 
- []
-
-[3]
+ [2] [3]
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-23.
- (/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
+25.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
 \openout3 = `report.pyg'.
 
 
 (./_minted-report/default.pygstyle)
-(./_minted-report/4F9106480583D73B5C6F1BAE6BDF4A39A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/0854F8242A3014CDBB49CE498A6B5D097E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
 
-(./_minted-report/A2E81C740719B37C337D3EF4033C7BAAA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
 
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
 
-(./_minted-report/9540434B560ADA8380DF7E0C4F7F9482A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/01.png, id=65, 656.4525pt x 179.16937pt>
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.33   \end{minted}
+                   
+? 
+<../images/01.png, id=69, 679.78969pt x 298.11375pt>
 File: ../images/01.png Graphic file (type png)
 <use ../images/01.png>
-Package pdftex.def Info: ../images/01.png  used on input line 43.
-(pdftex.def)             Requested size: 483.69687pt x 132.02007pt.
-
+Package pdftex.def Info: ../images/01.png  used on input line 37.
+(pdftex.def)             Requested size: 483.69687pt x 212.11713pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 44.
+(caption)                particular \caption on input line 38.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 43--44
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 37--38
  [] 
  []
 
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/27A40080D444F23BF7342ED5EA96634C7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/492FD548DF2E5A3C0911B4C0BCDFA231A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/02.png, id=68, 922.94812pt x 65.49469pt>
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.50   \end{minted}
+                   
+? 
+<../images/02.png, id=72, 678.28406pt x 257.46187pt>
 File: ../images/02.png Graphic file (type png)
 <use ../images/02.png>
-Package pdftex.def Info: ../images/02.png  used on input line 55.
-(pdftex.def)             Requested size: 483.69687pt x 34.32425pt.
-
+Package pdftex.def Info: ../images/02.png  used on input line 54.
+(pdftex.def)             Requested size: 483.69687pt x 183.60062pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 56.
+(caption)                particular \caption on input line 55.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 55--56
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 54--55
  [] 
  []
 
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/82A05F84FAD73AD1748D5F1ED1F93A837E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/BF3855EB0AD8443FEA27A94F7504CE44A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/03.png, id=70, 443.40656pt x 47.42719pt>
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.67   \end{minted}
+                   
+? 
+<../images/03.png, id=74, 460.72125pt x 204.01219pt>
 File: ../images/03.png Graphic file (type png)
 <use ../images/03.png>
-Package pdftex.def Info: ../images/03.png  used on input line 67.
-(pdftex.def)             Requested size: 483.69687pt x 51.74019pt.
-
+Package pdftex.def Info: ../images/03.png  used on input line 71.
+(pdftex.def)             Requested size: 483.69687pt x 214.18488pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 68.
+(caption)                particular \caption on input line 72.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 67--68
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 71--72
  [] 
  []
 
 [4 <../images/01.png> <../images/02.png>]
 \openout3 = `report.pyg'.
 
-
-(./_minted-report/A453A1AC3F16A4B3A04F54320565E99BA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/CB42BD42360F7FEBEF9CEC3E0E17E159A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/2E9A30BC6075B3DAD83C873E195195777E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
 
-(./_minted-report/F74BAED18016ABA3D2CA2093026156DDA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/04.png, id=89, 367.3725pt x 87.32625pt>
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.84   \end{minted}
+                   
+? 
+
+Overfull \hbox (29.83531pt too wide) in paragraph at lines 76--85
+[]\T2A/cmr/m/n/12 На ком-му-та-то-ре до-сту-па \T2A/cmtt/m/n/12 msk-ansusenko-s
+w-1 \T2A/cmr/m/n/12 на-стро-и-ли trunk на пор-ту \T2A/cmtt/m/n/12 FastEthernet0
+/24
+ []
+
+<../images/04.png, id=88, 462.97969pt x 285.31593pt>
 File: ../images/04.png Graphic file (type png)
 <use ../images/04.png>
-Package pdftex.def Info: ../images/04.png  used on input line 93.
-(pdftex.def)             Requested size: 483.69687pt x 114.98451pt.
-
+Package pdftex.def Info: ../images/04.png  used on input line 88.
+(pdftex.def)             Requested size: 483.69687pt x 298.08858pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 94.
+(caption)                particular \caption on input line 89.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 93--94
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 88--89
  [] 
  []
 
 \openout3 = `report.pyg'.
 
-
-(./_minted-report/5464BB89A29D9D832832F81B4A2FFCF1A049E9CB418B57F70E24C639F7BA1
-365.pygtex
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-2.
- (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
-File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-))
-\openout3 = `report.pyg'.
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/3E2C524FFC606CA020356DF2019408D67E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
 
-(./_minted-report/CB42BD42360F7FEBEF9CEC3E0E17E159A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/05.png, id=91, 542.77782pt x 67.0003pt>
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.118 \end{minted}
+                  
+? 
+[5 <../images/03.png> <../images/04.png>]
+<../images/05.png, id=100, 550.30594pt x 392.96812pt>
 File: ../images/05.png Graphic file (type png)
 <use ../images/05.png>
-Package pdftex.def Info: ../images/05.png  used on input line 109.
-(pdftex.def)             Requested size: 483.69687pt x 59.70981pt.
+Package pdftex.def Info: ../images/05.png  used on input line 122.
+(pdftex.def)             Requested size: 483.69687pt x 345.41725pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 110.
+(caption)                particular \caption on input line 123.
 See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 109--110
- [] 
- []
 
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/EBF251154ECC6C7D7D52F3750684AB0C7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/54DF6B902AA4E6B838AB9A4C437F4DA7A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/06.png, id=93, 320.69812pt x 25.59563pt>
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.138   \end{minted}
+                    
+? 
+<../images/06.png, id=102, 675.27281pt x 451.6875pt>
 File: ../images/06.png Graphic file (type png)
 <use ../images/06.png>
-Package pdftex.def Info: ../images/06.png  used on input line 121.
-(pdftex.def)             Requested size: 483.69687pt x 38.60577pt.
-
+Package pdftex.def Info: ../images/06.png  used on input line 142.
+(pdftex.def)             Requested size: 483.69687pt x 323.54683pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 122.
+(caption)                particular \caption on input line 143.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 121--122
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 142--143
  [] 
  []
 
-[5{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <../images/03.pn
-g> <../images/04.png> <../images/05.png>]
+[6 <../images/05.png>]
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/EBF251154ECC6C7D7D52F3750684AB0C7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/1F45C3D6F036A57063BF9DBBFA91848EA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/07.png, id=110, 438.8897pt x 25.59563pt>
+
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.153   \end{minted}
+                    
+? 
+<../images/07.png, id=112, 569.12625pt x 201.00093pt>
 File: ../images/07.png Graphic file (type png)
 <use ../images/07.png>
-Package pdftex.def Info: ../images/07.png  used on input line 132.
-(pdftex.def)             Requested size: 483.69687pt x 28.20955pt.
-
+Package pdftex.def Info: ../images/07.png  used on input line 157.
+(pdftex.def)             Requested size: 483.69687pt x 170.83624pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 133.
+(caption)                particular \caption on input line 158.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 132--133
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 157--158
  [] 
  []
 
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/ED8086BE348F4C582D20EB221E6675527E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/6925EB66BD987DC738AFD47276953CFFA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/08.png, id=112, 924.45375pt x 740.7675pt>
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.174   \end{minted}
+                    
+? 
+<../images/08.png, id=114, 526.21594pt x 300.3722pt>
 File: ../images/08.png Graphic file (type png)
 <use ../images/08.png>
-Package pdftex.def Info: ../images/08.png  used on input line 143.
-(pdftex.def)             Requested size: 483.69687pt x 387.58629pt.
-
+Package pdftex.def Info: ../images/08.png  used on input line 178.
+(pdftex.def)             Requested size: 483.69687pt x 276.112pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 144.
+(caption)                particular \caption on input line 179.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 143--144
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 178--179
  [] 
  []
 
-[6 <../images/06.png> <../images/07.png>]
+[7 <../images/06.png> <../images/07.png>]
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/B16EE3A70ED94C51D82D0E3CC77ACFCD7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/A27E02A03F92002B0A1549FA61115794A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
 
 
-(./_minted-report/C7D1CBB2D0B0A825A5EB64768E8603ABA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/09.png, id=126, 447.92343pt x 69.25874pt>
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.190   \end{minted}
+                    
+? 
+<../images/09.png, id=127, 462.97969pt x 137.7647pt>
 File: ../images/09.png Graphic file (type png)
 <use ../images/09.png>
-Package pdftex.def Info: ../images/09.png  used on input line 159.
-(pdftex.def)             Requested size: 483.69687pt x 74.79196pt.
-
+Package pdftex.def Info: ../images/09.png  used on input line 194.
+(pdftex.def)             Requested size: 483.69687pt x 143.93195pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 160.
+(caption)                particular \caption on input line 195.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 159--160
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 194--195
  [] 
  []
 
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/70CBCF9C1158D71E79FF0E7561FEBBAE7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/300E510DF02F71DF5B3EF2F7AE24D32AA049E9CB418B57F70E24C639F7BA1
-365.pygtex [7 <../images/08.png> <../images/09.png>])
-<../images/10.png, id=140, 326.72063pt x 49.68562pt>
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.208   \end{minted}
+                    
+? 
+<../images/10.png, id=129, 648.92438pt x 527.72156pt>
 File: ../images/10.png Graphic file (type png)
 <use ../images/10.png>
-Package pdftex.def Info: ../images/10.png  used on input line 171.
-(pdftex.def)             Requested size: 483.69687pt x 73.55707pt.
-
+Package pdftex.def Info: ../images/10.png  used on input line 212.
+(pdftex.def)             Requested size: 483.69687pt x 393.35838pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 172.
+(caption)                particular \caption on input line 213.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 171--172
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 212--213
  [] 
  []
 
+[8 <../images/08.png> <../images/09.png>]
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/70CBCF9C1158D71E79FF0E7561FEBBAE7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/2A0C32E058890D1D517DA15509D05654A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
 
 
-(./_minted-report/62709416BF662331B0F416DBFAFCEAEDA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/11.png, id=142, 1276.01718pt x 237.13594pt>
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.229   \end{minted}
+                    
+? 
+<../images/11.png, id=141, 605.26125pt x 447.92343pt>
 File: ../images/11.png Graphic file (type png)
 <use ../images/11.png>
-Package pdftex.def Info: ../images/11.png  used on input line 192.
-(pdftex.def)             Requested size: 483.69687pt x 89.88824pt.
-
+Package pdftex.def Info: ../images/11.png  used on input line 233.
+(pdftex.def)             Requested size: 483.69687pt x 357.96332pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 193.
+(caption)                particular \caption on input line 234.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 192--193
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 233--234
  [] 
  []
 
+[9{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <../images/10.pn
+g>]
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/70CBCF9C1158D71E79FF0E7561FEBBAE7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/4F9106480583D73B5C6F1BAE6BDF4A39A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
 
 
-(./_minted-report/A2E81C740719B37C337D3EF4033C7BAAA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/12.png, id=143, 433.62pt x 45.16875pt>
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.250   \end{minted}
+                    
+? 
+<../images/12.png, id=151, 612.03656pt x 476.53032pt>
 File: ../images/12.png Graphic file (type png)
 <use ../images/12.png>
-Package pdftex.def Info: ../images/12.png  used on input line 210.
-(pdftex.def)             Requested size: 483.69687pt x 50.38737pt.
-
+Package pdftex.def Info: ../images/12.png  used on input line 254.
+(pdftex.def)             Requested size: 483.69687pt x 376.60753pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 211.
+(caption)                particular \caption on input line 255.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 210--211
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 254--255
  [] 
  []
 
+[10 <../images/11.png>]
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/70CBCF9C1158D71E79FF0E7561FEBBAE7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/C7D1CBB2D0B0A825A5EB64768E8603ABA049E9CB418B57F70E24C639F7BA1
-365.pygtex [8 <../images/10.png> <../images/11.png> <../images/12.png>])
-<../images/13.png, id=159, 426.84468pt x 67.0003pt>
+
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.263   \end{minted}
+                    
+? 
+<../images/13.png, id=161, 612.03656pt x 447.17062pt>
 File: ../images/13.png Graphic file (type png)
 <use ../images/13.png>
-Package pdftex.def Info: ../images/13.png  used on input line 222.
-(pdftex.def)             Requested size: 483.69687pt x 75.92924pt.
-
+Package pdftex.def Info: ../images/13.png  used on input line 267.
+(pdftex.def)             Requested size: 483.69687pt x 353.4042pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 223.
+(caption)                particular \caption on input line 268.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 222--223
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 267--268
  [] 
  []
 
+[11 <../images/12.png>]
 \openout3 = `report.pyg'.
 
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/70CBCF9C1158D71E79FF0E7561FEBBAE7E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/BF3855EB0AD8443FEA27A94F7504CE44A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/14.png, id=161, 459.96844pt x 46.67438pt>
+
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.278   \end{minted}
+                    
+? 
+<../images/14.png, id=170, 613.54219pt x 353.06906pt>
 File: ../images/14.png Graphic file (type png)
 <use ../images/14.png>
-Package pdftex.def Info: ../images/14.png  used on input line 234.
-(pdftex.def)             Requested size: 483.69687pt x 49.085pt.
-
+Package pdftex.def Info: ../images/14.png  used on input line 282.
+(pdftex.def)             Requested size: 483.69687pt x 278.35043pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 235.
+(caption)                particular \caption on input line 283.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 234--235
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 282--283
  [] 
  []
 
-<../images/16.png, id=163, 1614.7828pt x 377.15906pt>
+[12 <../images/13.png>]
+\openout3 = `report.pyg'.
+
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/6E46C542805FDD2AD12652BD1C1F4C207E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
+
+
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.303   \end{minted}
+                    
+? 
+<../images/15.png, id=179, 529.98pt x 296.60812pt>
+File: ../images/15.png Graphic file (type png)
+<use ../images/15.png>
+Package pdftex.def Info: ../images/15.png  used on input line 307.
+(pdftex.def)             Requested size: 483.69687pt x 270.71036pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 308.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 307--308
+ [] 
+ []
+
+[13 <../images/14.png>]
+\openout3 = `report.pyg'.
+
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/6E46C542805FDD2AD12652BD1C1F4C207E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
+
+
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.318   \end{minted}
+                    
+? 
+<../images/16.png, id=189, 508.14844pt x 300.3722pt>
 File: ../images/16.png Graphic file (type png)
 <use ../images/16.png>
-Package pdftex.def Info: ../images/16.png  used on input line 242.
-(pdftex.def)             Requested size: 483.69687pt x 112.97594pt.
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 243.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 242--243
- [] 
- []
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/3F91E1D4F7AA38EC2C071AA25413E9F0A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/17.png, id=165, 488.57532pt x 97.86563pt>
-File: ../images/17.png Graphic file (type png)
-<use ../images/17.png>
-Package pdftex.def Info: ../images/17.png  used on input line 255.
-(pdftex.def)             Requested size: 483.69687pt x 96.89023pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 256.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 255--256
- [] 
- []
-
-[9 <../images/13.png> <../images/14.png> <../images/16.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/C3CF886B2723008D77AC03DBF158238BA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/541E4E2870DC38112C81D17A9643F0E2A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/18.png, id=183, 755.07094pt x 48.18pt>
-File: ../images/18.png Graphic file (type png)
-<use ../images/18.png>
-Package pdftex.def Info: ../images/18.png  used on input line 270.
-(pdftex.def)             Requested size: 483.69687pt x 30.86374pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 271.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 270--271
- [] 
- []
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/82EEE3A1B752C249DD912B96F5C78461A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/19.png, id=185, 321.45094pt x 112.92188pt>
-File: ../images/19.png Graphic file (type png)
-<use ../images/19.png>
-Package pdftex.def Info: ../images/19.png  used on input line 284.
-(pdftex.def)             Requested size: 483.69687pt x 169.9234pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 285.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 284--285
- [] 
- []
-
-
-LaTeX Warning: Reference `20' on page 10 undefined on input line 289.
-
-<../images/20.png, id=187, 1273.00594pt x 313.17pt>
-File: ../images/20.png Graphic file (type png)
-<use ../images/20.png>
-Package pdftex.def Info: ../images/20.png  used on input line 292.
-(pdftex.def)             Requested size: 483.69687pt x 118.99149pt.
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 293.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 292--293
- [] 
- []
-
-[10 <../images/17.png> <../images/18.png> <../images/19.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/CA03FE82B86D06DCCDE1575136080EFCA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/62709416BF662331B0F416DBFAFCEAEDA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-File: ../images/20.png Graphic file (type png)
-<use ../images/20.png>
-Package pdftex.def Info: ../images/20.png  used on input line 310.
-(pdftex.def)             Requested size: 483.69687pt x 118.99149pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 311.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (55.22438pt too wide) in paragraph at lines 310--311
- [] 
- []
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/ED77669396C851A949CCD162EAD97684A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/21.png, id=202, 491.58656pt x 82.05656pt>
-File: ../images/21.png Graphic file (type png)
-<use ../images/21.png>
-Package pdftex.def Info: ../images/21.png  used on input line 322.
-(pdftex.def)             Requested size: 483.69687pt x 80.7429pt.
-
+Package pdftex.def Info: ../images/16.png  used on input line 322.
+(pdftex.def)             Requested size: 483.69687pt x 285.92944pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 323.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (55.22438pt too wide) in paragraph at lines 322--323
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 322--323
  [] 
  []
 
 \openout3 = `report.pyg'.
 
-
-(./_minted-report/7DA3444AC895951D14ECD9C21C8E8157A049E9CB418B57F70E24C639F7BA1
-365.pygtex [11 <../images/20.png> <../images/21.png>])
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/2CC29D14CF683BD77ABD95A6288A659BA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/38AA961F459776A26A2406237DF9C1137E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
 
-(./_minted-report/FED74119879FEE83AF30A8552ACC45D9A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
 
-
-(./_minted-report/300E510DF02F71DF5B3EF2F7AE24D32AA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/760D3E661BF220BA86E1E8FC79E2DE29A049E9CB418B57F70E24C639F7BA1
-365.pygtex [12])
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/26E3B25F1C5A6BC467AB5E518E36DC71A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/22.png, id=231, 919.93687pt x 167.87718pt>
-File: ../images/22.png Graphic file (type png)
-<use ../images/22.png>
-Package pdftex.def Info: ../images/22.png  used on input line 387.
-(pdftex.def)             Requested size: 483.69687pt x 88.27003pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 388.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (55.22438pt too wide) in paragraph at lines 387--388
- [] 
- []
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/D934D248680E7FFF11EFD51DF1BA6687A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-
-LaTeX Warning: Reference `27' on page 13 undefined on input line 396.
-
-<../images/23.png, id=233, 1273.75874pt x 166.37157pt>
-File: ../images/23.png Graphic file (type png)
-<use ../images/23.png>
-Package pdftex.def Info: ../images/23.png  used on input line 399.
-(pdftex.def)             Requested size: 483.69687pt x 63.17615pt.
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 400.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (55.22438pt too wide) in paragraph at lines 399--400
- [] 
- []
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/5615C3835DCEA4E27B149318BF1AE770A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/24.png, id=235, 917.67844pt x 297.36093pt>
-File: ../images/24.png Graphic file (type png)
-<use ../images/24.png>
-Package pdftex.def Info: ../images/24.png  used on input line 418.
-(pdftex.def)             Requested size: 483.69687pt x 156.73843pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 419.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (55.22438pt too wide) in paragraph at lines 418--419
- [] 
- []
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/4211199C772B8B91C982D45E24D942CDA049E9CB418B57F70E24C639F7BA1
-365.pygtex [13 <../images/22.png> <../images/23.png> <../images/24.png>])
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/F7998244F377141D014348A4111F2A1FA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/221119D203AFE94C9FD53934929C18A3A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/8886D493A1C52077D0E95B1EFA361B20A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/BEFAFFC34512889406DA876895C6ED4FA049E9CB418B57F70E24C639F7BA1
-365.pygtex [14])
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/BA4132EFF106C452BF951E28B94717E2A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/6AB6837DBB7CF0C85CD3BC5A280F922BA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-
-! LaTeX Error: \begin{enumerate} on input line 179 ended by \end{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
+See the minted package documentation for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.499 \end{document}
+l.331   \end{minted}
                     
-? i
-insert>
-[15] (./report.aux)
+? 
+<../images/17.png, id=191, 456.95718pt x 257.46187pt>
+File: ../images/17.png Graphic file (type png)
+<use ../images/17.png>
+Package pdftex.def Info: ../images/17.png  used on input line 335.
+(pdftex.def)             Requested size: 483.69687pt x 272.53505pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 336.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 335--336
+ [] 
+ []
+
+[14 <../images/15.png> <../images/16.png>]
+\openout3 = `report.pyg'.
+
+
+(./_minted-report/CD74B2A77EA82A9A9844DDF104AB031BA049E9CB418B57F70E24C639F7BA1
+365.pygtex)
+<../images/18.png, id=201, 472.01344pt x 370.38374pt>
+File: ../images/18.png Graphic file (type png)
+<use ../images/18.png>
+Package pdftex.def Info: ../images/18.png  used on input line 348.
+(pdftex.def)             Requested size: 483.69687pt x 379.561pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 349.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 348--349
+ [] 
+ []
+
+[15 <../images/17.png>]
+<../images/19.png, id=212, 582.67688pt x 545.03625pt>
+File: ../images/19.png Graphic file (type png)
+<use ../images/19.png>
+Package pdftex.def Info: ../images/19.png  used on input line 356.
+(pdftex.def)             Requested size: 483.69687pt x 452.46315pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 357.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 356--357
+ [] 
+ []
+
+[16 <../images/18.png>] [17 <../images/19.png>]
+<../images/20.png, id=228, 554.07pt x 661.72218pt>
+File: ../images/20.png Graphic file (type png)
+<use ../images/20.png>
+Package pdftex.def Info: ../images/20.png  used on input line 385.
+(pdftex.def)             Requested size: 483.69687pt x 577.67268pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 386.
+See the caption package documentation for explanation.
+
+[18] [19 <../images/20.png>] [20] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-
-
-LaTeX Warning: There were undefined references.
-
-
-LaTeX Warning: There were multiply-defined labels.
-
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: C7A58D760D125AC47AF99435F1776A6D;2090.
+(rerunfilecheck)             Checksum: BA53C6BE566944D17EF863C222616281;2684.
 runsystem(rm report.pyg)...executed.
 
- )
-(\end occurred inside a group at level 1)
-
-### semi simple group (level 1) entered at line 179 (\begingroup)
-### bottom level 
+ ) 
 Here is how much of TeX's memory you used:
- 19843 strings out of 474222
- 350515 string characters out of 5748732
- 1941975 words of memory out of 5000000
- 41566 multiletter control sequences out of 15000+600000
- 573667 words of font info for 80 fonts, out of 8000000 for 9000
+ 19532 strings out of 474222
+ 329150 string characters out of 5748732
+ 1927975 words of memory out of 5000000
+ 41408 multiletter control sequences out of 15000+600000
+ 571638 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 91i,10n,134p,671b,1178s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/c
-mmi6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pf
-b></usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/
+ 91i,6n,134p,544b,873s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/
 fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/c
-m-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit1200.pfb
-></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/f
-onts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm
--super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (15 pages, 3191920 bytes).
+m-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sftt1200.pfb>
+Output written on report.pdf (20 pages, 638806 bytes).
 PDF statistics:
- 335 PDF objects out of 1000 (max. 8388607)
- 248 compressed objects within 3 object streams
- 94 named destinations out of 1000 (max. 500000)
- 180 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 297 PDF objects out of 1000 (max. 8388607)
+ 217 compressed objects within 3 object streams
+ 71 named destinations out of 1000 (max. 500000)
+ 173 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -1,0 +1,4 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{+w}{    }ping\PYG{+w}{ }\PYG{l+m}{10}.128.101.10
+\PYG{+w}{    }ping\PYG{+w}{ }\PYG{l+m}{10}.128.103.10
+\end{Verbatim}
