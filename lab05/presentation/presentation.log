@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  11 MAR 2026 13:13
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  11 MAR 2026 13:26
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1404,9 +1404,7 @@ LaTeX Info: Redefining \th on input line 9.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-
-No file presentation.nav.
-[1
+ (./presentation.nav) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-t2a.enc}]
@@ -1432,7 +1430,7 @@ thkerncmss.
 [2
 
 ]
-<../images/01.png, id=68, 679.78969pt x 298.11375pt>
+<../images/01.png, id=70, 679.78969pt x 298.11375pt>
 File: ../images/01.png Graphic file (type png)
 <use ../images/01.png>
 Package pdftex.def Info: ../images/01.png  used on input line 27.
@@ -1440,7 +1438,7 @@ Package pdftex.def Info: ../images/01.png  used on input line 27.
  [3
 
  <../images/01.png>]
-<../images/02.png, id=97, 678.28406pt x 257.46187pt>
+<../images/02.png, id=99, 678.28406pt x 257.46187pt>
 File: ../images/02.png Graphic file (type png)
 <use ../images/02.png>
 Package pdftex.def Info: ../images/02.png  used on input line 35.
@@ -1448,7 +1446,7 @@ Package pdftex.def Info: ../images/02.png  used on input line 35.
  [4
 
  <../images/02.png>]
-<../images/03.png, id=124, 460.72125pt x 204.01219pt>
+<../images/03.png, id=126, 460.72125pt x 204.01219pt>
 File: ../images/03.png Graphic file (type png)
 <use ../images/03.png>
 Package pdftex.def Info: ../images/03.png  used on input line 43.
@@ -1456,7 +1454,7 @@ Package pdftex.def Info: ../images/03.png  used on input line 43.
  [5
 
  <../images/03.png>]
-<../images/04.png, id=152, 462.97969pt x 285.31593pt>
+<../images/04.png, id=154, 462.97969pt x 285.31593pt>
 File: ../images/04.png Graphic file (type png)
 <use ../images/04.png>
 Package pdftex.def Info: ../images/04.png  used on input line 51.
@@ -1465,7 +1463,7 @@ Package pdftex.def Info: ../images/04.png  used on input line 51.
 [6
 
  <../images/04.png>]
-<../images/05.png, id=179, 550.30594pt x 392.96812pt>
+<../images/05.png, id=181, 550.30594pt x 392.96812pt>
 File: ../images/05.png Graphic file (type png)
 <use ../images/05.png>
 Package pdftex.def Info: ../images/05.png  used on input line 59.
@@ -1473,7 +1471,7 @@ Package pdftex.def Info: ../images/05.png  used on input line 59.
  [7
 
  <../images/05.png>]
-<../images/06.png, id=207, 675.27281pt x 451.6875pt>
+<../images/06.png, id=209, 675.27281pt x 451.6875pt>
 File: ../images/06.png Graphic file (type png)
 <use ../images/06.png>
 Package pdftex.def Info: ../images/06.png  used on input line 67.
@@ -1481,7 +1479,7 @@ Package pdftex.def Info: ../images/06.png  used on input line 67.
  [8
 
  <../images/06.png>]
-<../images/07.png, id=234, 569.12625pt x 201.00093pt>
+<../images/07.png, id=236, 569.12625pt x 201.00093pt>
 File: ../images/07.png Graphic file (type png)
 <use ../images/07.png>
 Package pdftex.def Info: ../images/07.png  used on input line 75.
@@ -1489,7 +1487,7 @@ Package pdftex.def Info: ../images/07.png  used on input line 75.
  [9
 
  <../images/07.png>]
-<../images/08.png, id=262, 526.21594pt x 300.3722pt>
+<../images/08.png, id=264, 526.21594pt x 300.3722pt>
 File: ../images/08.png Graphic file (type png)
 <use ../images/08.png>
 Package pdftex.def Info: ../images/08.png  used on input line 83.
@@ -1497,7 +1495,7 @@ Package pdftex.def Info: ../images/08.png  used on input line 83.
  [10
 
  <../images/08.png>]
-<../images/09.png, id=289, 462.97969pt x 137.7647pt>
+<../images/09.png, id=291, 462.97969pt x 137.7647pt>
 File: ../images/09.png Graphic file (type png)
 <use ../images/09.png>
 Package pdftex.def Info: ../images/09.png  used on input line 91.
@@ -1505,7 +1503,7 @@ Package pdftex.def Info: ../images/09.png  used on input line 91.
  [11
 
  <../images/09.png>]
-<../images/10.png, id=316, 648.92438pt x 527.72156pt>
+<../images/10.png, id=318, 648.92438pt x 527.72156pt>
 File: ../images/10.png Graphic file (type png)
 <use ../images/10.png>
 Package pdftex.def Info: ../images/10.png  used on input line 99.
@@ -1513,7 +1511,7 @@ Package pdftex.def Info: ../images/10.png  used on input line 99.
  [12
 
  <../images/10.png>]
-<../images/11.png, id=343, 605.26125pt x 447.92343pt>
+<../images/11.png, id=345, 605.26125pt x 447.92343pt>
 File: ../images/11.png Graphic file (type png)
 <use ../images/11.png>
 Package pdftex.def Info: ../images/11.png  used on input line 107.
@@ -1521,7 +1519,7 @@ Package pdftex.def Info: ../images/11.png  used on input line 107.
  [13
 
  <../images/11.png>]
-<../images/12.png, id=372, 612.03656pt x 476.53032pt>
+<../images/12.png, id=374, 612.03656pt x 476.53032pt>
 File: ../images/12.png Graphic file (type png)
 <use ../images/12.png>
 Package pdftex.def Info: ../images/12.png  used on input line 115.
@@ -1529,7 +1527,7 @@ Package pdftex.def Info: ../images/12.png  used on input line 115.
  [14
 
  <../images/12.png>]
-<../images/13.png, id=399, 612.03656pt x 447.17062pt>
+<../images/13.png, id=401, 612.03656pt x 447.17062pt>
 File: ../images/13.png Graphic file (type png)
 <use ../images/13.png>
 Package pdftex.def Info: ../images/13.png  used on input line 123.
@@ -1537,7 +1535,7 @@ Package pdftex.def Info: ../images/13.png  used on input line 123.
  [15
 
  <../images/13.png>]
-<../images/14.png, id=426, 613.54219pt x 353.06906pt>
+<../images/14.png, id=428, 613.54219pt x 353.06906pt>
 File: ../images/14.png Graphic file (type png)
 <use ../images/14.png>
 Package pdftex.def Info: ../images/14.png  used on input line 131.
@@ -1546,7 +1544,7 @@ Package pdftex.def Info: ../images/14.png  used on input line 131.
 [16
 
  <../images/14.png>]
-<../images/15.png, id=453, 529.98pt x 296.60812pt>
+<../images/15.png, id=455, 529.98pt x 296.60812pt>
 File: ../images/15.png Graphic file (type png)
 <use ../images/15.png>
 Package pdftex.def Info: ../images/15.png  used on input line 139.
@@ -1554,7 +1552,7 @@ Package pdftex.def Info: ../images/15.png  used on input line 139.
  [17
 
  <../images/15.png>]
-<../images/16.png, id=481, 508.14844pt x 300.3722pt>
+<../images/16.png, id=483, 508.14844pt x 300.3722pt>
 File: ../images/16.png Graphic file (type png)
 <use ../images/16.png>
 Package pdftex.def Info: ../images/16.png  used on input line 147.
@@ -1562,7 +1560,7 @@ Package pdftex.def Info: ../images/16.png  used on input line 147.
  [18
 
  <../images/16.png>]
-<../images/17.png, id=508, 456.95718pt x 257.46187pt>
+<../images/17.png, id=510, 456.95718pt x 257.46187pt>
 File: ../images/17.png Graphic file (type png)
 <use ../images/17.png>
 Package pdftex.def Info: ../images/17.png  used on input line 155.
@@ -1571,7 +1569,7 @@ Package pdftex.def Info: ../images/17.png  used on input line 155.
 [19
 
  <../images/17.png>]
-<../images/18.png, id=536, 472.01344pt x 370.38374pt>
+<../images/18.png, id=538, 472.01344pt x 370.38374pt>
 File: ../images/18.png Graphic file (type png)
 <use ../images/18.png>
 Package pdftex.def Info: ../images/18.png  used on input line 163.
@@ -1579,7 +1577,7 @@ Package pdftex.def Info: ../images/18.png  used on input line 163.
  [20
 
  <../images/18.png>]
-<../images/19.png, id=563, 582.67688pt x 545.03625pt>
+<../images/19.png, id=565, 582.67688pt x 545.03625pt>
 File: ../images/19.png Graphic file (type png)
 <use ../images/19.png>
 Package pdftex.def Info: ../images/19.png  used on input line 171.
@@ -1591,7 +1589,7 @@ Overfull \vbox (0.52534pt too high) detected at line 171
 [21
 
  <../images/19.png>]
-<../images/20.png, id=591, 554.07pt x 661.72218pt>
+<../images/20.png, id=593, 554.07pt x 661.72218pt>
 File: ../images/20.png Graphic file (type png)
 <use ../images/20.png>
 Package pdftex.def Info: ../images/20.png  used on input line 179.
@@ -1645,10 +1643,10 @@ Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
  ) 
 Here is how much of TeX's memory you used:
- 29624 strings out of 474222
- 570018 string characters out of 5748732
- 1934975 words of memory out of 5000000
- 51211 multiletter control sequences out of 15000+600000
+ 29690 strings out of 474222
+ 570576 string characters out of 5748732
+ 1935975 words of memory out of 5000000
+ 51275 multiletter control sequences out of 15000+600000
  571095 words of font info for 67 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  133i,14n,134p,444b,581s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -1659,7 +1657,7 @@ onts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm
 </usr/share/texmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/fo
 nts/type1/public/cm-super/sfsx1095.pfb></usr/share/texmf/fonts/type1/public/cm-
 super/sftt1095.pfb>
-Output written on presentation.pdf (29 pages, 664059 bytes).
+Output written on presentation.pdf (29 pages, 664675 bytes).
 PDF statistics:
  849 PDF objects out of 1000 (max. 8388607)
  748 compressed objects within 8 object streams
