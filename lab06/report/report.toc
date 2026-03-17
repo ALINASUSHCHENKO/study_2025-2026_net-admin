@@ -1,9 +1,17 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
 \contentsline {section}{\numberline {2}Выполнение работы}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Установка Postfix}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Изменение параметров Postfix с помощью postconf}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Проверка работы Postfix}{8}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Конфигурация Postfix для домена}{11}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Внесение изменений в настройки внутреннего окружения виртуальной машины}{13}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Выводы}{15}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Топология сети}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Первоначальная настройка маршрутизатора}{4}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Настройка Trunk-порта на коммутаторе}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Настройка виртуальных интерфейсов на маршрутизаторе}{5}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Проверка доступности устройств из разных VLAN}{8}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Проверка связи ПК dk-ansusenko-01 (VLAN 101)}{8}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Проверка связи ПК из VLAN 102}{9}{subsubsection.2.5.2}%
+\contentsline {subsubsection}{\numberline {2.5.3}Проверка связи между серверами}{10}{subsubsection.2.5.3}%
+\contentsline {subsection}{\numberline {2.6}Изучение процесса передачи пакетов в режиме симуляции}{11}{subsection.2.6}%
+\contentsline {subsubsection}{\numberline {2.6.1}Настройка симуляции}{11}{subsubsection.2.6.1}%
+\contentsline {subsubsection}{\numberline {2.6.2}Наблюдения за движением пакета}{12}{subsubsection.2.6.2}%
+\contentsline {subsubsection}{\numberline {2.6.3}Содержимое пакетов (анализ PDU)}{13}{subsubsection.2.6.3}%
+\contentsline {subsection}{\numberline {2.7}Таблица распределения IP-адресов}{14}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Выводы}{14}{section.3}%
