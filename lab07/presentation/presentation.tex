@@ -1,10 +1,10 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 8. \\ Настройка SMTP-сервера}
-\author{Сущенко Алина \\ НПИбд-01-23}
+\title{Лабораторная работа № 7. \\ Учёт физических параметров сети}
+\author{Сущенко Алина Николаевна \\ НПИбд-01-23}
 
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -13,337 +13,193 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение практических навыков по установке и конфигурированию SMTP-сервера.
+    \item Приобретение практических навыков по работе с физической рабочей областью Packet Tracer.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{Установка Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
+\begin{frame}
+\frametitle{Настройка физической рабочей области}
+В физической рабочей области Packet Tracer присвоили название городу - \texttt{ansusenko}.
     \centering
     \includegraphics[width=\textwidth]{../images/01.png}
-    \captionof{figure}{Конфигурирование межсетевого экрана.}
+    \captionof{figure}{Присвоение названия городу ansusenko.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
+\frametitle{Настройка физической рабочей области}
+Щёлкнув на изображении города, перешли на уровень зданий. Присвоили зданию название \texttt{ansusenko}. Добавили здание для территории \texttt{ansusenko-p}.
     \centering
     \includegraphics[width=\textwidth]{../images/02.png}
-    \captionof{figure}{Восстановление контекста безопасности SELinux.}
+    \captionof{figure}{Здания ansusenko и ansusenko-p.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
+\frametitle{Настройка физической рабочей области}
+Щёлкнув на изображении здания ansusenko, переместили изображение, обозначающее серверное помещение (Main Wiring Closet), в него.
     \centering
     \includegraphics[width=\textwidth]{../images/03.png}
-    \captionof{figure}{Запуск службы Postfix.}
+    \captionof{figure}{Размещение серверного помещения в здании ansusenko.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Настройка физической рабочей области}
     \centering
     \includegraphics[width=\textwidth]{../images/04.png}
-    \captionof{figure}{Просмотр текущих настроек Postfix.}
+    \captionof{figure}{Размещение сетевого оборудования в серверной стойке.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Настройка физической рабочей области}
+На территории \texttt{ansusenko-p} разместили коммутатор \texttt{msk-ansusenko-sw-1} и оконечные устройства \texttt{other-ansusenko-1}, \texttt{dk-ansusenko-1}.
     \centering
     \includegraphics[width=\textwidth]{../images/05.png}
-    \captionof{figure}{Замена значений параметров Postfix.}
+    \captionof{figure}{Размещение оборудования на территории ansusenko-p.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Настройка IP-адресации}
     \centering
     \includegraphics[width=\textwidth]{../images/06.png}
-    \captionof{figure}{Проверка корректности содержания конфигурационного файла \texttt{main.cf}.}
+    \captionof{figure}{Пинг на коммутаторе msk-ansusenko-sw-01.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Настройка IP-адресации}
     \centering
     \includegraphics[width=\textwidth]{../images/07.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+    \captionof{figure}{Неудачный пинг.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Проверка работоспособности соединения}
     \centering
     \includegraphics[width=\textwidth]{../images/08.png}
-    \captionof{figure}{Просмотр всех параметров Postfix с отличиями от начальных.}
+    \captionof{figure}{Неудачный пинг после изменения расстояния.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Добавление повторителей}
     \centering
     \includegraphics[width=\textwidth]{../images/09.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4.}
+    \captionof{figure}{Вид повторителя с установленными модулями.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Схема сети с повторителями}
     \centering
     \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+    \captionof{figure}{Новый вид схемы (отрезок с повторителями).}
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-\begin{minted}{bash}
-echo .| mail -s test1 ansusenko@server.ansusenko.net
-\end{minted}
+\begin{frame}
+\frametitle{Изменение расстояния между территориями}
     \centering
     \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Просмотр логов почтовой службы при отправке сообщения.}
+    \captionof{figure}{Расстояние между территориями 991.37 м, соединены оптоволокном.}
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
+\begin{frame}
+\frametitle{Проверка работоспособности соединения после добавления повторителей}
     \centering
     \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Установка Postfix.}
+    \captionof{figure}{Ping от ansusenko к ansusenko-p.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
+\frametitle{Проверка работоспособности соединения после добавления повторителей}
     \centering
     \includegraphics[width=\textwidth]{../images/13.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4 на клиенте.}
+    \captionof{figure}{Ping от ansusenko-p к ansusenko.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/14.png}
-    \captionof{figure}{Перезапуск службы Postfix.}
+\frametitle{Контрольные вопросы}
+
+\begin{block}{Вопрос 1. Перечислите возможные среды передачи данных. На какие характеристики среды передачи данных следует обращать внимание при планировании сети?}
+\textbf{Ответ:} \\
+\textbf{Среды передачи данных:}
+\begin{itemize}
+    \item \textbf{Проводные (медные):} витая пара (UTP, FTP, STP), коаксиальный кабель.
+    \item \textbf{Оптические:} одномодовое оптоволокно (SMF), многомодовое оптоволокно (MMF).
+    \item \textbf{Беспроводные:} радиоканал (Wi-Fi, Bluetooth, LTE), инфракрасный диапазон.
+\end{itemize}
+\textbf{Характеристики для планирования:}
+\begin{itemize}
+    \item Максимальная длина сегмента (затухание сигнала)
+    \item Пропускная способность (скорость передачи данных)
+    \item Помехозащищённость (электромагнитные помехи, перекрёстные наводки)
+    \item Стоимость прокладки и обслуживания
+    \item Сложность монтажа и масштабирования
+\end{itemize}
+\end{block}
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/16.png}
-    \captionof{figure}{Логи при попытке отправить сообщение с клиента.}
+\frametitle{Контрольные вопросы}
+
+\begin{block}{Вопрос 2. Перечислите категории витой пары. Чем они отличаются? Какая категория в каких условиях может применяться?}
+\textbf{Ответ:} \\
+\textbf{Категории витой пары:}
+\begin{itemize}
+    \item \textbf{Category 5e (Cat5e):} частота до 100 МГц, скорость до 1 Гбит/с (1000BASE-T). Применяется в офисных сетях, домашних сетях.
+    \item \textbf{Category 6 (Cat6):} частота до 250 МГц, скорость до 10 Гбит/с на расстоянии до 55 м. Применяется в корпоративных сетях, дата-центрах.
+    \item \textbf{Category 6a (Cat6a):} частота до 500 МГц, скорость до 10 Гбит/с на расстоянии до 100 м. Экранированная версия, устойчива к помехам.
+    \item \textbf{Category 7 (Cat7):} частота до 600 МГц, полностью экранированная (S/FTP), используется в высоконагруженных сетях.
+    \item \textbf{Category 8 (Cat8):} частота до 2000 МГц, скорость до 25-40 Гбит/с, применяется в дата-центрах (расстояние до 30 м).
+\end{itemize}
+\textbf{Отличия:} рабочая частота, максимальная скорость передачи, наличие экранирования, максимальная длина сегмента.
+\end{block}
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/17.png}
-    \captionof{figure}{Просмотр значений параметров сетевых интерфейсов.}
+\frametitle{Контрольные вопросы}
+
+\begin{block}{Вопрос 3. В чем отличие одномодового и многомодового оптоволокна? Какой тип кабеля в каких условиях может применяться?}
+\textbf{Ответ:} \\
+\textbf{Одномодовое оптоволокно (SMF):}
+\begin{itemize}
+    \item Диаметр сердцевины: 8-10 мкм
+    \item Распространяется только одна мода света
+    \item Дальность передачи: до 100 км и более
+    \item Применение: магистральные линии связи, соединение городов, дата-центры на больших расстояниях
+\end{itemize}
+\textbf{Многомодовое оптоволокно (MMF):}
+\begin{itemize}
+    \item Диаметр сердцевины: 50-62.5 мкм
+    \item Распространяется множество мод света
+    \item Дальность передачи: до 550 м (для 10 Гбит/с), до 2 км (для 1 Гбит/с)
+    \item Применение: локальные сети внутри зданий, кампусные сети, соединение этажей
+\end{itemize}
+\textbf{Основное отличие:} диаметр сердцевины, дальность передачи, стоимость (SMF дороже в оборудовании, MMF — в кабеле).
+\end{block}
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/18.png}
-    \captionof{figure}{Добавление адреса внутренней сети для разрешения пересылки сообщений между узлами сети.}
-\end{frame}
+\frametitle{Контрольные вопросы}
 
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/19.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-\end{frame}
+\begin{block}{Вопрос 4. Какие разъёмы встречаются на патчах оптоволокна? Чем они отличаются?}
+\textbf{Ответ:} \\
+\textbf{Основные типы оптических разъёмов:}
+\begin{itemize}
+    \item \textbf{SC (Subscriber Connector):} квадратный форм-фактор, фиксация "push-pull". Используется в Ethernet-сетях, простота подключения.
+    \item \textbf{LC (Lucent Connector):} компактный разъём (половина SC), фиксация защёлкой. Самый распространённый в современных SFP-модулях.
+    \item \textbf{ST (Straight Tip):} круглый разъём с байонетным креплением (как BNC). Используется в старых сетях.
+    \item \textbf{FC (Ferrule Connector):} круглый разъём с винтовой фиксацией. Применяется в условиях вибрации (промышленность, телекоммуникации).
+    \item \textbf{MTP/MPO (Multi-fiber Push On):} многожильный разъём (до 24 волокон). Используется в дата-центрах для высокой плотности подключений.
+\end{itemize}
+\textbf{Отличия:} форма разъёма, способ фиксации, плотность портов, область применения.
+\end{block}
 
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при повторной отправке сообщения с клиента.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при отправке сообщения на доменный адрес.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/21.png}
-    \captionof{figure}{Просмотр сообщений в очереди на отправление.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/22.png}
-    \captionof{figure}{Обновление конфигурации Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/23.png}
-    \captionof{figure}{Логи при отправке сообщения.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-    \centering
-    \includegraphics[width=\textwidth]{../images/24.png}
-    \captionof{figure}{Создание каталога для настроек внутреннего окружения.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-#!/bin/bash
-echo "Provisioning script $0"
-echo "Install needed packages"
-dnf -y install postfix
-dnf -y install s-nail
-echo "Copy configuration files"
-cp -R /vagrant/provision/server/mail/etc/* /etc
-echo "Configure firewall"
-firewall-cmd --add-service=smtp --permanent
-firewall-cmd --reload
-restorecon -vR /etc
-echo "Start postfix service"
-systemctl enable postfix
-systemctl start postfix
-\end{minted}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-echo "Configure postfix"
-postconf -e 'mydomain = dastarikov.net'
-postconf -e 'myorigin = $mydomain'
-postconf -e 'inet_protocols = ipv4'
-postconf -e 'inet_interfaces = all'
-postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-postfix set-permissions
-restorecon -vR /etc
-systemctl stop postfix
-systemctl start postfix
-\end{minted}
 \end{frame}
 
 \begin{frame}
 \frametitle{Выводы}
 \begin{itemize}
-    \item В результате выполнения лабораторной работы приобрели практические навыки по установке и конфигурированию SMTP-сервера.
+    \item В результате выполнения лабораторной работы приобрели практические навыки по работе с физической рабочей областью Packet Tracer.
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{1. В каком каталоге и в каком файле следует смотреть конфигурацию Postfix?}
-Основная конфигурация Postfix находится в каталоге \texttt{/etc/postfix/}:
-\begin{itemize}
-\item \texttt{/etc/postfix/main.cf} — основной файл конфигурации с параметрами сервера
-\item \texttt{/etc/postfix/master.cf} — конфигурация процессов и служб
-\item \texttt{/etc/aliases} — файл псевдонимов почтовых ящиков
-\item \texttt{/etc/postfix/access} — контроль доступа к серверу
-\end{itemize}
-\end{block}
-
-\begin{block}{2. Каким образом можно проверить корректность синтаксиса в конфигурационном файле Postfix?}
-\begin{itemize}
-\item \texttt{postfix check} — проверка синтаксиса всех конфигурационных файлов
-\item \texttt{postconf -n} — просмотр всех измененных параметров
-\item \texttt{postconf <параметр>} — проверка конкретного параметра
-\item \texttt{systemctl status postfix} — проверка статуса службы
-\item Просмотр логов: \texttt{tail -f /var/log/maillog}
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{3. В каких параметрах конфигурации Postfix требуется внести изменения для настройки отправки писем на доменные адреса?}
-\begin{itemize}
-\item \texttt{mydomain = example.com} — установка доменного имени
-\item \texttt{myorigin = \$mydomain} — домен для исходящей почты
-\item \texttt{mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain} — домены для локальной доставки
-\item \texttt{inet\_interfaces = all} — прослушивание всех интерфейсов
-\item \texttt{mynetworks = 127.0.0.0/8, 192.168.0.0/16} — разрешенные сети для релейинга
-\item \texttt{relay\_domains = \$mydestination} — домены для релейинга
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{4. Примеры работы с утилитой mail}
-\begin{minted}{bash}
-# Отправка письма с темой и текстом
-echo "Текст письма" | mail -s "Тема письма" user@example.com
-
-# Отправка письма с содержимым файла
-mail -s "Тема" user@example.com < file.txt
-
-# Просмотр списка писем
-mail
-
-# Просмотр конкретного письма (внутри mail)
-print 1
-
-# Удаление письма (внутри mail)
-delete 1
-
-# Выход из mail с сохранением писем
-quit
-
-# Выход с удалением прочитанных писем
-exit
-\end{minted}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{5. Примеры работы с утилитой postqueue}
-\begin{minted}{bash}
-# Просмотр всей очереди сообщений
-postqueue -p
-
-# Подсчет числа сообщений в очереди
-postqueue -p | grep -c "^[A-F0-9]"
-
-# Альтернативный способ подсчета
-mailq | wc -l
-
-# Принудительная отправка всех сообщений в очереди
-postqueue -f
-
-# Принудительная отправка сообщений для определенного домена
-postqueue -s example.com
-
-# Удаление всех сообщений из очереди
-postsuper -d ALL
-
-# Удаление конкретного сообщения по ID
-postsuper -d A1B2C3D4E5
-
-# Удаление всех отложенных сообщений
-postsuper -d ALL deferred
-\end{minted}
-\end{block}
-
 \end{frame}
 
 \end{document}
