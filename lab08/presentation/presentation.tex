@@ -1,10 +1,10 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 8. \\ Настройка SMTP-сервера}
-\author{Сущенко Алина \\ НПИбд-01-23}
+\title{Лабораторная работа № 8. \\ Настройка сетевых сервисов. DHCP}
+\author{Сущенко Алина Николаевна \\ НПИбд-01-23}
 
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -13,336 +13,139 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение практических навыков по установке и конфигурированию SMTP-сервера.
+    \item Приобретение практических навыков по настройке динамического распределения IP-адресов посредством протокола DHCP в локальной сети.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{Установка Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
+\begin{frame}
+\frametitle{Логическая схема сети}
     \centering
-    \includegraphics[width=\textwidth]{../images/01.png}
-    \captionof{figure}{Конфигурирование межсетевого экрана.}
+    \includegraphics[width=0.9\textwidth]{../images/01.png}
+    \captionof{figure}{Логическая схема локальной сети с DNS-сервером}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
+\frametitle{Настройка DNS-сервера}
     \centering
-    \includegraphics[width=\textwidth]{../images/02.png}
-    \captionof{figure}{Восстановление контекста безопасности SELinux.}
+    \includegraphics[width=0.9\textwidth]{../images/02.png}
+    \captionof{figure}{Конфигурация сервера ansusenko-dns}
 \end{frame}
 
 \begin{frame}
-\frametitle{Установка Postfix}
+\frametitle{Настройка DNS-сервера}
     \centering
-    \includegraphics[width=\textwidth]{../images/03.png}
-    \captionof{figure}{Запуск службы Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/03.png}
+    \captionof{figure}{Добавление ресурсных записей DNS}
+\end{frame}
+
+\frametitle{Проверка настроек DHCP-пулов}
+    \centering
+    \includegraphics[width=0.9\textwidth]{../images/04.png}
+    \captionof{figure}{Настройка DHCP-пулов на маршрутизаторе}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Просмотр информации о пулах DHCP}
     \centering
-    \includegraphics[width=\textwidth]{../images/04.png}
-    \captionof{figure}{Просмотр текущих настроек Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/05.png}
+    \captionof{figure}{Результат выполнения команды \texttt{show ip dhcp pool}}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Проверка привязок DHCP}
     \centering
-    \includegraphics[width=\textwidth]{../images/05.png}
-    \captionof{figure}{Замена значений параметров Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/06.png}
+    \captionof{figure}{Результат выполнения команды \texttt{show ip dhcp binding}}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Настройка оконечных устройств на получение адресов по DHCP}
     \centering
-    \includegraphics[width=\textwidth]{../images/06.png}
-    \captionof{figure}{Проверка корректности содержания конфигурационного файла \texttt{main.cf}.}
+    \includegraphics[width=0.9\textwidth]{../images/07.png}
+    \captionof{figure}{Настройка интерфейса устройства \texttt{dk-ansusenko-01} на получение адреса по DHCP}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Проверка доступности устройств}
     \centering
-    \includegraphics[width=\textwidth]{../images/07.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
+    \includegraphics[width=0.9\textwidth]{../images/08.png}
+    \captionof{figure}{Результат проверки доступности между устройствами из разных подсетей}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Проверка доступности устройств}
     \centering
-    \includegraphics[width=\textwidth]{../images/08.png}
-    \captionof{figure}{Просмотр всех параметров Postfix с отличиями от начальных.}
+    \includegraphics[width=0.9\textwidth]{../images/09.png}
+    \captionof{figure}{Пинг устройств из разных подсетей}
 \end{frame}
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
+\frametitle{Режим симуляции DHCP}
     \centering
-    \includegraphics[width=\textwidth]{../images/09.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4.}
+    \includegraphics[width=0.9\textwidth]{../images/10.png}
+    \captionof{figure}{Движение пакетов в режиме симуляции при запросе адреса по DHCP}
 \end{frame}
+
 
 \begin{frame}
-\frametitle{Изменение параметров Postfix с помощью postconf}
-    \centering
-    \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-\begin{minted}{bash}
-echo .| mail -s test1 ansusenko@server.ansusenko.net
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Просмотр логов почтовой службы при отправке сообщения.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Проверка работы Postfix}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-dnf -y install postfix
-dnf -y install s-nail
-\end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Установка Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/13.png}
-    \captionof{figure}{Настройка Postfix на работу только с протоколом IPv4 на клиенте.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/14.png}
-    \captionof{figure}{Перезапуск службы Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/16.png}
-    \captionof{figure}{Логи при попытке отправить сообщение с клиента.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/17.png}
-    \captionof{figure}{Просмотр значений параметров сетевых интерфейсов.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/18.png}
-    \captionof{figure}{Добавление адреса внутренней сети для разрешения пересылки сообщений между узлами сети.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/19.png}
-    \captionof{figure}{Перезагрузка службы Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Проверка работы Postfix}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при повторной отправке сообщения с клиента.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/20.png}
-    \captionof{figure}{Логи при отправке сообщения на доменный адрес.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/21.png}
-    \captionof{figure}{Просмотр сообщений в очереди на отправление.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/22.png}
-    \captionof{figure}{Обновление конфигурации Postfix.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Конфигурация Postfix для домена}
-    \centering
-    \includegraphics[width=\textwidth]{../images/23.png}
-    \captionof{figure}{Логи при отправке сообщения.}
-\end{frame}
-
-\begin{frame}
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-    \centering
-    \includegraphics[width=\textwidth]{../images/24.png}
-    \captionof{figure}{Создание каталога для настроек внутреннего окружения.}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-#!/bin/bash
-echo "Provisioning script $0"
-echo "Install needed packages"
-dnf -y install postfix
-dnf -y install s-nail
-echo "Copy configuration files"
-cp -R /vagrant/provision/server/mail/etc/* /etc
-echo "Configure firewall"
-firewall-cmd --add-service=smtp --permanent
-firewall-cmd --reload
-restorecon -vR /etc
-echo "Start postfix service"
-systemctl enable postfix
-systemctl start postfix
-\end{minted}
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-echo "Configure postfix"
-postconf -e 'mydomain = dastarikov.net'
-postconf -e 'myorigin = $mydomain'
-postconf -e 'inet_protocols = ipv4'
-postconf -e 'inet_interfaces = all'
-postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-postfix set-permissions
-restorecon -vR /etc
-systemctl stop postfix
-systemctl start postfix
-\end{minted}
-\end{frame}
-
-\begin{frame}
-\frametitle{Выводы}
+\frametitle{Контрольные вопросы}
+\begin{block}{1. За что отвечает протокол DHCP?}
+Протокол DHCP отвечает за автоматическую настройку сетевых параметров узлов в IP-сетях: IP-адрес, маску подсети, шлюз по умолчанию, DNS-сервера и другие параметры.
+\end{block}
+\begin{block}{2. Какие типы DHCP-сообщений передаются по сети?}
 \begin{itemize}
-    \item В результате выполнения лабораторной работы приобрели практические навыки по установке и конфигурированию SMTP-сервера.
+    \item DHCPDISCOVER - запрос клиента на поиск DHCP-сервера
+    \item DHCPOFFER - ответ сервера с предложением параметров
+    \item DHCPREQUEST - подтверждение принятия предложения
+    \item DHCPACK - подтверждение выделения адреса
+    \item DHCPNAK - отклонение запроса
+    \item DHCPRELEASE - освобождение адреса
 \end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}
 \frametitle{Контрольные вопросы}
-
-\begin{block}{1. В каком каталоге и в каком файле следует смотреть конфигурацию Postfix?}
-Основная конфигурация Postfix находится в каталоге \texttt{/etc/postfix/}:
+\begin{block}{3. Какие параметры могут быть переданы в сообщениях DHCP?}
 \begin{itemize}
-\item \texttt{/etc/postfix/main.cf} — основной файл конфигурации с параметрами сервера
-\item \texttt{/etc/postfix/master.cf} — конфигурация процессов и служб
-\item \texttt{/etc/aliases} — файл псевдонимов почтовых ящиков
-\item \texttt{/etc/postfix/access} — контроль доступа к серверу
+    \item IP-адрес и маска подсети
+    \item Адрес шлюза по умолчанию
+    \item Адреса DNS-серверов
+    \item Домен поиска DNS
+    \item Время аренды адреса
+    \item NTP-серверы
 \end{itemize}
 \end{block}
-
-\begin{block}{2. Каким образом можно проверить корректность синтаксиса в конфигурационном файле Postfix?}
-\begin{itemize}
-\item \texttt{postfix check} — проверка синтаксиса всех конфигурационных файлов
-\item \texttt{postconf -n} — просмотр всех измененных параметров
-\item \texttt{postconf <параметр>} — проверка конкретного параметра
-\item \texttt{systemctl status postfix} — проверка статуса службы
-\item Просмотр логов: \texttt{tail -f /var/log/maillog}
-\end{itemize}
+\begin{block}{4. Что такое DNS?}
+DNS (Domain Name System) - распределённая иерархическая система для преобразования доменных имён в IP-адреса.
 \end{block}
-
 \end{frame}
 
 \begin{frame}
 \frametitle{Контрольные вопросы}
-
-\begin{block}{3. В каких параметрах конфигурации Postfix требуется внести изменения для настройки отправки писем на доменные адреса?}
+\begin{block}{5. Какие типы записи описания ресурсов есть в DNS и для чего они используются?}
 \begin{itemize}
-\item \texttt{mydomain = example.com} — установка доменного имени
-\item \texttt{myorigin = \$mydomain} — домен для исходящей почты
-\item \texttt{mydestination = \$myhostname, localhost.\$mydomain, localhost, \$mydomain} — домены для локальной доставки
-\item \texttt{inet\_interfaces = all} — прослушивание всех интерфейсов
-\item \texttt{mynetworks = 127.0.0.0/8, 192.168.0.0/16} — разрешенные сети для релейинга
-\item \texttt{relay\_domains = \$mydestination} — домены для релейинга
+    \item \textbf{A} - связывает доменное имя с IPv4-адресом
+    \item \textbf{AAAA} - связывает доменное имя с IPv6-адресом
+    \item \textbf{CNAME} - создаёт псевдоним для другого имени
+    \item \textbf{MX} - указывает почтовые серверы для домена
+    \item \textbf{NS} - указывает DNS-серверы для зоны
+    \item \textbf{PTR} - обратная запись, связывает IP-адрес с доменным именем
+    \item \textbf{TXT} - хранит текстовую информацию
+    \item \textbf{SOA} - содержит основную информацию о DNS-зоне
 \end{itemize}
 \end{block}
-
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{4. Примеры работы с утилитой mail}
-\begin{minted}{bash}
-# Отправка письма с темой и текстом
-echo "Текст письма" | mail -s "Тема письма" user@example.com
-
-# Отправка письма с содержимым файла
-mail -s "Тема" user@example.com < file.txt
-
-# Просмотр списка писем
-mail
-
-# Просмотр конкретного письма (внутри mail)
-print 1
-
-# Удаление письма (внутри mail)
-delete 1
-
-# Выход из mail с сохранением писем
-quit
-
-# Выход с удалением прочитанных писем
-exit
-\end{minted}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{5. Примеры работы с утилитой postqueue}
-\begin{minted}{bash}
-# Просмотр всей очереди сообщений
-postqueue -p
-
-# Подсчет числа сообщений в очереди
-postqueue -p | grep -c "^[A-F0-9]"
-
-# Альтернативный способ подсчета
-mailq | wc -l
-
-# Принудительная отправка всех сообщений в очереди
-postqueue -f
-
-# Принудительная отправка сообщений для определенного домена
-postqueue -s example.com
-
-# Удаление всех сообщений из очереди
-postsuper -d ALL
-
-# Удаление конкретного сообщения по ID
-postsuper -d A1B2C3D4E5
-
-# Удаление всех отложенных сообщений
-postsuper -d ALL deferred
-\end{minted}
-\end{block}
+\begin{frame}
+\frametitle{Вывод}
+\begin{itemize}
+    \item В результате выполнения лабораторной работы приобретены практические навыки по настройке динамического распределения IP-адресов с использованием протокола DHCP.
+    \item Настроен DNS-сервер \texttt{ansusenko-dns} с добавлением A-записей для домена \texttt{ansusenko.rudn.ru}.
+    \item На маршрутизаторе \texttt{msk-ansusenko-gw-1} созданы DHCP-пулы для четырёх подсетей: \texttt{dk}, \texttt{departments}, \texttt{adm}, \texttt{other}.
+    \item Оконечные устройства успешно получили IP-адреса по DHCP.
+    \item Проверка доступности между устройствами из разных подсетей подтвердила корректность выполненных настроек.
+\end{itemize}
 
 \end{frame}
 
