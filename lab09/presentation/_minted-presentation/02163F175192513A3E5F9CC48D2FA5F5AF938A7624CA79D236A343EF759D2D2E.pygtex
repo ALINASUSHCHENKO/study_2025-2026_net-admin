@@ -1,0 +1,11 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+Root ID    Priority    24579
+           Address     00D0.BCEE.A8B6
+           This bridge is the root
+Bridge ID  Priority    24579
+           Address     00D0.BCEE.A8B6
+Interface        Role Sts Cost
+Fa0/1            Desg FWD 19
+Gi0/1            Desg FWD 4
+Gi0/2            Desg FWD 1
+\end{Verbatim}

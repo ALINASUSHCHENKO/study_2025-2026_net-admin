@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+VLAN0003
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32771
+             Address     0001.4272.C298
+             This bridge is the root
+\end{Verbatim}

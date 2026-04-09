@@ -1,10 +1,10 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 9. \\ Настройка POP3/IMAP сервера}
-\author{Сущенко Алина \\ НПИбд-01-23}
+\title{Лабораторная работа № 9. \\ Использование протокола STP. Агрегирование каналов}
+\author{Сущенко Алина Николаевна \\ НПИбд-01-23}
 
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2024}
+\date{2026}
 
 \begin{document}
 
@@ -13,324 +13,337 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение практических навыков по установке и простейшему конфигурированию POP3/IMAP-сервера.
+    \item Изучение возможностей протокола STP и его модификаций по обеспечению отказоустойчивости сети.
+    \item Агрегирование интерфейсов и перераспределение нагрузки между ними.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[containsverbatim]
-\frametitle{Установка Dovecot}
-Установили необходимые для работы пакеты:
-\begin{minted}{bash}
-sudo -i
-dnf -y install dovecot telnet
-\end{minted}
-\end{frame}
-
 \begin{frame}
-\frametitle{Настройка протоколов Dovecot}
+\frametitle{Топология сети}
     \centering
-    \includegraphics[width=\textwidth]{../images/01.png}
-    \captionof{figure}{Разрешенные почтовые протоколы в конфигурации Dovecot.}
+    \includegraphics[width=0.7\textwidth]{../images/01.png}
+    \captionof{figure}{Обновлённая топология сети.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка аутентификации}
+\frametitle{Настройка порта Gig0/2 на msk-ansusenko-sw-01}
     \centering
     \includegraphics[width=\textwidth]{../images/02.png}
-    \captionof{figure}{Указание метода аутентификации \texttt{plain}.}
+    \captionof{figure}{Настройка порта Gig0/2 на msk-ansusenko-sw-01.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка системной аутентификации}
+\frametitle{Настройка порта Gig0/1 на msk-ansusenko-sw-4}
     \centering
     \includegraphics[width=\textwidth]{../images/03.png}
-    \captionof{figure}{Использование файла \texttt{passwd} для поиска паролей.}
+    \captionof{figure}{Настройка порта Gig0/1 на msk-ansusenko-sw-4.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка системной аутентификации}
+\frametitle{Настройка транкового режима}
     \centering
     \includegraphics[width=\textwidth]{../images/04.png}
-    \captionof{figure}{Использование \texttt{pam} пользователей.}
+    \captionof{figure}{Настройка транкового режима.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка расположения почты}
+\frametitle{Настройка транкового режима на порту Fa0/23}
     \centering
     \includegraphics[width=\textwidth]{../images/05.png}
-    \captionof{figure}{Настройка месторасположения почтовых ящиков пользователей.}
+    \captionof{figure}{Настройка транкового режима на порту Fa0/23.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка межсетевого экрана}
+\frametitle{Настройка транков на msk-ansusenko-sw-4}
     \centering
     \includegraphics[width=\textwidth]{../images/06.png}
-    \captionof{figure}{Настройка межсетевого экрана для работы служб протоколов POP3 и IMAP.}
+    \captionof{figure}{Настройка транков на msk-ansusenko-sw-4.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Запуск служб}
+\frametitle{Проверка статуса транков на msk-ansusenko-sw-01}
     \centering
     \includegraphics[width=\textwidth]{../images/07.png}
-    \captionof{figure}{Перезапуск Postfix и Dovecot.}
+    \captionof{figure}{Проверка статуса транков на msk-ansusenko-sw-01.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Проверка работы Dovecot}
+\frametitle{Проверка статуса транков на msk-ansusenko-sw-3}
     \centering
     \includegraphics[width=\textwidth]{../images/08.png}
-    \captionof{figure}{Запуск мониторинга работы почтовой службы.}
+    \captionof{figure}{Проверка статуса транков на msk-ansusenko-sw-3.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Просмотр почты на сервере}
+\frametitle{Проверка статуса транков на msk-ansusenko-sw-4}
     \centering
     \includegraphics[width=\textwidth]{../images/09.png}
-    \captionof{figure}{Просмотр имеющейся почты на сервере.}
+    \captionof{figure}{Проверка статуса транков на msk-ansusenko-sw-4.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка почтового клиента Alpine}
+\frametitle{Пинг серверов с dk-ansusenko-01}
     \centering
     \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Настройка входящих сообщений.}
+    \captionof{figure}{Пинг серверов с dk-ansusenko-01.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Отправка тестового письма}
+\frametitle{Пинг почтового сервера через коммутатор}
     \centering
     \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Окно отправки письма.}
+    \captionof{figure}{Пинг почтового сервера через коммутатор msk-ansusenko-sw-2.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Просмотр письма через Telnet}
+\frametitle{Состояние STP для VLAN 3 на msk-ansusenko-sw-2}
     \centering
     \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Окно просмотра полученного письма через Telnet.}
+    \captionof{figure}{Состояние STP для VLAN 3 на msk-ansusenko-sw-2.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка корневого коммутатора}
+    \centering
+    \includegraphics[width=\textwidth]{../images/13.png}
+    \captionof{figure}{Настройка корневого коммутатора.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Состояние для VLAN 3 на корневом коммутаторе}
+    \centering
+    \includegraphics[width=\textwidth]{../images/14.png}
+    \captionof{figure}{Состояние для VLAN 3 на корневом коммутаторе.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Движение пакетов до mail}
+    \centering
+    \includegraphics[width=\textwidth]{../images/15.png}
+    \captionof{figure}{Движение пакетов ICMP от dk-ansusenko-01 до mail через msk-ansusenko-sw-01 и msk-ansusenko-sw-3.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Движение пакетов до web}
+    \centering
+    \includegraphics[width=\textwidth]{../images/16.png}
+    \captionof{figure}{Движение пакетов ICMP от dk-ansusenko-01 до web через msk-ansusenko-sw-01 и msk-ansusenko-sw-2.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка Portfast на msk-ansusenko-sw-2}
+    \centering
+    \includegraphics[width=\textwidth]{../images/17.png}
+    \captionof{figure}{Настройка Portfast на msk-ansusenko-sw-2.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка Portfast на msk-ansusenko-sw-3}
+    \centering
+    \includegraphics[width=\textwidth]{../images/18.png}
+    \captionof{figure}{Настройка Portfast на msk-ansusenko-sw-3.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Длительный пинг до почтового сервера (с разрывом)}
+    \centering
+    \includegraphics[width=\textwidth]{../images/19.png}
+    \captionof{figure}{Длительный пинг до почтового сервера с разрывом соединения.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Длительный пинг до почтового сервера (без разрыва)}
+    \centering
+    \includegraphics[width=\textwidth]{../images/20.png}
+    \captionof{figure}{Длительный пинг до почтового сервера без разрыва соединения.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Логическая схема с агрегированным соединением}
+    \centering
+    \includegraphics[width=\textwidth]{../images/21.png}
+    \captionof{figure}{Логическая схема локальной сети с агрегированным соединением.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка EtherChannel на msk-ansusenko-sw-01}
+    \centering
+    \includegraphics[width=\textwidth]{../images/22.png}
+    \captionof{figure}{Настройка EtherChannel для msk-ansusenko-sw-01.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка EtherChannel на msk-ansusenko-sw-4}
+    \centering
+    \includegraphics[width=\textwidth]{../images/23.png}
+    \captionof{figure}{Настройка EtherChannel для msk-ansusenko-sw-4.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос №1}
+\begin{block}{Какую информацию можно получить, воспользовавшись командой определения состояния протокола STP для VLAN (на корневом и не на корневом устройстве)? Приведите примеры.}
+Команда \texttt{show spanning-tree vlan <id>} позволяет получить:
+\begin{itemize}
+\item Приоритет и MAC-адрес корневого устройства (Root ID)
+\item Приоритет и MAC-адрес текущего моста (Bridge ID)
+\item Роли портов (Root, Designated, Alternate)
+\item Состояние портов (FWD, BLK, LSN, LRN)
+\item Стоимость портов (Cost) и приоритеты портов (Prio.Nbr)
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}[containsverbatim]
-\frametitle{Автоматизация настройки}
-Копирование конфигурационных файлов для provision:
-\begin{minted}{bash}
-cd /vagrant/provision/server
-mkdir -p /vagrant/provision/server/mail/etc/dovecot/conf.d
-cp -R /etc/dovecot/dovecot.conf /vagrant/provision/server/mail/etc/dovecot/
-cp -R /etc/dovecot/conf.d/10-auth.conf /vagrant/provision/server/mail/etc/dovecot/conf.d/
-cp -R /etc/dovecot/conf.d/auth-system.conf.ext /vagrant/provision/server/mail/etc/dovecot/conf.d/
-cp -R /etc/dovecot/conf.d/10-mail.conf /vagrant/provision/server/mail/etc/dovecot/conf.d/
+\frametitle{Контрольный вопрос №1 (пример вывода)}
+\begin{block}{На корневом устройстве (msk-ansusenko-sw-01):}
+\begin{minted}{text}
+Root ID    Priority    24579
+           Address     00D0.BCEE.A8B6
+           This bridge is the root
+Bridge ID  Priority    24579
+           Address     00D0.BCEE.A8B6
+Interface        Role Sts Cost
+Fa0/1            Desg FWD 19
+Gi0/1            Desg FWD 4
+Gi0/2            Desg FWD 1
 \end{minted}
+\end{block}
 \end{frame}
 
 \begin{frame}[containsverbatim]
-\frametitle{Скрипт автоматической настройки mail.sh}
-\begin{minted}{bash}
-#!/bin/bash
-echo "Provisioning script $0"
-echo "Install needed packages"
-dnf -y install postfix
-dnf -y install dovecot
-dnf -y install telnet
-echo "Copy configuration files"
-cp -R /vagrant/provision/server/mail/etc/* /etc
-chown -R root:root /etc/postfix
-restorecon -vR /etc
-\end{minted}
+\frametitle{Контрольный вопрос №2}
+\begin{block}{При помощи какой команды можно узнать, в каком режиме (STP или Rapid PVST+) работает устройство?}
+Команда \texttt{show spanning-tree vlan <id>}. В первой строке вывода указывается используемый протокол:
+\begin{itemize}
+\item \texttt{Spanning tree enabled protocol ieee} - классический STP (802.1d)
+\item \texttt{Spanning tree enabled protocol rstp} - Rapid STP (802.1w)
+\item \texttt{Spanning tree enabled protocol mstp} - Multiple STP (802.1s)
+\end{itemize}
+\end{block}
 \end{frame}
 
 \begin{frame}[containsverbatim]
-\frametitle{Скрипт автоматической настройки mail.sh (продолжение)}
-\begin{minted}{bash}
-echo "Configure firewall"
-firewall-cmd --add-service smtp --permanent
-firewall-cmd --add-service pop3 --permanent
-firewall-cmd --add-service pop3s --permanent
-firewall-cmd --add-service imap --permanent
-firewall-cmd --add-service imaps --permanent
-firewall-cmd --add-service smtp-submission --permanent
-firewall-cmd --reload
-echo "Start postfix service"
-systemctl enable postfix
-systemctl start postfix
+\frametitle{Контрольный вопрос №2 (пример вывода)}
+\begin{block}{Пример вывода для STP:}
+\begin{minted}{text}
+VLAN0003
+  Spanning tree enabled protocol ieee
+  Root ID    Priority    32771
+             Address     0001.4272.C298
+             This bridge is the root
 \end{minted}
+\end{block}
+\begin{block}{Пример вывода для Rapid PVST+:}
+\begin{minted}{text}
+VLAN0003
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24579
+             Address     00D0.BCEE.A8B6
+\end{minted}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос №3}
+\begin{block}{Для чего и в каких случаях нужно настраивать режим Portfast?}
+Portfast настраивается на access-портах коммутатора, к которым подключены конечные устройства (компьютеры, серверы, принтеры).
+
+\textbf Позволяет порту сразу переходить в режим Forwarding, минуя стадии Listening и Learning (15 + 15 = 30 секунд).
+
+\textbf{Когда использовать:}
+\begin{itemize}
+\item На портах, подключенных к одному хосту
+\item На портах, где не может образоваться петля
+\item Для ускорения загрузки ОС по сети (PXE)
+\end{itemize}
+
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос №4}
+\begin{block}{В чем состоит принцип работы агрегированного интерфейса? Для чего он используется?}
+\textbf EtherChannel объединяет несколько физических портов в один логический канал (Port-channel).
+
+\textbf{Особенности:}
+\begin{itemize}
+\item Трафик распределяется между физическими портами по алгоритму хэширования (MAC-адреса, IP-адреса, порты TCP/UDP)
+\item Все порты в группе должны иметь одинаковые настройки (скорость, дуплекс, VLAN, trunk)
+\end{itemize}
+
+\textbf{Для чего используется:}
+\begin{itemize}
+\item Увеличение пропускной способности (агрегирование полосы)
+\item Отказоустойчивость (при выходе порта из строя трафик идёт по остальным)
+\item Балансировка нагрузки между портами
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольный вопрос №5}
+\begin{block}{В чём принципиальные отличия при использовании протоколов LACP, PAgP и статического агрегирования?}
+\begin{tabular}{|p{2.5cm}|p{3.5cm}|p{3cm}|p{2.5cm}|}
+\hline
+\textbf{Характеристика} & \textbf{LACP (802.3ad)} & \textbf{PAgP (Cisco)} & \textbf{Static (mode on)} \\
+\hline
+Тип & Открытый стандарт & Проприетарный Cisco & Без протокола \\
+\hline
+Совместимость & Разные вендоры & Только Cisco & Любое оборудование \\
+\hline
+Обнаружение ошибок & Да & Да & Нет \\
+\hline
+Режимы & active/passive & desirable/auto & on \\
+\hline
+\end{tabular}
+
+\textbf{Вывод:} LACP рекомендуется для мультивендорных сетей, PAgP - для сетей только Cisco, Static - для простых конфигураций без необходимости протокольного согласования.
+\end{block}
 \end{frame}
 
 \begin{frame}[containsverbatim]
-\frametitle{Скрипт автоматической настройки mail.sh (продолжение)}
+\frametitle{Контрольный вопрос №6}
+\begin{block}{При помощи каких команд можно узнать состояние агрегированного канала EtherChannel?}
+Основные команды для проверки EtherChannel:
 \begin{minted}{bash}
-echo "Configure postfix"
-postconf -e 'mydomain = user.net'
-postconf -e 'myorigin = $mydomain'
-postconf -e 'inet_protocols = ipv4'
-postconf -e 'inet_interfaces = all'
-postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-echo "Configure postfix for dovecot"
-postconf -e 'home_mailbox = Maildir/'
-echo "Configure postfix for auth"
-postconf -e 'smtpd_sasl_type = dovecot'
-postconf -e 'smtpd_sasl_path = private/auth'
+# Краткая информация о всех EtherChannel
+show etherchannel summary
+
+# Детальная информация о Port-channel
+show etherchannel port-channel
+
+# Статус логического интерфейса
+show interfaces port-channel <номер>
+
+# Статус физических портов в группе
+show interfaces status
+
+# Информация о балансировке нагрузки
+show etherchannel load-balance
 \end{minted}
+\end{block}
 \end{frame}
 
 \begin{frame}[containsverbatim]
-\frametitle{Скрипт автоматической настройки mail.sh (окончание)}
-\begin{minted}{bash}
-postconf -e 'smtpd_recipient_restrictions = reject_unknown_recipient_domain, permit_mynetworks, reject_non_fqdn_recipient, reject_unauth_destination, reject_unverified_recipient, permit'
-postconf -e 'mynetworks = 127.0.0.0/8'
-echo "Configure postfix for SMTP over TLS"
-cp /etc/pki/dovecot/certs/dovecot.pem /etc/pki/tls/certs
-cp /etc/pki/dovecot/private/dovecot.pem /etc/pki/tls/private
-postconf -e 'smtpd_tls_cert_file=/etc/pki/tls/certs/dovecot.pem'
-postconf -e 'smtpd_tls_key_file=/etc/pki/tls/private/dovecot.pem'
-postconf -e 'smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_scache'
-postconf -e 'smtpd_tls_security_level = may'
-postconf -e 'smtp_tls_security_level = may'
-postfix set-permissions
-restorecon -vR /etc
-systemctl stop postfix
-systemctl start postfix
-systemctl restart dovecot
+\frametitle{Контрольный вопрос №6 (пример вывода)}
+\begin{block}{Пример вывода \texttt{show etherchannel summary}:}
+\begin{minted}{text}
+Flags:  D - down        P - in port-channel
+        I - stand-alone s - suspended
+Group  Port-channel  Protocol  Ports
+------+-------------+---------+----------------
+1      Po1(SU)        -       Fa0/20(P) Fa0/21(P)
+                              Fa0/22(P) Fa0/23(P)
 \end{minted}
+\textbf{Расшифровка:} SU - Port-channel работает (S - switched, U - up), все порты в группе активны (P).
+\end{block}
 \end{frame}
 
 \begin{frame}
 \frametitle{Выводы}
 \begin{itemize}
-    \item В результате выполнения лабораторной работы приобрели практические навыки по установке и простейшему конфигурированию POP3/IMAP-сервера.
+	\item В ходе выполнения лабораторной работы были изучены протоколы STP и Rapid PVST+, а также технология агрегирования каналов EtherChannel. Настроено резервное соединение между коммутаторами, обеспечена отказоустойчивость сети, активирован режим Portfast для серверных портов. Проверена работоспособность ICMP-запросов в режиме симуляции. Все поставленные задачи выполнены.
 \end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{1. За что отвечает протокол SMTP?}
-SMTP (Simple Mail Transfer Protocol) отвечает за отправку и пересылку электронной почты между серверами. Он используется для передачи сообщений от отправителя к получателю через промежуточные серверы.
-\end{block}
-
-\begin{block}{2. За что отвечает протокол IMAP?}
-IMAP (Internet Message Access Protocol) позволяет получать доступ к электронной почте с нескольких клиентских устройств, синхронизируя состояние писем между всеми устройствами. Письма хранятся на сервере.
-\end{block}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{3. За что отвечает протокол POP3?}
-POP3 (Post Office Protocol version 3) используется для загрузки почты с сервера на локальное устройство. Обычно письма после загрузки удаляются с сервера, что делает их доступными только на одном устройстве.
-\end{block}
-
-\begin{block}{4. В чём назначение Dovecot?}
-Dovecot - это открытый IMAP и POP3 сервер для Linux/UNIX-систем. Он обеспечивает безопасный доступ пользователей к их почтовым ящикам, поддерживает различные методы аутентификации и обеспечивает надежное хранение почты.
-\end{block}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{5. В каких файлах обычно находятся настройки работы Dovecot?}
-Основные конфигурационные файлы Dovecot:
-\begin{itemize}
-\item \texttt{/etc/dovecot/dovecot.conf} - основной конфигурационный файл
-\item \texttt{/etc/dovecot/conf.d/10-auth.conf} - настройки аутентификации
-\item \texttt{/etc/dovecot/conf.d/10-mail.conf} - настройки почтовых ящиков
-\item \texttt{/etc/dovecot/conf.d/10-ssl.conf} - настройки SSL/TLS
-\item \texttt{/etc/dovecot/conf.d/15-lda.conf} - настройки агента доставки
-\item \texttt{/etc/dovecot/conf.d/auth-system.conf.ext} - системная аутентификация
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-
-\begin{block}{6. В чём назначение Postfix?}
-Postfix - это почтовый агент (MTA - Mail Transfer Agent), который отвечает за маршрутизацию и доставку электронной почты. Он принимает почту от клиентов и передает ее другим серверам или локальным почтовым ящикам.
-\end{block}
-
-\begin{block}{7. Какие методы аутентификации пользователей можно использовать в Dovecot?}
-\begin{itemize}
-\item \texttt{plain} - обычная текстовая аутентификация
-\item \texttt{login} - устаревший метод для совместимости
-\item \texttt{cram-md5} - challenge-response аутентификация
-\item \texttt{digest-md5} - более безопасный метод
-\item \texttt{gssapi} - для Kerberos
-\item \texttt{oauth2} - OAuth 2.0 аутентификация
-\end{itemize}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{8. Приведите пример заголовка письма с пояснениями его полей.}
-\begin{minted}{text}
-From: user@example.com          # Отправитель
-To: recipient@domain.com        # Получатель  
-Subject: Test Message           # Тема письма
-Date: Mon, 15 Jan 2024 10:30:00 +0300  # Дата отправки
-Message-ID: <123456@example.com> # Уникальный идентификатор
-MIME-Version: 1.0              # Версия MIME
-Content-Type: text/plain; charset=utf-8  # Тип содержимого
-\end{minted}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{9. Приведите примеры использования команд для работы с почтовыми протоколами через терминал}
-\begin{minted}{bash}
-# Подключение к POP3 серверу
-telnet mail.example.com 110
-USER username
-PASS password
-LIST        # список писем
-RETR 1      # получить письмо №1
-QUIT
-
-# Подключение к IMAP серверу  
-telnet mail.example.com 143
-a1 LOGIN username password
-a2 LIST "" "*"     # список папок
-a3 SELECT INBOX    # выбрать папку входящих
-a4 FETCH 1 BODY[TEXT]  # получить текст письма №1
-a5 LOGOUT
-\end{minted}
-\end{block}
-
-\end{frame}
-
-\begin{frame}[containsverbatim]
-\frametitle{Контрольные вопросы}
-
-\begin{block}{10. Приведите примеры с пояснениями по работе с doveadm}
-\begin{minted}{bash}
-# Просмотр информации о пользователе
-doveadm user username
-
-# Поиск писем по критериям
-doveadm search -u username mailbox INBOX
-
-# Получение содержимого письма
-doveadm fetch -u username "body peek.text"
-
-# Экспорт почтового ящика в формат mbox
-doveadm backup -u username -f mbox
-
-# Статистика работы сервера
-doveadm stats
-
-# Перестроение индексов для восстановления
-doveadm index -u username INBOX
-\end{minted}
-\end{block}
-
 \end{frame}
 
 \end{document}

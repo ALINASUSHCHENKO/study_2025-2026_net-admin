@@ -1,0 +1,8 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+Flags:  D \PYGZhy{} down        P \PYGZhy{} in port\PYGZhy{}channel
+        I \PYGZhy{} stand\PYGZhy{}alone s \PYGZhy{} suspended
+Group  Port\PYGZhy{}channel  Protocol  Ports
+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}+\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}\PYGZhy{}
+1      Po1(SU)        \PYGZhy{}       Fa0/20(P) Fa0/21(P)
+                              Fa0/22(P) Fa0/23(P)
+\end{Verbatim}

@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+VLAN0003
+  Spanning tree enabled protocol rstp
+  Root ID    Priority    24579
+             Address     00D0.BCEE.A8B6
+\end{Verbatim}

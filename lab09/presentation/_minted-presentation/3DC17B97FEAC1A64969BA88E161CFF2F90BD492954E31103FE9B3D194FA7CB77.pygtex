@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{\PYGZsh{} Краткая информация о всех EtherChannel}
+show\PYG{+w}{ }etherchannel\PYG{+w}{ }summary
+
+\PYG{c+c1}{\PYGZsh{} Детальная информация о Port\PYGZhy{}channel}
+show\PYG{+w}{ }etherchannel\PYG{+w}{ }port\PYGZhy{}channel
+
+\PYG{c+c1}{\PYGZsh{} Статус логического интерфейса}
+show\PYG{+w}{ }interfaces\PYG{+w}{ }port\PYGZhy{}channel\PYG{+w}{ }\PYGZlt{}номер\PYGZgt{}
+
+\PYG{c+c1}{\PYGZsh{} Статус физических портов в группе}
+show\PYG{+w}{ }interfaces\PYG{+w}{ }status
+
+\PYG{c+c1}{\PYGZsh{} Информация о балансировке нагрузки}
+show\PYG{+w}{ }etherchannel\PYG{+w}{ }load\PYGZhy{}balance
+\end{Verbatim}
