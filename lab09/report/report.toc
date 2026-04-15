@@ -1,8 +1,10 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
 \contentsline {section}{\numberline {2}Выполнение работы}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Установка Dovecot}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Настройка dovecot}{4}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Проверка работы Dovecot}{7}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Внесение изменений в настройки внутреннего окружения виртуальной машины}{9}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Выводы}{11}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Создание резервного соединения}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Проверка связности с серверами}{12}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Просмотр состояния протокола STP для VLAN 3}{14}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Настройка Portfast}{19}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Изучение отказоустойчивости STP}{21}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Агрегирование каналов EtherChannel}{24}{subsection.2.6}%
+\contentsline {section}{\numberline {3}Выводы}{26}{section.3}%

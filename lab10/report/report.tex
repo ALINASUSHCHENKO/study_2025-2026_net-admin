@@ -1,7 +1,7 @@
 \input{preamble.tex}
 
-\title{Отчет по лабораторной работе № 10. \\Расширенные настройки SMTP-сервера}
-\author{Сущенко Алина \\ НПИбд-01-23}
+\title{Отчет по лабораторной работе № 10. \\Настройка прав доступа пользователей к ресурсам сети}
+\author{Сущенко Алина Николаевна \\ Группа: НПИбд-01-23}
 \date{2025}
 
 \begin{document}
@@ -13,282 +13,246 @@
 
 \newpage
 \section{Цель работы}
-Приобретение практических навыков по конфигурированию SMTP-сервера в части настройки аутентификации.
+Освоить настройку прав доступа пользователей к ресурсам сети с использованием стандартных и расширенных списков контроля доступа (Access Control Lists, ACL) в Cisco Packet Tracer.
+
 \newpage
 \section{Выполнение работы}
 
-\subsection{Настройка LMTP в Dovecote}
-\begin{enumerate}
-\item На виртуальной машине \texttt{server} вошли под пользователем и открыли терминал. Перешли в режим суперпользователя:
-  \begin{minted}{bash}
-    sudo -i
-  \end{minted}
-\item В дополнительном терминале запустили мониторинг работы почтовой службы:
-  \begin{minted}{bash}
-    sudo -i
-    tail -f /var/log/maillog
-  \end{minted}
+\subsection{Настройка прав доступа на маршрутизаторе msk-ansusenko-gw-1}
+Перед началом настройки администратор \texttt{admin-ansusenko} был подключён к порту 24 коммутатора \texttt{msk-ansusenko-sw-4} и получил статический IP-адрес 10.128.6.200, шлюз 10.128.6.1 и DNS-сервер 10.128.0.5.
 
-\item Добавили в список протоколов, с которыми может работать Dovecot, протокол LMTP. Для этого в файле \texttt{/etc/dovecot/dovecot.conf} указали (Рис. \ref{01})
-  \begin{minted}{bash}
-    protocols = imap pop3 lmtp
-  \end{minted}
+\begin{enumerate}
+\item Мы добавили ноутбук\texttt{admin-ansusenko} и подключили его к \texttt{msk-ansusenko-sw-4} (Рис.\ref{01}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/1.png}
-    \captionof{figure}{Обновление списка разрешенных протоколов в Dovecot.}
+    \includegraphics[width=\textwidth]{../images/01.png}
+    \captionof{figure}{Обновленная топология сети.}
     \label{01}
 \end{center}
-\item Настроили в Dovecot сервис \texttt{lmtp} для связи с Postfix. Для этого в файле \break \texttt{/etc/dovecot/conf.d/10-master.conf} заменили определение сервиса \texttt{lmtp} на следующую запись (Рис. \ref{02}):
-  \begin{minted}{bash}
-    service lmtp {
-      unix_listener /var/spool/postfix/private/dovecot-lmtp {
-        group = postfix
-        user = postfix
-        mode = 0600
-      }
-    }
-  \end{minted}
+
+\item Показаны настройки сетевого интерфейса администратора \texttt{admin-ansusenko} (Рис.\ref{02}):
+  \begin{itemize}
+    \item IPv4-адрес: 10.128.6.200
+    \item Маска подсети: 255.255.255.0
+    \item Шлюз по умолчанию: 10.128.6.1
+    \item DNS-сервер: 10.128.0.5
+  \end{itemize}
+  Администратор правильно сконфигурирован для работы в сети.
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/2.png}
-    \captionof{figure}{Настройки сервера \texttt{lmtp}.}
+    \includegraphics[width=\textwidth]{../images/02.png}
+    \captionof{figure}{Настройки интерфейса FastEthernet0 администратора.}
     \label{02}
 \end{center}
-%  Эта запись определяет расположение файла с описанием прослушиваемого unix-сокета, а также задаёт права доступа к нему и определяет принадлежность к группе и пользователю postfix.
-\item Переопределили в Postfix с помощью \texttt{postconf} передачу сообщений не на прямую, а через заданный unix-сокет:
-  \begin{minted}{bash}
-    postconf -e 'mailbox_transport = lmtp:unix:private/dovecot-lmtp'
-  \end{minted}
-\item В файле \texttt{/etc/dovecot/conf.d/10-auth.conf} задали формат имени пользователя для аутентификации в форме логина пользователя без указания домена (Рис. \ref{03}):
-  \begin{minted}{bash}
-    auth_username_format = %Ln
-  \end{minted}
+
+\item Показано создание расширенного списка доступа \texttt{servers-out} и добавление правила для доступа к web-серверу (Рис.\ref{03}):
+Правило разрешает доступ всем пользователям к web-серверу (10.128.0.2) по порту 80.
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/3.png}
-    \captionof{figure}{Задание формата имени пользователя для аутентификации.}
+    \includegraphics[width=\textwidth]{../images/03.png}
+    \captionof{figure}{Создание ACL servers-out и применение на интерфейсе f0/0.3.}
     \label{03}
 \end{center}
-\item Перезапустите Postfix и Dovecot (Рис. \ref{04}):
-  \begin{minted}{bash}
-    systemctl restart postfix
-    systemctl restart dovecot
-  \end{minted}
+
+\item Добавлены правила для доступа администратора по FTP и Telnet (Рис.\ref{04}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/4.png}
-    \captionof{figure}{Перезагрузка Postfix и Dovecot.}
+    \includegraphics[width=\textwidth]{../images/04.png}
+    \captionof{figure}{Добавление правил доступа для администратора.}
     \label{04}
 \end{center}
-\item Из-под учётной записи своего пользователя отправили письмо с клиента:
-  \begin{minted}{bash}
-    echo .| mail -s "LMTP test" ansusenko@ansusenko.net
-  \end{minted}
 
-\item На сервере просмотрели почтовый ящик пользователя  (Рис. \ref{05} и \ref{06}):
-  \begin{minted}{bash}
-    MAIL=~/Maildir/ mail
-  \end{minted}
+\item Далее показана команда \texttt{ftp 10.128.0.2} с устройства администратора (Рис.\ref{05}):
+  FTP-доступ к web-серверу успешно работает.
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/5.png}
-    \captionof{figure}{Просмотр доставленного письма через утилиту \texttt{mail}.}
+    \includegraphics[width=\textwidth]{../images/05.png}
+    \captionof{figure}{Успешное подключение к FTP-серверу.}
     \label{05}
 \end{center}
+
+\item Показана попытка подключения по FTP с устройства \texttt{dep-ansusenko-1} (Рис.\ref{06}):
+  Доступ запрещён, что соответствует заданию - FTP разрешён только администратору.
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/6.png}
-    \captionof{figure}{Просмотр логов при отправке письма.}
+    \includegraphics[width=\textwidth]{../images/06.png}
+    \captionof{figure}{Ошибка подключения к FTP с устройства dep-ansusenko-1.}
     \label{06}
 \end{center}
-\end{enumerate}
-\subsection{Настройка SMTP-аутентификации}
 
-\begin{enumerate}
-\item В файле \texttt{/etc/dovecot/conf.d/10-master.conf} определили службу аутентификации пользователей (Рис. \ref{08}):
-  \begin{minted}{bash}
-    service auth {
-      unix_listener /var/spool/postfix/private/auth {
-        group = postfix
-        user = postfix
-        mode = 0660
-      }
-      unix_listener auth-userdb {
-        mode = 0600
-        user = dovecot
-      }
-    }
-  \end{minted}
+\item Добавлены правила для доступа к файловому серверу (10.128.0.3):
+  Внутренней сети разрешён доступ по SMB (порт 445), всем - по FTP. (Рис.\ref{07}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/7.png}
-    \captionof{figure}{Настройка службы аутентификации.}
-    \label{08}
+    \includegraphics[width=\textwidth]{../images/07.png}
+    \captionof{figure}{Настройка доступа к файловому серверу.}
+    \label{07}
 \end{center}
 
-\item Для Postfix задали тип аутентификации SASL для \texttt{smtpd} и путь к соответствующему unix-сокету (Рис. \ref{09}):
-  \begin{minted}{bash}
-    postconf -e 'smtpd_sasl_type = dovecot'
-    postconf -e 'smtpd_sasl_path = private/auth'
-  \end{minted}
+\item Добавлены правила для доступа к почтновому серверу (10.128.0.4) (Рис.\ref{08}):
+
 \begin{center}
     \centering
-    \includegraphics[width=\textwidth]{../images/8.png}
-    \captionof{figure}{Настройка типа аутентификации SASL для \texttt{smtpd}.}
+    \includegraphics[width=\textwidth]{../images/08.png}
+    \captionof{figure}{Настройка доступа к почтовому серверу.}
+    \label{07}
+\end{center}
+
+\item Показана команда \texttt{nslookup www.ansusenko.rudn.ru} и \texttt{ping} по имени. DNS-сервер работает корректно, доступ к web-серверу по имени успешен. (Рис.\ref{09}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/09.png}
+    \captionof{figure}{Проверка работы DNS-сервера.}
     \label{09}
 \end{center}
-\item Настроили Postfix для приёма почты из Интернета только для обслуживаемых нашим сервером пользователей или для произвольных пользователей локальной машины (имеется в виду локальных пользователей сервера), обеспечивая тем самым запрет на использование почтового сервера в качестве SMTP relay для спамрассылок (порядок указания опций имеет значение) (Рис. \ref{10}):
-  \begin{minted}{bash}
-    postconf -e 'smtpd_recipient_restrictions = reject_unknown_recipient_domain, permit_mynetworks, reject_non_fqdn_recipient, reject_unauth_destination, reject_unverified_recipient, permit'
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/9.png}
-    \captionof{figure}{Настройка Postfix для запрета спамрассылок.}
-    \label{10}
-\end{center}
 
-\item В настройках Postfix ограничили приём почты только локальным адресом SMTP-сервера сети (Рис. \ref{11}):
-  \begin{minted}{bash}
-    postconf -e 'mynetworks = 127.0.0.0/8'
+\item Показано добавление правила для ICMP (Рис.\ref{10}):
+  \begin{minted}{cisco}
+    msk-ansusenko-gw-1(config-ext-nacl)#1 permit icmp any any
   \end{minted}
+  Правило добавлено в начало списка, что демонстрирует управление порядком применения правил.
+
 \begin{center}
     \centering
     \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Ограничение приема почты только локальным адресом.}
-    \label{11}
+    \captionof{figure}{Добавление правила разрешения ICMP.}
+    \label{10}
 \end{center}
-\item Для проверки работы аутентификации временно запустили SMTP-сервер (порт 25) с возможностью аутентификации. Для этого в файле \texttt{/etc/postfix/master.cf} заменили строку
-  \begin{minted}{bash}
-    smtp inet n - n - - smtpd
-  \end{minted}
-  на строку
-  \begin{minted}{bash}
-    smtp inet n - n - - smtpd
-    -o smtpd_sasl_auth_enable=yes
-    -o smtpd_recipient_restrictions=reject_non_fqdn_recipient, reject_unknow, n_recipient_domain, permit_sasl_authenticated, reject
-  \end{minted}
-\item Перезапустили Postfix и Dovecot (Рис. \ref{13}):
-  \begin{minted}{bash}
-    systemctl restart postfix
-    systemctl restart dovecot
-  \end{minted}
-  \begin{center}
+
+\item Проверяем список всех подключенных tcp (Рис.\ref{11}):
+
+\begin{center}
     \centering
     \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Перезагрузка Postfix и Dovecot.}
-    \label{13}
+    \captionof{figure}{Просмотр настроенных списков доступа.}
+    \label{11}
 \end{center}
-\item На клиенте установили \texttt{telnet}:
-  \begin{minted}{bash}
-    sudo -i
-    dnf -y install telnet
-  \end{minted}
-\item На клиенте получили строку для аутентификации :
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Получение строки для аутентификации.}
-    \label{14}
-\end{center}
-  Протестировали соединение, введя
-  \begin{minted}{bash}
-    EHLO test
-  \end{minted}
-  Проверили авторизацию, задав:(Рис. \ref{14})
-  \begin{minted}{bash}
-    AUTH PLAIN <строка для аутентификации>
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Подключение к SMTP-серверу через \texttt{telnet}.}
-    \label{15}
-\end{center}
-  Завершили сессию \texttt{telnet} на клиенте.
-\end{enumerate}
 
-\subsection{Настройка SMTP over TLS}
-  \begin{minted}{bash}
-    На Alpine выполним подключение по порту, отправим себе письмо и приверим вывод
-  \end{minted}
+\item Показано создание списка \texttt{other-in} и его применение на интерфейсе f0/0.104 на входящий трафик. Разрешены любые действия только для администратора.(Рис.\ref{12}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/12.png}
+    \captionof{figure}{Настройка доступа для сети Other.}
+    \label{12}
+\end{center}
+
+\item Показано создание списка \texttt{management-out} для доступа к сети управления оборудованием (10.128.1.0/24)(Рис.\ref{13}):
+
 \begin{center}
     \centering
     \includegraphics[width=\textwidth]{../images/13.png}
-    \captionof{figure}{Отправка сообщения \texttt{telnet}.}
+    \captionof{figure}{Настройка доступа к сети управления оборудованием.}
+    \label{13}
+\end{center}
+
+\subsection{Выполнение заданий для самостоятельной работы}
+
+\item Проверили доступ не с администратора (Рис.\ref{14}):
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/14.png}
+    \captionof{figure}{Проверка доступа к серверам.}
+    \label{14}
+\end{center}
+
+\item Теперь доступ с администратора (Рис.\ref{15}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/15.png}
+    \captionof{figure}{Проверка доступа администратора к серверам.}
     \label{15}
 \end{center}
-\subsection{Внесение изменений в настройки внутреннего окружения виртуальной машины}
 
-\begin{enumerate}
-\item На виртуальной машине \texttt{server} перешли в каталог для внесения изменений в настройки внутреннего окружения \texttt{/vagrant/provision/server/}. В соответствующие подкаталоги поместили конфигурационные файлы Dovecot и Postfix:
-  \begin{minted}{bash}
-    cd /vagrant/provision/server
-    cp -R /etc/dovecot/dovecot.conf /vagrant/provision/server/mail/etc/dovecot/
-    cp -R /etc/dovecot/conf.d/10-master.conf /vagrant/provision/server/mail/etc/dovecot/conf.d/
-    cp -R /etc/dovecot/conf.d/10-auth.conf /vagrant/provision/server/mail/etc/dovecot/conf.d/
-    mkdir -p /vagrant/provision/server/mail/etc/postfix/
-    cp -R /etc/postfix/master.cf /vagrant/provision/server/mail/etc/postfix/
-  \end{minted}
-\item Внесли соответствующие изменения по расширенной конфигурации SMTP-сервера в файл \texttt{/vagrant/provision/server/mail.sh}:
-  \begin{minted}{bash}
-    #!/bin/bash
-    echo "Provisioning script $0"
-    echo "Install needed packages"
-    dnf -y install postfix
-    dnf -y install dovecot
-    dnf -y install telnet
-    echo "Copy configuration files"
-    cp -R /vagrant/provision/server/mail/etc/* /etc
-    chown -R root:root /etc/postfix
-    restorecon -vR /etc
-    echo "Configure firewall"
-    firewall-cmd --add-service smtp --permanent
-    firewall-cmd --add-service pop3 --permanent
-    firewall-cmd --add-service pop3s --permanent
-    firewall-cmd --add-service imap --permanent
-    firewall-cmd --add-service imaps --permanent
-    firewall-cmd --add-service smtp-submission --permanent
-    firewall-cmd --reload
-    echo "Start postfix service"
-    systemctl enable postfix
-    systemctl start postfix
-    echo "Configure postfix"
-    postconf -e 'mydomain = dastarikov.net'
-    postconf -e 'myorigin = $mydomain'
-    postconf -e 'inet_protocols = ipv4'
-    postconf -e 'inet_interfaces = all'
-    postconf -e 'mydestination = $myhostname, localhost.$mydomain, localhost, $mydomain'
-    #postconf -e 'mynetworks = 127.0.0.0/8, 192.168.0.0/16'
-    echo "Configure postfix for dovecot"
-    postconf -e 'home_mailbox = Maildir/'
-    echo "Configure postfix for auth"
-    postconf -e 'smtpd_sasl_type = dovecot'
-    postconf -e 'smtpd_sasl_path = private/auth'
-    postconf -e 'smtpd_recipient_restrictions = reject_unknown_recipient_domain, permit_mynetworks, reject_non_fqdn_recipient, reject_unauth_destination, reject_unverified_recipient, permit'
-    
-    postconf -e 'mynetworks = 127.0.0.0/8'
-    echo "Configure postfix for SMTP over TLS"
-    cp /etc/pki/dovecot/certs/dovecot.pem /etc/pki/tls/certs
-    cp /etc/pki/dovecot/private/dovecot.pem /etc/pki/tls/private
-    postconf -e 'smtpd_tls_cert_file=/etc/pki/tls/certs/dovecot.pem'
-    postconf -e 'smtpd_tls_key_file=/etc/pki/tls/private/dovecot.pem'
-    postconf -e 'smtpd_tls_session_cache_database = btree:/var/lib/postfix/smtpd_scache'
-    postconf -e 'smtpd_tls_security_level = may'
-    postconf -e 'smtp_tls_security_level = may'
-    postfix set-permissions
-    restorecon -vR /etc
-    systemctl stop postfix
-    systemctl start postfix
-    systemctl restart dovecot
-  \end{minted}
-\item Внесли изменения в файл \texttt{/vagrant/provision/client/mail.sh}, добавив установку \texttt{Telnet}.
-  \begin{minted}{bash}
-    dnf -y install telnet
-  \end{minted}
+\item Задаем новую топологию в соответствии с заданием самостоятельной работы (Рис.\ref{16}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/18.png}
+    \captionof{figure}{Добавляем новый ноутбук в топологию сети Павловской.}
+    \label{16}
+\end{center}
+
+\item Настраиваем права доступа для нового администратора (Рис.\ref{17}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/16.png}
+    \captionof{figure}{Права доступа.}
+    \label{17}
+\end{center}
+
+\item Проверяем списки и настройки для нового администратора (Рис.\ref{18}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/17.png}
+    \captionof{figure}{Проверка доступа администратора к серверам.}
+    \label{18}
+\end{center}
+
+\item Показаны настройки интерфейса второго администратора (Рис.\ref{19}):
+  \begin{itemize}
+    \item IPv4-адрес: 10.128.6.201
+    \item Маска: 255.255.255.0
+    \item Шлюз: 10.128.6.1
+    \item DNS: 10.128.0.5
+  \end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/19.png}
+    \captionof{figure}{Настройки администратора на Павловской.}
+    \label{19}
+\end{center}
+
+\item Показано добавление правил для администратора 10.128.6.20 и добавление в списки \texttt{other-in} и \texttt{management-out}. (Рис.\ref{20}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/20.png}
+    \captionof{figure}{Добавление правил для администратора на Павловской.}
+    \label{20}
+\end{center}
+
+\item На скриншоте (Рис.\ref{21}) показан обновлённый вывод \texttt{show access-lists} с правилами для обоих администраторов (10.128.6.200 и 10.128.6.201).
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/21.png}
+    \captionof{figure}{Итоговый вывод ACL после настройки второго администратора.}
+    \label{21}
+\end{center}
+
+\item С устройства администратора 10.128.6.201 выполнены (Рис.\ref{22}):
+  \begin{itemize}
+    \item ping 10.128.6.1 - успешен
+    \item ping 10.128.0.2 - 75\% успешных ответов
+    \item ftp 10.128.0.2 - успешен
+    \item ping 10.128.1.1 - успешен
+  \end{itemize}
+  Второй администратор имеет полный доступ к ресурсам сети.
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/22.png}
+    \captionof{figure}{Проверка доступа администратора на Павловской.}
+    \label{22}
+\end{center}
+
 \end{enumerate}
 
+\newpage
 \section{Выводы}
-В результате выполнения лабораторной работы приобрели практические навыки по конфигурированию SMTP-сервера в части настройки аутентификации.
+В результате выполнения лабораторной работы приобрели практические навыки по настройке прав доступа пользователей к ресурсам сети с использованием расширенных списков контроля доступа Cisco. Были настроены ACL \texttt{servers-out}, \texttt{other-in} и \texttt{management-out}, обеспечивающие требуемые политики доступа к web-серверу, файловому серверу, почтовому серверу, DNS-серверу, а также ограничения для сети Other и доступ к сети управления оборудованием.
+
 \end{document}

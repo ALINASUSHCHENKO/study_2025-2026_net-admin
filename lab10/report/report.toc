@@ -1,8 +1,6 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
 \contentsline {section}{\numberline {2}Выполнение работы}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Настройка LMTP в Dovecote}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Настройка SMTP-аутентификации}{6}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Настройка SMTP over TLS}{10}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Внесение изменений в настройки внутреннего окружения виртуальной машины}{11}{subsection.2.4}%
-\contentsline {section}{\numberline {3}Выводы}{13}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Настройка прав доступа на маршрутизаторе msk-ansusenko-gw-1}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Выполнение заданий для самостоятельной работы}{16}{subsection.2.2}%
+\contentsline {section}{\numberline {3}Выводы}{27}{section.3}%

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  5 NOV 2025 17:49
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  15 APR 2026 09:48
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -842,7 +842,7 @@ File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
 )
 (./report.aux
 
-LaTeX Warning: Label `15' multiply defined.
+LaTeX Warning: Label `07' multiply defined.
 
 )
 \openout1 = `report.aux'.
@@ -958,178 +958,186 @@ LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line
 (/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
 )
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/default.pygstyle)
-(./_minted-report/4F9106480583D73B5C6F1BAE6BDF4A39A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/1B1BAE2EC9A0835203195522C34EF59BA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/0F04AB78D2E0E4EC180D35C5578794D6A049E9CB418B57F70E24C639F7BA1
-365.pygtex
-Overfull \hbox (0.37779pt too wide) in paragraph at lines 32--1
-[]\T2A/cmr/m/n/12 ƒобавили в спи-сок про-то-ко-лов, с ко-то-ры-ми мо-жет ра-бо-
-тать Dovecot, про-то-кол LMTP.
- []
-
-)
-<../images/1.png, id=60, 375.65344pt x 63.23625pt>
-File: ../images/1.png Graphic file (type png)
-<use ../images/1.png>
-Package pdftex.def Info: ../images/1.png  used on input line 38.
-(pdftex.def)             Requested size: 483.69687pt x 81.42938pt.
+<../images/01.png, id=49, 1275.26437pt x 691.08188pt>
+File: ../images/01.png Graphic file (type png)
+<use ../images/01.png>
+Package pdftex.def Info: ../images/01.png  used on input line 29.
+(pdftex.def)             Requested size: 483.69687pt x 262.11823pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 39.
+(caption)                particular \caption on input line 30.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 38--39
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 29--30
  [] 
  []
 
-\openout3 = `report.pyg'.
+<../images/02.png, id=52, 508.14844pt x 516.42938pt>
+File: ../images/02.png Graphic file (type png)
+<use ../images/02.png>
+Package pdftex.def Info: ../images/02.png  used on input line 45.
+(pdftex.def)             Requested size: 483.69687pt x 491.59802pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 46.
+See the caption package documentation for explanation.
 
 
-(./_minted-report/096693F8BD272E0D1C1E19ED31D0076FA049E9CB418B57F70E24C639F7BA1
-365.pygtex
-Underfull \hbox (badness 1122) in paragraph at lines 42--1
-[]\T2A/cmr/m/n/12 Ќастроили в Dovecot сер-вис \T2A/cmtt/m/n/12 lmtp \T2A/cmr/m/
-n/12 дл€ св€-зи с Postfix. ƒл€ это-го в фай-ле 
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 45--46
+ [] 
  []
 
-)
-<../images/2.png, id=63, 608.2725pt x 139.27031pt>
-File: ../images/2.png Graphic file (type png)
-<use ../images/2.png>
-Package pdftex.def Info: ../images/2.png  used on input line 54.
-(pdftex.def)             Requested size: 483.69687pt x 110.75124pt.
+[4{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <../images/01.pn
+g>]
+<../images/03.png, id=66, 523.20468pt x 517.18219pt>
+File: ../images/03.png Graphic file (type png)
+<use ../images/03.png>
+Package pdftex.def Info: ../images/03.png  used on input line 55.
+(pdftex.def)             Requested size: 483.69687pt x 478.14139pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 55.
+(caption)                particular \caption on input line 56.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 54--55
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 55--56
  [] 
  []
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/BACFDAF10CD49C121184F6983F775C22A049E9CB418B57F70E24C639F7BA1
-365.pygtex [4 <../images/1.png> <../images/2.png>]
-LaTeX Font Info:    Trying to load font information for TS1+cmtt on input line 
-2.
-
-(/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmtt.fd
-File: ts1cmtt.fd 2023/04/13 v2.5m Standard LaTeX font definitions
-))
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/B2CB0401CE997B586188DB89202687B9A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/3.png, id=79, 844.65562pt x 118.19156pt>
-File: ../images/3.png Graphic file (type png)
-<use ../images/3.png>
-Package pdftex.def Info: ../images/3.png  used on input line 69.
-(pdftex.def)             Requested size: 483.69687pt x 67.68369pt.
+[5 <../images/02.png>]
+<../images/04.png, id=75, 515.67656pt x 517.935pt>
+File: ../images/04.png Graphic file (type png)
+<use ../images/04.png>
+Package pdftex.def Info: ../images/04.png  used on input line 64.
+(pdftex.def)             Requested size: 483.69687pt x 485.83156pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 70.
+(caption)                particular \caption on input line 65.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 69--70
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 64--65
  [] 
  []
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/0560CC00371D2A0FBB5E000E5A84A2CBA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/4.png, id=81, 599.99156pt x 51.94406pt>
-File: ../images/4.png Graphic file (type png)
-<use ../images/4.png>
-Package pdftex.def Info: ../images/4.png  used on input line 80.
-(pdftex.def)             Requested size: 483.69687pt x 41.87709pt.
+[6 <../images/03.png>]
+<../images/05.png, id=84, 517.18219pt x 511.9125pt>
+File: ../images/05.png Graphic file (type png)
+<use ../images/05.png>
+Package pdftex.def Info: ../images/05.png  used on input line 74.
+(pdftex.def)             Requested size: 483.69687pt x 478.78418pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 81.
+(caption)                particular \caption on input line 75.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 80--81
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 74--75
  [] 
  []
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/90BEF804020E5930A3D31360D11159EAA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/DE1457260BFBE1C52B54971553F6A6E0A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/5.png, id=84, 710.655pt x 130.98938pt>
-File: ../images/5.png Graphic file (type png)
-<use ../images/5.png>
-Package pdftex.def Info: ../images/5.png  used on input line 95.
-(pdftex.def)             Requested size: 483.69687pt x 89.15753pt.
+[7 <../images/04.png>]
+<../images/06.png, id=94, 514.92375pt x 515.67656pt>
+File: ../images/06.png Graphic file (type png)
+<use ../images/06.png>
+Package pdftex.def Info: ../images/06.png  used on input line 84.
+(pdftex.def)             Requested size: 483.69687pt x 484.41342pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 96.
+(caption)                particular \caption on input line 85.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 95--96
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 84--85
  [] 
  []
 
-<../images/6.png, id=85, 1282.03969pt x 633.86812pt>
-File: ../images/6.png Graphic file (type png)
-<use ../images/6.png>
-Package pdftex.def Info: ../images/6.png  used on input line 101.
-(pdftex.def)             Requested size: 483.69687pt x 239.15076pt.
+[8 <../images/05.png>]
+<../images/07.png, id=103, 519.44063pt x 518.6878pt>
+File: ../images/07.png Graphic file (type png)
+<use ../images/07.png>
+Package pdftex.def Info: ../images/07.png  used on input line 94.
+(pdftex.def)             Requested size: 483.69687pt x 482.992pt.
+
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 102.
+(caption)                particular \caption on input line 95.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 101--102
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 94--95
  [] 
  []
 
-[5{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <../images/3.png
-> <../images/4.png> <../images/5.png>]
+[9 <../images/06.png>]
+
+LaTeX Warning: Reference `08' on page 10 undefined on input line 99.
+
+<../images/08.png, id=111, 519.44063pt x 517.18219pt>
+File: ../images/08.png Graphic file (type png)
+<use ../images/08.png>
+Package pdftex.def Info: ../images/08.png  used on input line 103.
+(pdftex.def)             Requested size: 483.69687pt x 481.59001pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 104.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 103--104
+ [] 
+ []
+
+[10 <../images/07.png>]
+<../images/09.png, id=120, 546.54187pt x 542.77782pt>
+File: ../images/09.png Graphic file (type png)
+<use ../images/09.png>
+Package pdftex.def Info: ../images/09.png  used on input line 112.
+(pdftex.def)             Requested size: 483.69687pt x 480.37077pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 113.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 112--113
+ [] 
+ []
+
+[11 <../images/08.png>]
 \openout3 = `report.pyg'.
 
+ (./_minted-report/default.pygstyle)
+runsystem(pygmentize -l 'cisco' -f latex -P commandprefix=PYG -F tokenmerge -P 
+stripnl='False' -o _minted-report/483B28F328C2A952955652DC4C2387807E96C1E036BA7
+0646C816803B4C6FD0D.pygtex report.pyg)...executed.
 
-(./_minted-report/5D33ED5C4139F8FDF68875E68C8DE438A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/7.png, id=104, 846.16125pt x 543.53062pt>
-File: ../images/7.png Graphic file (type png)
-<use ../images/7.png>
-Package pdftex.def Info: ../images/7.png  used on input line 125.
-(pdftex.def)             Requested size: 483.69687pt x 310.70308pt.
 
+
+! Package minted Error: Missing Pygments output; \inputminted was
+probably given a file that does not exist--otherwise, you may need 
+the outputdir package option, or may be using an incompatible build tool,
+or may be using frozencache with a missing file.
+
+See the minted package documentation for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.120   \end{minted}
+                    
+? 
+<../images/10.png, id=129, 603.75563pt x 600.74437pt>
+File: ../images/10.png Graphic file (type png)
+<use ../images/10.png>
+Package pdftex.def Info: ../images/10.png  used on input line 125.
+(pdftex.def)             Requested size: 483.69687pt x 481.28365pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 126.
@@ -1140,215 +1148,256 @@ Overfull \hbox (29.3747pt too wide) in paragraph at lines 125--126
  [] 
  []
 
-[6 <../images/6.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/8E953E7C6365C944D3700E3E4153BE28A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/8.png, id=113, 737.00343pt x 61.73062pt>
-File: ../images/8.png Graphic file (type png)
-<use ../images/8.png>
-Package pdftex.def Info: ../images/8.png  used on input line 137.
-(pdftex.def)             Requested size: 483.69687pt x 40.51343pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 138.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 137--138
- [] 
- []
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/B6FA29DFD6F1DE5FB81691831A03F9C2A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/9.png, id=115, 928.21782pt x 91.09032pt>
-File: ../images/9.png Graphic file (type png)
-<use ../images/9.png>
-Package pdftex.def Info: ../images/9.png  used on input line 147.
-(pdftex.def)             Requested size: 483.69687pt x 47.46869pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 148.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 147--148
- [] 
- []
-
-[7 <../images/7.png> <../images/8.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/B28759EC3B67578F52F4FE5627C26E61A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/10.png, id=130, 740.7675pt x 40.65187pt>
-File: ../images/10.png Graphic file (type png)
-<use ../images/10.png>
-Package pdftex.def Info: ../images/10.png  used on input line 158.
-(pdftex.def)             Requested size: 483.69687pt x 26.54434pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 159.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 158--159
- [] 
- []
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/A86527E1CC483AED473893D97EE4F0ABA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/D10AB758D925618FAE916E65CC627368A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/0560CC00371D2A0FBB5E000E5A84A2CBA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/11.png, id=132, 615.80063pt x 49.68562pt>
+[12 <../images/09.png>]
+<../images/11.png, id=138, 608.2725pt x 601.4972pt>
 File: ../images/11.png Graphic file (type png)
 <use ../images/11.png>
-Package pdftex.def Info: ../images/11.png  used on input line 179.
-(pdftex.def)             Requested size: 483.69687pt x 39.02756pt.
+Package pdftex.def Info: ../images/11.png  used on input line 134.
+(pdftex.def)             Requested size: 483.69687pt x 478.32567pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 180.
+(caption)                particular \caption on input line 135.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 179--180
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 134--135
  [] 
  []
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/E5D207F39BCAF4FCA98CCD6BE27002DBA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/12.png, id=133, 920.68968pt x 1054.6903pt>
+[13 <../images/10.png>]
+<../images/12.png, id=148, 606.01407pt x 601.4972pt>
 File: ../images/12.png Graphic file (type png)
 <use ../images/12.png>
-Package pdftex.def Info: ../images/12.png  used on input line 191.
-(pdftex.def)             Requested size: 483.69687pt x 554.10695pt.
+Package pdftex.def Info: ../images/12.png  used on input line 143.
+(pdftex.def)             Requested size: 483.69687pt x 480.09705pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 192.
+(caption)                particular \caption on input line 144.
 See the caption package documentation for explanation.
 
 
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 191--192
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 143--144
  [] 
  []
 
-[8 <../images/9.png> <../images/10.png> <../images/11.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/FE61B114EFC7C98AD9D77F4F78AC26C2A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/442F04680E6069CB74D0939CB9E57174A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-File: ../images/12.png Graphic file (type png)
-<use ../images/12.png>
-Package pdftex.def Info: ../images/12.png  used on input line 205.
-(pdftex.def)             Requested size: 483.69687pt x 554.10695pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 206.
-See the caption package documentation for explanation.
-
-
-Overfull \hbox (29.3747pt too wide) in paragraph at lines 205--206
- [] 
- []
-
-[9 <../images/12.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/9D10A3243FC63AAE50673509F7F3DE11A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/13.png, id=155, 575.14874pt x 197.23688pt>
+[14 <../images/11.png>]
+<../images/13.png, id=157, 604.50844pt x 596.2275pt>
 File: ../images/13.png Graphic file (type png)
 <use ../images/13.png>
-Package pdftex.def Info: ../images/13.png  used on input line 218.
-(pdftex.def)             Requested size: 483.69687pt x 165.87947pt.
+Package pdftex.def Info: ../images/13.png  used on input line 152.
+(pdftex.def)             Requested size: 483.69687pt x 477.07362pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 219.
+(caption)                particular \caption on input line 153.
 See the caption package documentation for explanation.
 
-[10]
-\openout3 = `report.pyg'.
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 152--153
+ [] 
+ []
+
+[15 <../images/12.png>]
+<../images/14.png, id=167, 629.35126pt x 750.55406pt>
+File: ../images/14.png Graphic file (type png)
+<use ../images/14.png>
+Package pdftex.def Info: ../images/14.png  used on input line 162.
+(pdftex.def)             Requested size: 483.69687pt x 576.85188pt.
 
 
-(./_minted-report/01BEB21C730EC56AD622007C3406EC17A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 163.
+See the caption package documentation for explanation.
 
 
-(./_minted-report/0D47A9A158E4C64FD2939CF9DF2D4FCEA049E9CB418B57F70E24C639F7BA1
-365.pygtex [11 <../images/13.png>])
-\openout3 = `report.pyg'.
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 162--163
+ [] 
+ []
+
+[16 <../images/13.png>]
+<../images/15.png, id=176, 662.475pt x 721.19438pt>
+File: ../images/15.png Graphic file (type png)
+<use ../images/15.png>
+Package pdftex.def Info: ../images/15.png  used on input line 171.
+(pdftex.def)             Requested size: 483.69687pt x 526.56657pt.
 
 
-(./_minted-report/4165594A3F54D71884131BA3AA5C28EEA049E9CB418B57F70E24C639F7BA1
-365.pygtex) [12] [13] (./report.aux)
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 172.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 171--172
+ [] 
+ []
+
+[17 <../images/14.png>]
+Overfull \hbox (4.4665pt too wide) in paragraph at lines 176--177
+[]\T2A/cmr/m/n/12 «адаем но-вую то-по-ло-гию в со-от-вет-ствии с за-да-ни-ем са
+-мо-сто-€-тель-ной ра-бо-ты (–ис.[][]16[][]): 
+ []
+
+<../images/18.png, id=185, 1401.73688pt x 666.99188pt>
+File: ../images/18.png Graphic file (type png)
+<use ../images/18.png>
+Package pdftex.def Info: ../images/18.png  used on input line 180.
+(pdftex.def)             Requested size: 483.69687pt x 230.15315pt.
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 181.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 180--181
+ [] 
+ []
+
+[18 <../images/15.png>]
+<../images/16.png, id=194, 569.12625pt x 560.8453pt>
+File: ../images/16.png Graphic file (type png)
+<use ../images/16.png>
+Package pdftex.def Info: ../images/16.png  used on input line 189.
+(pdftex.def)             Requested size: 483.69687pt x 476.67796pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 190.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 189--190
+ [] 
+ []
+
+[19 <../images/18.png>]
+<../images/17.png, id=204, 630.85687pt x 704.6325pt>
+File: ../images/17.png Graphic file (type png)
+<use ../images/17.png>
+Package pdftex.def Info: ../images/17.png  used on input line 198.
+(pdftex.def)             Requested size: 483.69687pt x 540.26782pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 199.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 198--199
+ [] 
+ []
+
+[20 <../images/16.png>]
+<../images/19.png, id=213, 513.41812pt x 519.44063pt>
+File: ../images/19.png Graphic file (type png)
+<use ../images/19.png>
+Package pdftex.def Info: ../images/19.png  used on input line 213.
+(pdftex.def)             Requested size: 483.69687pt x 489.37598pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 214.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 213--214
+ [] 
+ []
+
+[21 <../images/17.png>]
+<../images/20.png, id=222, 577.40718pt x 551.05875pt>
+File: ../images/20.png Graphic file (type png)
+<use ../images/20.png>
+Package pdftex.def Info: ../images/20.png  used on input line 222.
+(pdftex.def)             Requested size: 483.69687pt x 461.64172pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 223.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 222--223
+ [] 
+ []
+
+[22 <../images/19.png>]
+<../images/21.png, id=231, 708.39656pt x 829.59938pt>
+File: ../images/21.png Graphic file (type png)
+<use ../images/21.png>
+Package pdftex.def Info: ../images/21.png  used on input line 231.
+(pdftex.def)             Requested size: 483.69687pt x 566.46198pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 232.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 231--232
+ [] 
+ []
+
+[23 <../images/20.png>] [24 <../images/21.png>]
+<../images/22.png, id=247, 673.76718pt x 864.22874pt>
+File: ../images/22.png Graphic file (type png)
+<use ../images/22.png>
+Package pdftex.def Info: ../images/22.png  used on input line 247.
+(pdftex.def)             Requested size: 483.69687pt x 620.43759pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 248.
+See the caption package documentation for explanation.
+
+
+Overfull \hbox (29.3747pt too wide) in paragraph at lines 247--248
+ [] 
+ []
+
+[25 <../images/22.png>] [26]
+Overfull \hbox (10.01889pt too wide) in paragraph at lines 256--257
+\T2A/cmr/m/n/12 ков кон-тро-л€ до-сту-па Cisco. Ѕы-ли на-стро-е-ны ACL \T2A/cmt
+t/m/n/12 servers-out\T2A/cmr/m/n/12 , \T2A/cmtt/m/n/12 other-in \T2A/cmr/m/n/12
+ и \T2A/cmtt/m/n/12 management-out\T2A/cmr/m/n/12 ,
+ []
+
+[27] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
 
 
+LaTeX Warning: There were undefined references.
+
+
 LaTeX Warning: There were multiply-defined labels.
 
 Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 591198F976818031C00578E1F8AB8C7F;1729.
+(rerunfilecheck)             Checksum: C4B25DFAFDF8C5E414C2D76DA0692E4F;1293.
 runsystem(rm report.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 19600 strings out of 474222
- 338292 string characters out of 5748732
- 1937975 words of memory out of 5000000
- 41417 multiletter control sequences out of 15000+600000
- 573965 words of font info for 81 fonts, out of 8000000 for 9000
+ 19505 strings out of 474222
+ 325955 string characters out of 5748732
+ 1927975 words of memory out of 5000000
+ 41378 multiletter control sequences out of 15000+600000
+ 571638 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 91i,10n,134p,707b,991s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/
-texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/pu
-blic/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx17
-28.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit1200.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm207
-4.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (13 pages, 2878428 bytes).
+ 91i,6n,134p,822b,886s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/
+fonts/type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/c
+m-super/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sftt1200.pfb>
+Output written on report.pdf (27 pages, 1036460 bytes).
 PDF statistics:
- 246 PDF objects out of 1000 (max. 8388607)
- 181 compressed objects within 2 object streams
- 56 named destinations out of 1000 (max. 500000)
- 122 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 317 PDF objects out of 1000 (max. 8388607)
+ 226 compressed objects within 3 object streams
+ 78 named destinations out of 1000 (max. 500000)
+ 151 words of extra memory for PDF output out of 10000 (max. 10000000)
 

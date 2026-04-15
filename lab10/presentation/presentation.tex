@@ -1,7 +1,7 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 10. \\ Расширенные настройки SMTP-сервера}
-\author{Сущенко Алина \\ НПИбд-01-23}
+\title{Лабораторная работа № 10. \\ Настройка прав доступа пользователей к ресурсам сети}
+\author{Сущенко Алина Николаевна \\ НПИбд-01-23}
 
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
 \date{2025}
@@ -13,318 +13,378 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение практических навыков по конфигурированию SMTP-сервера в части настройки аутентификации.
+    \item Освоить настройку прав доступа пользователей к ресурсам сети с использованием стандартных и расширенных списков контроля доступа (Access Control Lists, ACL) в Cisco Packet Tracer.
 \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Настройка LMTP в Dovecot}
-\begin{enumerate}
-\item На виртуальной машине \texttt{server} вошли под пользователем и открыли терминал. Перешли в режим суперпользователя:
-\begin{minted}{bash}
-sudo -i
-\end{minted}
-\item В дополнительном терминале запустили мониторинг работы почтовой службы:
-\begin{minted}{bash}
-sudo -i
-tail -f /var/log/maillog
-\end{minted}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Настройка LMTP в Dovecot}
-\begin{enumerate}
-\setcounter{enumi}{2}
-\item Добавили в список протоколов, с которыми может работать Dovecot, протокол LMTP:
-\begin{minted}{bash}
-protocols = imap pop3 lmtp
-\end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Топология сети и подключение администратора}
+\begin{itemize}
+    \item В топологию добавлен ноутбук \texttt{admin-ansusenko}, подключенный к порту 24 коммутатора \texttt{msk-ansusenko-sw-4}.
+    \item Администратору назначен статический IP-адрес: 10.128.6.200, шлюз 10.128.6.1, DNS 10.128.0.5.
+\end{itemize}
 \centering
-\includegraphics[width=0.8\textwidth]{../images/1.png}
-\captionof{figure}{Обновление списка разрешенных протоколов в Dovecot.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Настройка LMTP в Dovecot}
-\begin{enumerate}
-\setcounter{enumi}{3}
-\item Настроили в Dovecot сервис \texttt{lmtp} для связи с Postfix:
-\begin{minted}{bash}
-service lmtp {
-  unix_listener /var/spool/postfix/private/dovecot-lmtp {
-    group = postfix
-    user = postfix
-    mode = 0600
-  }
-}
-\end{minted}
-\end{enumerate}
-\centering
-\includegraphics[width=0.8\textwidth]{../images/2.png}
-\captionof{figure}{Настройки сервера \texttt{lmtp}.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Настройка LMTP в Dovecot}
-\begin{enumerate}
-\setcounter{enumi}{4}
-\item Переопределили в Postfix передачу сообщений через unix-сокет:
-\begin{minted}{bash}
-postconf -e 'mailbox_transport = lmtp:unix:private/dovecot-lmtp'
-\end{minted}
-\item Задали формат имени пользователя для аутентификации:
-\begin{minted}{bash}
-auth_username_format = %Ln
-\end{minted}
-\end{enumerate}
-\centering
-\includegraphics[width=0.8\textwidth]{../images/3.png}
-\captionof{figure}{Задание формата имени пользователя для аутентификации.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Настройка LMTP в Dovecot}
-\begin{enumerate}
-\setcounter{enumi}{6}
-\item Перезапустили Postfix и Dovecot:
-\begin{minted}{bash}
-systemctl restart postfix
-systemctl restart dovecot
-\end{minted}
-\end{enumerate}
-\centering
-\includegraphics[width=0.8\textwidth]{../images/4.png}
-\captionof{figure}{Перезагрузка Postfix и Dovecot.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Настройка LMTP в Dovecot}
-\begin{enumerate}
-\setcounter{enumi}{7}
-\item Отправили тестовое письмо:
-\begin{minted}{bash}
-echo .| mail -s "LMTP test" ansusenko@ansusenko.net
-\end{minted}
-\item Просмотрели почтовый ящик пользователя:
-\begin{minted}{bash}
-MAIL=~/Maildir/ mail
-\end{minted}
-\end{enumerate}
-\centering
-\includegraphics[width=0.8\textwidth]{../images/5.png}
-\captionof{figure}{Просмотр доставленного письма через утилиту \texttt{mail}.}
+\includegraphics[width=0.7\textwidth]{../images/01.png}
+\captionof{figure}{Обновленная топология сети с администратором}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка LMTP в Dovecot}
-\centering
-\includegraphics[width=0.8\textwidth]{../images/6.png}
-\captionof{figure}{Просмотр логов при отправке письма.}
+\frametitle{Настройки сетевого интерфейса администратора}
+\begin{itemize}
+    \item IPv4-адрес: 10.128.6.200
+    \item Маска подсети: 255.255.255.0
+    \item Шлюз по умолчанию: 10.128.6.1
+    \item DNS-сервер: 10.128.0.5
+\end{itemize}
+\begin{center}
+    \includegraphics[width=0.8\textwidth]{../images/02.png}
+    \captionof{figure}{Настройки интерфейса FastEthernet0 администратора}
+\end{center}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Настройка SMTP-аутентификации}
-\begin{enumerate}
-\item Определили службу аутентификации пользователей:
-\begin{minted}{bash}
-service auth {
-  unix_listener /var/spool/postfix/private/auth {
-    group = postfix
-    user = postfix
-    mode = 0660
-  }
-  unix_listener auth-userdb {
-    mode = 0600
-    user = dovecot
-  }
-}
-\end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Создание ACL servers-out}
+\begin{itemize}
+    \item Создан расширенный список доступа \texttt{servers-out} для управления доступом к серверам.
+    \item Применен на интерфейсе \texttt{f0/0.3} маршрутизатора \texttt{msk-ansusenko-gw-1}.
+    \item Первое правило: разрешить доступ всем пользователям к web-серверу (10.128.0.2) по порту 80.
+\end{itemize}
 \centering
-\includegraphics[width=0.8\textwidth]{../images/7.png}
-\captionof{figure}{Настройка службы аутентификации.}
+\includegraphics[width=0.8\textwidth]{../images/03.png}
+\captionof{figure}{Создание ACL servers-out и применение на интерфейсе}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Настройка SMTP-аутентификации}
-\begin{enumerate}
-\setcounter{enumi}{1}
-\item Задали тип аутентификации SASL для Postfix:
-\begin{minted}{bash}
-postconf -e 'smtpd_sasl_type = dovecot'
-postconf -e 'smtpd_sasl_path = private/auth'
-\end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Добавление правил доступа для администратора}
+\begin{itemize}
+    \item Добавлены правила для доступа администратора (10.128.6.200) по FTP (порт 21) и Telnet (порт 23) к web-серверу.
+\end{itemize}
 \centering
-\includegraphics[width=0.8\textwidth]{../images/8.png}
-\captionof{figure}{Настройка типа аутентификации SASL для \texttt{smtpd}.}
+\includegraphics[width=0.8\textwidth]{../images/04.png}
+\captionof{figure}{Добавление правил доступа для администратора}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Настройка SMTP-аутентификации}
-\begin{enumerate}
-\setcounter{enumi}{2}
-\item Настроили Postfix для защиты от спамрассылок:
-\begin{minted}{bash}
-postconf -e 'smtpd_recipient_restrictions = reject_unknown_recipient_domain, permit_mynetworks, reject_non_fqdn_recipient, reject_unauth_destination, reject_unverified_recipient, permit'
-\end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Проверка FTP доступа администратора}
+\begin{itemize}
+    \item С устройства администратора выполнена команда \texttt{ftp 10.128.0.2}.
+    \item FTP-доступ к web-серверу успешно работает.
+\end{itemize}
 \centering
-\includegraphics[width=0.8\textwidth]{../images/9.png}
-\captionof{figure}{Настройка Postfix для запрета спамрассылок.}
+\includegraphics[width=0.8\textwidth]{../images/05.png}
+\captionof{figure}{Успешное подключение к FTP-серверу}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Настройка SMTP-аутентификации}
-\begin{enumerate}
-\setcounter{enumi}{3}
-\item Ограничили приём почты только локальным адресом:
-\begin{minted}{bash}
-postconf -e 'mynetworks = 127.0.0.0/8'
-\end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Проверка FTP доступа пользователя}
+\begin{itemize}
+    \item С устройства \texttt{dep-ansusenko-1} выполнена попытка подключения по FTP.
+    \item Доступ запрещён, что соответствует заданию --- FTP разрешён только администратору.
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/06.png}
+\captionof{figure}{Ошибка подключения к FTP с устройства dep-ansusenko-1}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка доступа к файловому серверу}
+\begin{itemize}
+    \item Добавлены правила для доступа к файловому серверу (10.128.0.3):
+    \begin{itemize}
+        \item Внутренней сети (10.128.0.0/24) разрешён доступ по SMB (порт 445).
+        \item Всем пользователям разрешён доступ по FTP (порт 21).
+    \end{itemize}
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/07.png}
+\captionof{figure}{Настройка доступа к файловому серверу}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка доступа к почтовому серверу}
+\begin{itemize}
+    \item Добавлены правила для доступа к почтовому серверу (10.128.0.4):
+    \begin{itemize}
+        \item Разрешён доступ по SMTP (порт 25).
+        \item Разрешён доступ по POP3 (порт 110).
+    \end{itemize}
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/08.png}
+\captionof{figure}{Настройка доступа к почтовому серверу}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка работы DNS-сервера}
+\begin{itemize}
+    \item Выполнена команда \texttt{nslookup www.ansusenko.rudn.ru}.
+    \item Выполнен \texttt{ping} по имени.
+    \item DNS-сервер работает корректно, доступ к web-серверу по имени успешен.
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/09.png}
+\captionof{figure}{Проверка работы DNS-сервера}
+\end{frame}
+
+\begin{frame}
+\frametitle{Добавление правила для ICMP}
+\begin{itemize}
+    \item Добавлено правило разрешения ICMP в начало списка:
+\end{itemize}
+\ttfamily msk-ansusenko-gw-1(config-ext-nacl)\#1 permit icmp any any
+\begin{itemize}
+    \item Правило добавлено в начало списка, что демонстрирует управление порядком применения правил.
+\end{itemize}
 \centering
 \includegraphics[width=0.8\textwidth]{../images/10.png}
-\captionof{figure}{Ограничение приема почты только локальным адресом.}
+\captionof{figure}{Добавление правила разрешения ICMP}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Настройка SMTP-аутентификации}
-\begin{enumerate}
-\setcounter{enumi}{4}
-\item Настроили SMTP-сервер с возможностью аутентификации:
-\begin{minted}{bash}
-smtp inet n - n - - smtpd
--o smtpd_sasl_auth_enable=yes
--o smtpd_recipient_restrictions=reject_non_fqdn_recipient, reject_unknown_recipient_domain, permit_sasl_authenticated, reject
-\end{minted}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Настройка SMTP-аутентификации}
-\begin{enumerate}
-\setcounter{enumi}{5}
-\item Перезапустили Postfix и Dovecot:
-\begin{minted}{bash}
-systemctl restart postfix
-systemctl restart dovecot
-\end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Просмотр настроенных списков доступа}
+\begin{itemize}
+    \item Выполнена проверка всех настроенных списков доступа.
+\end{itemize}
 \centering
 \includegraphics[width=0.8\textwidth]{../images/11.png}
-\captionof{figure}{Перезагрузка Postfix и Dovecot.}
+\captionof{figure}{Просмотр настроенных списков доступа}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Настройка SMTP-аутентификации}
-\begin{enumerate}
-\setcounter{enumi}{6}
-\item Установили telnet на клиенте:
-\begin{minted}{bash}
-sudo -i
-dnf -y install telnet
-\end{minted}
-\item Протестировали соединение:
-\begin{minted}{bash}
-EHLO test
-AUTH PLAIN <строка для аутентификации>
-\end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Настройка доступа для сети Other}
+\begin{itemize}
+    \item Создан список \texttt{other-in} и применён на интерфейсе f0/0.104 на входящий трафик.
+    \item Разрешены любые действия только для администратора (10.128.6.200).
+\end{itemize}
 \centering
 \includegraphics[width=0.8\textwidth]{../images/12.png}
-\captionof{figure}{Подключение к SMTP-серверу через \texttt{telnet}.}
+\captionof{figure}{Настройка доступа для сети Other}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Настройка SMTP over TLS}
-\begin{minted}{bash}
-На Alpine выполним подключение по порту, отправим себе письмо и проверим вывод
-\end{minted}
+\begin{frame}
+\frametitle{Настройка доступа к сети управления оборудованием}
+\begin{itemize}
+    \item Создан список \texttt{management-out} для доступа к сети управления оборудованием (10.128.1.0/24).
+\end{itemize}
 \centering
 \includegraphics[width=0.8\textwidth]{../images/13.png}
-\captionof{figure}{Отправка сообщения \texttt{telnet}.}
+\captionof{figure}{Настройка доступа к сети управления оборудованием}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Внесение изменений в настройки внутреннего окружения}
-\begin{enumerate}
-\item Скопировали конфигурационные файлы:
-\begin{minted}{bash}
-cd /vagrant/provision/server
-cp -R /etc/dovecot/dovecot.conf /vagrant/provision/server/mail/etc/dovecot/
-cp -R /etc/dovecot/conf.d/10-master.conf /vagrant/provision/server/mail/etc/dovecot/conf.d/
-cp -R /etc/dovecot/conf.d/10-auth.conf /vagrant/provision/server/mail/etc/dovecot/conf.d/
-mkdir -p /vagrant/provision/server/mail/etc/postfix/
-cp -R /etc/postfix/master.cf /vagrant/provision/server/mail/etc/postfix/
-\end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Проверка доступа не с администратора}
+\begin{itemize}
+    \item Выполнена проверка доступа к серверам с устройства \texttt{dep-ansusenko-1}.
+    \item Доступ запрещён в соответствии с настроенными правилами.
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/14.png}
+\captionof{figure}{Проверка доступа к серверам (не администратор)}
 \end{frame}
 
-\begin{frame}[fragile]
+\begin{frame}
+\frametitle{Проверка доступа с администратора}
+\begin{itemize}
+    \item Выполнена проверка доступа администратора к серверам.
+    \item Весь необходимый доступ разрешён.
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/15.png}
+\captionof{figure}{Проверка доступа администратора к серверам}
+\end{frame}
+
+\begin{frame}
+\frametitle{Добавление нового администратора в топологию}
+\begin{itemize}
+    \item В соответствии с заданием самостоятельной работы добавлен новый ноутбук в топологию сети Павловской.
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/18.png}
+\captionof{figure}{Добавление нового ноутбука в топологию сети Павловской}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка прав доступа для нового администратора}
+\begin{itemize}
+    \item Настроены права доступа для нового администратора.
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/16.png}
+\captionof{figure}{Права доступа для нового администратора}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка настроек для нового администратора}
+\begin{itemize}
+    \item Выполнена проверка списков и настроек для нового администратора.
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/17.png}
+\captionof{figure}{Проверка доступа администратора к серверам}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройки интерфейса второго администратора}
+\begin{itemize}
+    \item IPv4-адрес: 10.128.6.201
+    \item Маска подсети: 255.255.255.0
+    \item Шлюз по умолчанию: 10.128.6.1
+    \item DNS-сервер: 10.128.0.5
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/19.png}
+\captionof{figure}{Настройки администратора на Павловской}
+\end{frame}
+
+\begin{frame}
+\frametitle{Добавление правил для второго администратора}
+\begin{itemize}
+    \item Добавлены правила для администратора 10.128.6.201 в списки \texttt{other-in} и \texttt{management-out}.
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/20.png}
+\captionof{figure}{Добавление правил для администратора на Павловской}
+\end{frame}
+
+\begin{frame}
+\frametitle{Итоговый вывод ACL}
+\begin{itemize}
+    \item Выполнен вывод \texttt{show access-lists} с правилами для обоих администраторов (10.128.6.200 и 10.128.6.201).
+\end{itemize}
+\centering
+\includegraphics[width=0.8\textwidth]{../images/21.png}
+\captionof{figure}{Итоговый вывод ACL после настройки второго администратора}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка доступа второго администратора}
+С устройства администратора 10.128.6.201 выполнены:
+\begin{itemize}
+    \item \texttt{ping 10.128.6.1} --- успешен
+    \item \texttt{ping 10.128.0.2} --- 75\% успешных ответов
+    \item \texttt{ftp 10.128.0.2} --- успешен
+    \item \texttt{ping 10.128.1.1} --- успешен
+\end{itemize}
+\textbf{Вывод:} Второй администратор имеет полный доступ к ресурсам сети.
+\centering
+\includegraphics[width=0.7\textwidth]{../images/22.png}
+\captionof{figure}{Проверка доступа администратора на Павловской}
+\end{frame}
+
+\begin{frame}
+\frametitle{Вопрос 1}
+\parbox{\textwidth}{
+\textbf{Вопрос:} Как задать действие правила для конкретного протокола?
+
+\textbf{Ответ:} Для задания действия правила для конкретного протокола в расширенном ACL используется следующий синтаксис:
+
+\ttfamily access-list <номер\_или\_имя> <permit|deny> <протокол> <источник> <порт\_источника> <назначение> <порт\_назначения>
+
+\textbf{Пример из работы:}
+
+\ttfamily permit tcp any host 10.128.0.2 eq 80
+
+Данное правило разрешает (permit) протокол TCP любому источнику (any) к хосту 10.128.0.2 на порт 80 (eq 80).
+
+\textbf{Возможные протоколы:} tcp, udp, icmp, ip, gre и другие.
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Вопрос 2}
+\parbox{\textwidth}{
+\textbf{Вопрос:} Как задать действие правила сразу для нескольких портов?
+
+\textbf{Ответ:} Существует несколько способов задать действие правила сразу для нескольких портов:
+
+\textbf{1. Использование оператора диапазона range:}
+
+\ttfamily permit tcp any host 10.128.0.4 range 25 110
+
+Разрешает доступ к портам с 25 по 110.
+
+\textbf{2. Использование нескольких правил:}
+
+\ttfamily permit tcp any host 10.128.0.4 eq 25
+
+\ttfamily permit tcp any host 10.128.0.4 eq 110
+
+\textbf{3. Использование операторов lt (меньше), gt (больше), neq (не равно):}
+
+\ttfamily permit tcp any host 10.128.0.4 lt 1024
+
+Разрешает доступ к портам меньше 1024 (привилегированные порты).
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Вопрос 3}
+\parbox{\textwidth}{
+\textbf{Вопрос:} Как узнать номер правила в списке прав доступа?
+
+\textbf{Ответ:} Для просмотра номеров правил в списке доступа используется команда \texttt{show access-lists} в привилегированном режиме (enable).
+
+\textbf{Пример вывода из работы:}
+
+\ttfamily msk-ansusenko-gw-1\# show access-lists
+
+\ttfamily Extended IP access list servers-out
+
+\ttfamily \ \ \ 10 permit tcp any host 10.128.0.2 eq 80
+
+\ttfamily \ \ \ 20 permit tcp host 10.128.6.200 host 10.128.0.2 eq 21
+
+\ttfamily \ \ \ 30 permit tcp host 10.128.6.200 host 10.128.0.2 eq 23
+
+\textbf{Особенности:}
+\begin{itemize}
+    \item Номера правил отображаются в первом столбце (10, 20, 30).
+    \item Если номера не заданы явно, Cisco присваивает их автоматически с шагом 10.
+    \item Номера правил позволяют управлять порядком применения (меньший номер --- выше приоритет).
+\end{itemize}
+}
+\end{frame}
+
+\begin{frame}
+\frametitle{Вопрос 4}
+\parbox{\textwidth}{
+\textbf{Вопрос:} Каким образом можно изменить порядок применения правил в списке контроля доступа?
+
+\textbf{Ответ:} Существует несколько способов изменения порядка применения правил:
+
+\textbf{1. Добавление правила с конкретным номером:}
+
+\ttfamily ip access-list extended servers-out
+
+\ttfamily 1 permit icmp any any
+
+Правило с номером 1 будет первым, независимо от существующих правил.
+
+\textbf{2. Удаление и повторное добавление правил в нужном порядке:}
+
+\ttfamily no access-list extended servers-out
+
+\ttfamily access-list extended servers-out
+
+\ttfamily permit icmp any any
+
+\ttfamily permit tcp any host 10.128.0.2 eq 80
+
+\textbf{3. Изменение порядка с помощью нумерации (в именованных ACL):}
+
+\ttfamily ip access-list extended servers-out
+
+\ttfamily 15 permit tcp host 10.128.6.200 host 10.128.0.2 eq 21
+
+\ttfamily no 20
+}
+\end{frame}
+
+\begin{frame}
 \frametitle{Выводы}
 \begin{itemize}
-    \item В результате выполнения лабораторной работы приобрели практические навыки по конфигурированию SMTP-сервера в части настройки аутентификации.
-    \item Освоили настройку LMTP в Dovecot для интеграции с Postfix.
-    \item Настроили SMTP-аутентификацию с использованием SASL.
-    \item Реализовали защиту почтового сервера от использования в качестве открытого релея.
-    \item Настроили работу SMTP over TLS для безопасной передачи почты.
-\end{itemize}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Контрольные вопросы}
-\begin{block}{1. Приведите пример задания формата аутентификации пользователя в Dovecot в форме логина с указанием домена.}
-\begin{itemize}
-\item Для указания формата логина с доменом используется параметр:
-\begin{minted}{bash}
-auth_username_format = %Lu
-\end{minted}
-\item Альтернативный вариант - указание полного формата:
-\begin{minted}{bash}
-auth_username_format = %n
-\end{minted}
-\end{itemize}
-\end{block}
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-\begin{block}{2. Какие функции выполняет почтовый Relay-сервер?}
-\begin{itemize}
-\item \textbf{Пересылка почты} - передача сообщений между разными почтовыми серверами
-\item \textbf{Кэширование} - временное хранение сообщений при проблемах с доставкой
-\item \textbf{Балансировка нагрузки} - распределение почтового трафика
-\item \textbf{Фильтрация} - проверка почты на спам и вирусы
-\item \textbf{Анонимизация} - скрытие реального источника отправки почты
-\end{itemize}
-\end{block}
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы}
-\begin{block}{3. Какие угрозы безопасности могут возникнуть в случае настройки почтового сервера как Relay-сервера?}
-\begin{itemize}
-\item \textbf{Спам-рассылки} - использование сервера для массовой рассылки спама
-\item \textbf{Черные списки} - IP-адрес сервера может быть внесен в DNSBL
-\item \textbf{Перегрузка ресурсов} - большой объем несанкционированной почты
-\item \textbf{Компрометация репутации} - ухудшение репутации домена и IP-адреса
-\item \textbf{Юридические риски} - ответственность за рассылку спама
-\end{itemize}
-\end{block}
-\end{frame}
-
-\begin{frame}
-\frametitle{Меры защиты от угроз Relay-сервера}
-\begin{itemize}
-\item \textbf{Аутентификация} - требовать аутентификацию для отправки почты
-\item \textbf{Ограничение сетей} - настройка \texttt{mynetworks} только для доверенных сетей
-\item \textbf{Проверка получателей} - использование \texttt{smtpd\_recipient\_restrictions}
-\item \textbf{Шифрование} - обязательное использование TLS для передачи почты
-\item \textbf{Мониторинг} - регулярный анализ логов почтовой активности
-\item \textbf{Ограничение квот} - установка лимитов на объем отправляемой почты
+    \item В результате выполнения лабораторной работы приобрели практические навыки по настройке прав доступа пользователей к ресурсам сети с использованием расширенных списков контроля доступа Cisco.
+    \item Были настроены ACL \texttt{servers-out}, \texttt{other-in} и \texttt{management-out}, обеспечивающие требуемые политики доступа к web-серверу, файловому серверу, почтовому серверу, DNS-серверу, а также ограничения для сети Other и доступ к сети управления оборудованием.
 \end{itemize}
 \end{frame}
 
