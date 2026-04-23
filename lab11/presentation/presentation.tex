@@ -1,9 +1,9 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 11. \\ Настройка безопасного удалённого доступа по протоколу SSH}
-\author{Сущенко Алина \\ НПИбд-01-23}
+\title{Лабораторная работа № 11. \\ Настройка NAT. Планирование}
+\author{Сущенко Алина Николаевна \\ НПИбд-01-23}
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -12,284 +12,201 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение практических навыков по настройке удалённого доступа к серверу с помощью SSH.
+    \item Провести подготовительные мероприятия по подключению локальной сети организации к Интернету.
+    \item Построить схему соединения локальной сети с сетью провайдера и модельной сетью Интернета.
+    \item Настроить IP-адреса и DNS-записи для последующей настройки NAT.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Запрет удалённого доступа по SSH для пользователя root}
-  \centering
-  \includegraphics[width=\textwidth]{../images/1.png}
-  \captionof{figure}{Задание пароля для пользователя root.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Запрет удалённого доступа по SSH для пользователя root}
-Запретили пользователю root подключение к серверу через SSH:
-  \begin{minted}{bash}
-    PermitRootLogin no
-  \end{minted}
-  \centering
-  \includegraphics[width=\textwidth]{../images/2.png}
-  \captionof{figure}{Подключение к серверу через SSH-соединение.}
+\frametitle{Новая обновленная топология сети}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{../images/01.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Ограничение списка пользователей для удалённого доступа по SSH}
-  \centering
-  \includegraphics[width=\textwidth]{../images/3.png}
-  \captionof{figure}{Успешное подключение к серверу пользователем ansusenko.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Ограничение списка пользователей для удалённого доступа по SSH}
-Явно указали разрешенных к подключению пользователей:
-  \begin{minted}{bash}
-    AllowUsers vagrant
-  \end{minted}
-  \centering
-  \includegraphics[width=\textwidth]{../images/4.png}
-  \captionof{figure}{Отказ в доступе на сервер пользователю ansusenko.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Ограничение списка пользователей для удалённого доступа по SSH}
-Обновили список разрешенных пользователей:
-  \begin{minted}{bash}
-    AllowUsers vagrant ansusenko
-  \end{minted}
-  \centering
-  \includegraphics[width=\textwidth]{../images/5.png}
-  \captionof{figure}{Восстановление доступа на сервер пользователю ansusenko.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Настройка дополнительных портов для удалённого доступа по SSH}
-В файле конфигурации \texttt{sshd\_config} добавили строки:
-  \begin{minted}{bash}
-    Port 22
-    Port 2022
-  \end{minted}
-  \centering
-  \includegraphics[width=\textwidth]{../images/6.png}
-  \captionof{figure}{Проверка расширенного статуса работы sshd.}
+\frametitle{Создание новых зданий}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{../images/02.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка дополнительных портов для удалённого доступа по SSH}
-  \centering
-  \includegraphics[width=\textwidth]{../images/7.png}
-  \captionof{figure}{Настройка межсетевого экрана.}
+\frametitle{Оборудование в здании сети провайдера}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{../images/03.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка дополнительных портов для удалённого доступа по SSH}
-  \centering
-  \includegraphics[width=\textwidth]{../images/8.png}
-  \captionof{figure}{Успешное подключение к серверу.}
+\frametitle{Оборудование в здании сети модельного Интернета}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{../images/04.png}
+\end{center}
+\end{frame}
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка дополнительных портов для удалённого доступа по SSH}
-  \centering
-  \includegraphics[width=\textwidth]{../images/9.png}
-  \captionof{figure}{Успешное подключение к серверу по порту 2022.}
+\frametitle{Настройка модулей медиаконвертера}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{../images/05.png}
+\end{center}
+
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Настройка маршрутизатора ansusenko-gw-1}
+
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{../images/06.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка удалённого доступа по SSH по ключу}
-  \centering
-  \includegraphics[width=\textwidth]{../images/10.png}
-  \captionof{figure}{Копирование открытого ключа на сервер.}
+\frametitle{Настройка IP-адреса сервера www.yandex.ru}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{../images/07.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка удалённого доступа по SSH по ключу}
-  \centering
-  \includegraphics[width=\textwidth]{../images/11.png}
-  \captionof{figure}{Успешное подключение к серверу с использованием SSH-ключа.}
+\frametitle{Настройка IP-адреса сервера stud.rudn.university}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{../images/08.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Организация туннелей SSH, перенаправление TCP-портов}
-  \centering
-  \includegraphics[width=\textwidth]{../images/12.png}
-  \captionof{figure}{Перенаправление TCP-портов.}
+\frametitle{Настройка IP-адреса сервера esystem.pfur.ru}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{../images/09.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Запуск консольных приложений через SSH}
-  \centering
-  \includegraphics[width=\textwidth]{../images/13.png}
-  \captionof{figure}{Просмотр имени узла сервера и списка файлов через ssh.}
+\frametitle{Настройка IP-адреса сервера www.rudn.ru}
+\begin{center}
+    \includegraphics[width=0.9\textwidth]{../images/10.png}
+\end{center}
 \end{frame}
 
 \begin{frame}
-\frametitle{Запуск консольных приложений через SSH}
-  \centering
-  \includegraphics[width=\textwidth]{../images/14.png}
-  \captionof{figure}{Просмотр почты на сервере через ssh.}
+\frametitle{Настройка DNS-сервера}
+\begin{center}
+    \includegraphics[width=0.95\textwidth]{../images/11.png}
+\end{center}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Запуск графических приложений через SSH (X11Forwarding)}
-Разрешили отображать на локальном клиентском компьютере графические интерфейсы X11:
-  \begin{minted}{bash}
-    X11Forwarding yes
-  \end{minted}
-Запустили графическое приложение на сервере:
-  \begin{minted}{bash}
-    ssh -Y -v ansusenko@server.ansusenko.net firefox
-  \end{minted}
-  \centering
-  \includegraphics[width=0.7\textwidth]{../images/15.png}
-  \captionof{figure}{Просмотр графического приложения (firefox) через ssh.}
+\begin{frame}
+\frametitle{Схема L1 - таблица портов подключения}
+\begin{center}
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Устройство 1} & \textbf{Порт} & \textbf{Устройство 2} & \textbf{Порт} \\
+\hline
+msk-ansusenko-gw-1 & fa0/1 & ansusenko-mc-2 & fa0 \\
+ansusenko-mc-2 & fa1 & ansusenko-mc-1 & fa1
+\\
+ansusenko-mc-1 & fa0 & ansusenko-sw-1 & fa0/2 \\
+ansusenko-sw-1 & fa0/1 & ansusenko-gw-1 & fa0/0 \\
+ansusenko-gw-1 & fa0/1 & ansusenko-mc-02 & fa0 \\
+ansusenko-mc-02 & fa1 & ansusenko-mc-01 & fa1 \\
+ansusenko-mc-01 & fa0 & internet-sw-1 & fa0/1 \\
+internet-sw-1 & fa0/2 & esystem.pfur.ru & fa0 \\
+internet-sw-1 & fa0/3 & www.rudn.ru & fa0 \\
+internet-sw-1 & fa0/4 & stud.rudn.university & fa0 \\
+internet-sw-1 & fa0/5 & www.yandex.ru & fa0 \\
+\hline
+\end{tabular}
+\end{center}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-  \begin{minted}[breaklines]{bash}
-    cd /vagrant/provision/server
-    mkdir -p /vagrant/provision/server/ssh/etc/ssh
-    cp -R /etc/ssh/sshd_config /vagrant/provision/server/ssh/etc/ssh/
-    cd /vagrant/provision/server
-    touch ssh.sh
-    chmod +x ssh.sh
-  \end{minted}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-  \begin{minted}[breaklines]{bash}
-    #!/bin/bash
-    echo "Provisioning script $0"
-    echo "Copy configuration files"
-    cp -R /vagrant/provision/server/ssh/etc/* /etc
-    restorecon -vR /etc
-    echo "Configure firewall"
-    firewall-cmd --add-port=2022/tcp
-    firewall-cmd --add-port=2022/tcp --permanent
-    echo "Tuning SELinux"
-    semanage port -a -t ssh_port_t -p tcp 2022
-    echo "Restart sshd service"
-    systemctl restart sshd
-  \end{minted}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальной машины}
-\begin{minted}{bash}
-    server.vm.provision "server ssh",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/server/ssh.sh"
-\end{minted}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \item \textbf{Как запретить удалённый доступ по SSH пользователю root и разрешить пользователю alice?}
-    
-    В файле \texttt{/etc/ssh/sshd\_config} нужно установить:
-    \begin{minted}{bash}
-PermitRootLogin no
-AllowUsers alice
-    \end{minted}
-    Затем перезапустить службу: \texttt{systemctl restart sshd}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{1}
-    \item \textbf{Как настроить удалённый доступ по SSH через несколько портов? Для чего это может потребоваться?}
-    
-    В файле \texttt{/etc/ssh/sshd\_config} добавить:
-    \begin{minted}{bash}
-Port 22
-Port 2022
-    \end{minted}
-    Это может потребоваться для:
-    \begin{itemize}
-        \item Резервного подключения при блокировке основного порта
-        \item Разделения доступа для разных групп пользователей
-        \item Обхода ограничений межсетевого экрана
-    \end{itemize}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{2}
-    \item \textbf{Какие параметры используются для создания туннеля SSH в фоновом режиме?}
-    
-    Используются параметры:
-    \begin{minted}{bash}
-ssh -f -N -L локальный_порт:удаленный_хост:удаленный_порт пользователь@сервер
-    \end{minted}
-    где:
-    \begin{itemize}
-        \item \texttt{-f} - переход в фоновый режим
-        \item \texttt{-N} - не выполнять удалённую команду
-        \item \texttt{-L} - локальная переадресация портов
-    \end{itemize}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{3}
-    \item \textbf{Как настроить локальную переадресацию с локального порта 5555 на порт 80 сервера server2.example.com?}
-    
-    \begin{minted}{bash}
-ssh -L 5555:server2.example.com:80 пользователь@промежуточный_сервер
-    \end{minted}
-    После этого обращение к \texttt{localhost:5555} будет перенаправляться на \texttt{server2.example.com:80} через промежуточный сервер.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{4}
-    \item \textbf{Как настроить SELinux для работы SSH с портом 2022?}
-    
-    \begin{minted}{bash}
-semanage port -a -t ssh_port_t -p tcp 2022
-    \end{minted}
-    Эта команда добавляет порт 2022 в список разрешённых портов для SSH в SELinux.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{5}
-    \item \textbf{Как настроить межсетевой экран для разрешения SSH через порт 2022?}
-    
-    Для firewalld:
-    \begin{minted}{bash}
-firewall-cmd --add-port=2022/tcp
-firewall-cmd --add-port=2022/tcp --permanent
-    \end{minted}
-    Для iptables:
-    \begin{minted}{bash}
-iptables -A INPUT -p tcp --dport 2022 -j ACCEPT
-service iptables save
-    \end{minted}
-\end{enumerate}
+\begin{frame}
+\frametitle{Схема L3 - таблица IP-адресов}
+\begin{center}
+\small
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Устройство} & \textbf{Интерфейс} & \textbf{IP-адрес} & \textbf{Маска} \\
+\hline
+ansusenko-gw-1 & fa0/0 & 10.128.0.1 & 255.255.255.0 \\
+ansusenko-gw-1 & fa0/1 & 192.0.2.1 & 255.255.255.0 \\
+www.yandex.ru & fa0 & 192.0.2.11 & 255.255.255.0 \\
+stud.rudn.university & fa0 & 192.0.2.12 & 255.255.255.0 \\
+esystem.pfur.ru & fa0 & 192.0.2.13 & 255.255.255.0 \\
+www.rudn.ru & fa0 & 192.0.2.14 & 255.255.255.0 \\
+ansusenko-dns & — & 10.128.0.5 & 255.255.255.0 \\
+\hline
+\end{tabular}
+\end{center}
 \end{frame}
 
 \begin{frame}
 \frametitle{Выводы}
 \begin{itemize}
-    \item В результате выполнения лабораторной работы приобрели практические навыки по настройке удалённого доступа к серверу с помощью SSH.
-    \item Освоили методы ограничения доступа пользователей и настройки дополнительных портов.
-    \item Изучили организацию туннелей SSH и настройку аутентификации по ключам.
+    \item В ходе выполнения лабораторной работы была построена физическая топология L1, включающая локальную сеть организации, сеть провайдера (медиаконвертеры \texttt{ansusenko-mc-1}, \texttt{ansusenko-mc-2}) и модельную сеть Интернета (коммутатор \texttt{internet-sw-1}, 4 сервера).Настроены IP-адреса на маршрутизаторе \texttt{ansusenko-gw-1}. Подготовлена инфраструктура для последующей настройки механизма NAT.
 \end{itemize}
 \end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 1. Что такое Network Address Translation (NAT)?}
+NAT (Network Address Translation) - механизм преобразования IP-адресов транзитных пакетов. Используется для обеспечения доступа устройств локальных сетей с внутренними (частными) IP-адресами к сети Интернет путём замены частного адреса на публичный.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 2. Как определить, находится ли узел сети за NAT?}
+Определить, находится ли узел за NAT, можно следующими способами:
+\begin{itemize}
+    \item Сравнить IP-адрес, который видит удалённый сервер, с IP-адресом, указанным на локальном интерфейсе узла — если они различаются, узел за NAT.
+    \item Использовать протоколы, которые не проходят через NAT (например, некоторые версии SIP, FTP в активном режиме).
+    \item Проанализировать поле TTL в IP-пакетах - при прохождении NAT TTL обычно не меняется, но косвенные методы могут указать на наличие NAT.
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 3. Какое оборудование отвечает за преобразование адреса методом NAT?}
+Преобразование адресов методом NAT выполняют:
+\begin{itemize}
+    \item Маршрутизаторы (например, Cisco 2811 в данной работе).
+    \item Межсетевые экраны (firewalls).
+    \item Специализированные устройства (NAT-шлюзы, роутеры провайдеров).
+    \item Операционные системы серверов (например, iptables в Linux).
+\end{itemize}
+В данной работе NAT настраивается на маршрутизаторе \texttt{ansusenko-gw-1}.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 4. В чём отличие статического, динамического и перегруженного NAT?}
+\begin{itemize}
+    \item \textbf{Статический NAT (SNAT)} - преобразование 1:1. Каждому внутреннему адресу постоянно соответствует один внешний адрес.
+    \item \textbf{Динамический NAT (DNAT)} - преобразование 1:N. Внутренний адрес получает один внешний из пула доступных адресов (но не более одного внешнего на один внутренний).
+    \item \textbf{Перегруженный NAT (NAT Overload / PAT)} - преобразование N:1. Множество внутренних адресов используют один внешний адрес, различаясь номерами портов (Port Address Translation).
+\end{itemize}
+\end{block}
+\end{frame}
+
+\begin{frame}
+\frametitle{Контрольные вопросы}
+\begin{block}{Вопрос 5. Охарактеризуйте типы NAT.}
+Основные типы NAT:
+\begin{itemize}
+    \item \textbf{Static NAT (SNAT)} - постоянное отображение внутреннего адреса на внешний. Используется для серверов, доступных извне.
+    \item \textbf{Dynamic NAT} - временное отображение из пула внешних адресов. Требует достаточно внешних адресов.
+    \item \textbf{PAT (Port Address Translation)} - самый распространённый тип. Использует один внешний адрес для всей локальной сети, различая соединения по портам.
+    \item \textbf{Double NAT} - последовательное применение NAT (например, у провайдера и в локальной сети).
+\end{itemize}
+В данной работе планируется использование PAT (NAT Overload) на маршрутизаторе \texttt{ansusenko-gw-1}.
+\end{block}
+\end{frame}
+
 \end{document}

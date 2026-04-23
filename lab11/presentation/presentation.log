@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  12 NOV 2025 12:48
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  23 APR 2026 12:31
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -1404,26 +1404,24 @@ LaTeX Info: Redefining \th on input line 8.
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: float package is loaded.
 Package caption Info: End \AtBeginDocument code.
-
-No file presentation.nav.
-[1
+ (./presentation.nav) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
 dvips/cm-super/cm-super-t2a.enc}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 17.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 19.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 17.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 19.
 
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
 LaTeX Font Info:    Trying to load font information for OT1+mathkerncmss on inp
-ut line 17.
+ut line 19.
 
 (/usr/share/texlive/texmf-dist/tex/latex/sansmathaccent/ot1mathkerncmss.fd
 File: ot1mathkerncmss.fd 2020/01/31 Fontinst v1.933 font definitions for OT1/ma
@@ -1432,309 +1430,145 @@ thkerncmss.
 [2
 
 ]
-<../images/1.png, id=68, 585.68813pt x 179.92218pt>
-File: ../images/1.png Graphic file (type png)
-<use ../images/1.png>
-Package pdftex.def Info: ../images/1.png  used on input line 24.
-(pdftex.def)             Requested size: 307.28987pt x 94.4029pt.
+<../images/01.png, id=70, 351.56343pt x 345.54094pt>
+File: ../images/01.png Graphic file (type png)
+<use ../images/01.png>
+Package pdftex.def Info: ../images/01.png  used on input line 26.
+(pdftex.def)             Requested size: 215.10196pt x 211.41235pt.
  [3
 
- <../images/1.png>]
-\openout4 = `presentation.vrb'.
+ <../images/01.png>]
+<../images/02.png, id=98, 1249.66875pt x 773.13844pt>
+File: ../images/02.png Graphic file (type png)
+<use ../images/02.png>
+Package pdftex.def Info: ../images/02.png  used on input line 33.
+(pdftex.def)             Requested size: 215.10196pt x 133.0716pt.
+ [4
 
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-
-(./_minted-presentation/default.pygstyle)
-(./_minted-presentation/2334E4B8658A56042D70CBA884C0F46D90BD492954E31103FE9B3D1
-94FA7CB77.pygtex
-LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-1.
- (/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
-File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-))
-<../images/2.png, id=97, 928.21782pt x 261.22594pt>
-File: ../images/2.png Graphic file (type png)
-<use ../images/2.png>
-Package pdftex.def Info: ../images/2.png  used on input line 7.
-(pdftex.def)             Requested size: 307.28987pt x 86.47984pt.
-) [4
-
- <../images/2.png>]
-<../images/3.png, id=125, 519.44063pt x 140.77594pt>
-File: ../images/3.png Graphic file (type png)
-<use ../images/3.png>
-Package pdftex.def Info: ../images/3.png  used on input line 42.
-(pdftex.def)             Requested size: 307.28987pt x 83.27832pt.
+ <../images/02.png>]
+<../images/03.png, id=125, 595.47469pt x 417.05812pt>
+File: ../images/03.png Graphic file (type png)
+<use ../images/03.png>
+Package pdftex.def Info: ../images/03.png  used on input line 40.
+(pdftex.def)             Requested size: 276.559pt x 193.69455pt.
  [5
 
- <../images/3.png>]
+ <../images/03.png>]
+<../images/04.png, id=153, 397.485pt x 283.0575pt>
+File: ../images/04.png Graphic file (type png)
+<use ../images/04.png>
+Package pdftex.def Info: ../images/04.png  used on input line 47.
+(pdftex.def)             Requested size: 276.559pt x 196.94681pt.
+
+[6
+
+ <../images/04.png>]
+! Too many }'s.
+\endframe ->\egroup 
+                    \begingroup \def \@currenvir {frame}
+l.49 \end{frame}
+                
+? 
+<../images/05.png, id=180, 516.42938pt x 520.19344pt>
+File: ../images/05.png Graphic file (type png)
+<use ../images/05.png>
+Package pdftex.def Info: ../images/05.png  used on input line 57.
+(pdftex.def)             Requested size: 276.559pt x 278.58252pt.
+
+Overfull \vbox (41.61066pt too high) detected at line 57
+ []
+
+[7
+
+ <../images/05.png>]
 \openout4 = `presentation.vrb'.
 
  (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-
-(./_minted-presentation/C982A08CC90412A56A5D42957717E61990BD492954E31103FE9B3D1
-94FA7CB77.pygtex)
-<../images/4.png, id=153, 522.45187pt x 93.34875pt>
-File: ../images/4.png Graphic file (type png)
-<use ../images/4.png>
-Package pdftex.def Info: ../images/4.png  used on input line 7.
-(pdftex.def)             Requested size: 307.28987pt x 54.90578pt.
-) [6
-
- <../images/4.png>]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-
-(./_minted-presentation/8C1D1270A0B224C67B1FF6228760435790BD492954E31103FE9B3D1
-94FA7CB77.pygtex)
-<../images/5.png, id=180, 838.63312pt x 124.96687pt>
-File: ../images/5.png Graphic file (type png)
-<use ../images/5.png>
-Package pdftex.def Info: ../images/5.png  used on input line 7.
-(pdftex.def)             Requested size: 307.28987pt x 45.78891pt.
-) [7
-
- <../images/5.png>]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-
-(./_minted-presentation/D21B4D475FADAA101882AB1CA356954890BD492954E31103FE9B3D1
-94FA7CB77.pygtex)
-<../images/6.png, id=208, 910.15031pt x 426.09187pt>
-File: ../images/6.png Graphic file (type png)
-<use ../images/6.png>
-Package pdftex.def Info: ../images/6.png  used on input line 8.
-(pdftex.def)             Requested size: 307.28987pt x 143.86156pt.
+<../images/06.png, id=208, 545.78906pt x 569.87906pt>
+File: ../images/06.png Graphic file (type png)
+<use ../images/06.png>
+Package pdftex.def Info: ../images/06.png  used on input line 4.
+(pdftex.def)             Requested size: 215.10196pt x 224.59106pt.
 ) [8
 
- <../images/6.png>]
-<../images/7.png, id=235, 648.17157pt x 211.54031pt>
-File: ../images/7.png Graphic file (type png)
-<use ../images/7.png>
-Package pdftex.def Info: ../images/7.png  used on input line 83.
-(pdftex.def)             Requested size: 307.28987pt x 100.289pt.
- [9
+ <../images/06.png>]
+<../images/07.png, id=235, 519.44063pt x 516.42938pt>
+File: ../images/07.png Graphic file (type png)
+<use ../images/07.png>
+Package pdftex.def Info: ../images/07.png  used on input line 72.
+(pdftex.def)             Requested size: 276.559pt x 274.95131pt.
 
- <../images/7.png>]
-<../images/8.png, id=263, 589.4522pt x 111.41624pt>
-File: ../images/8.png Graphic file (type png)
-<use ../images/8.png>
-Package pdftex.def Info: ../images/8.png  used on input line 90.
-(pdftex.def)             Requested size: 307.28987pt x 58.08298pt.
- [10
+Overfull \vbox (37.97945pt too high) detected at line 72
+ []
 
- <../images/8.png>]
-<../images/9.png, id=290, 657.95813pt x 239.39438pt>
-File: ../images/9.png Graphic file (type png)
-<use ../images/9.png>
-Package pdftex.def Info: ../images/9.png  used on input line 97.
-(pdftex.def)             Requested size: 307.28987pt x 111.8067pt.
- [11
+[9
 
- <../images/9.png>]
-<../images/10.png, id=317, 931.22906pt x 261.97874pt>
+ <../images/07.png>]
+<../images/08.png, id=263, 520.19344pt x 518.6878pt>
+File: ../images/08.png Graphic file (type png)
+<use ../images/08.png>
+Package pdftex.def Info: ../images/08.png  used on input line 79.
+(pdftex.def)             Requested size: 276.559pt x 275.758pt.
+
+Overfull \vbox (38.78613pt too high) detected at line 79
+ []
+
+[10
+
+ <../images/08.png>]
+<../images/09.png, id=290, 518.6878pt x 518.6878pt>
+File: ../images/09.png Graphic file (type png)
+<use ../images/09.png>
+Package pdftex.def Info: ../images/09.png  used on input line 86.
+(pdftex.def)             Requested size: 276.559pt x 276.5732pt.
+
+Overfull \vbox (39.60133pt too high) detected at line 86
+ []
+
+[11
+
+ <../images/09.png>]
+<../images/10.png, id=317, 517.18219pt x 515.67656pt>
 File: ../images/10.png Graphic file (type png)
 <use ../images/10.png>
-Package pdftex.def Info: ../images/10.png  used on input line 104.
-(pdftex.def)             Requested size: 307.28987pt x 86.44925pt.
- [12
+Package pdftex.def Info: ../images/10.png  used on input line 93.
+(pdftex.def)             Requested size: 276.559pt x 275.76227pt.
+
+Overfull \vbox (38.7904pt too high) detected at line 93
+ []
+
+[12
 
  <../images/10.png>]
-<../images/11.png, id=344, 751.30687pt x 74.52844pt>
+<../images/11.png, id=344, 892.08281pt x 606.76688pt>
 File: ../images/11.png Graphic file (type png)
 <use ../images/11.png>
-Package pdftex.def Info: ../images/11.png  used on input line 111.
-(pdftex.def)             Requested size: 307.28987pt x 30.48293pt.
+Package pdftex.def Info: ../images/11.png  used on input line 100.
+(pdftex.def)             Requested size: 291.92444pt x 198.55789pt.
  [13
 
- <../images/11.png>]
-<../images/12.png, id=373, 928.97063pt x 794.2172pt>
-File: ../images/12.png Graphic file (type png)
-<use ../images/12.png>
-Package pdftex.def Info: ../images/12.png  used on input line 118.
-(pdftex.def)             Requested size: 307.28987pt x 262.72266pt.
+ <../images/11.png>] [14
 
-Overfull \vbox (61.7508pt too high) detected at line 118
- []
-
-[14
-
- <../images/12.png>]
-<../images/13.png, id=400, 880.03781pt x 217.5628pt>
-File: ../images/13.png Graphic file (type png)
-<use ../images/13.png>
-Package pdftex.def Info: ../images/13.png  used on input line 125.
-(pdftex.def)             Requested size: 307.28987pt x 75.96553pt.
- [15
-
- <../images/13.png>]
-<../images/14.png, id=427, 919.18407pt x 187.45032pt>
-File: ../images/14.png Graphic file (type png)
-<use ../images/14.png>
-Package pdftex.def Info: ../images/14.png  used on input line 132.
-(pdftex.def)             Requested size: 307.28987pt x 62.66537pt.
- [16
-
- <../images/14.png>]
-\openout4 = `presentation.vrb'.
-
-
-(./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-
-(./_minted-presentation/5AE66B39AD3B3AF26483A853ECC6CAE090BD492954E31103FE9B3D1
-94FA7CB77.pygtex)
-\openout5 = `presentation.pyg'.
-
-
-(./_minted-presentation/08DC5AACFE3EF5C77A1ED7316DD077EB90BD492954E31103FE9B3D1
-94FA7CB77.pygtex)
-<../images/15.png, id=454, 901.11656pt x 618.05907pt>
-File: ../images/15.png Graphic file (type png)
-<use ../images/15.png>
-Package pdftex.def Info: ../images/15.png  used on input line 11.
-(pdftex.def)             Requested size: 215.10196pt x 147.52615pt.
-)
-Overfull \vbox (16.55432pt too high) detected at line 147
- []
-
-[17
-
- <../images/15.png>]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-
-(./_minted-presentation/BA218AF6B2B670BEF4FB47696F3DA44190BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [18
+] [15
 
 ]
-\openout4 = `presentation.vrb'.
+LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
+152.
 
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
+(/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
+File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
+) [16
 
-
-(./_minted-presentation/E803A49539A06B06CC3B174F654414A290BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [19
-
-]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-
-(./_minted-presentation/CF1C0264DF8C87CC3B8D096CD797F6A590BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [20
+] [17
 
 ]
-\openout4 = `presentation.vrb'.
+[18
 
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
+] [19
 
-runsystem(pygmentize -l 'bash' -f latex -P commandprefix=PYG -F tokenmerge -P s
-tripnl='False' -o _minted-presentation/9A4ABAD38DE024BFED428BB1573038F490BD4929
-54E31103FE9B3D194FA7CB77.pygtex presentation.pyg)...executed.
+] [20
 
-
-(./_minted-presentation/9A4ABAD38DE024BFED428BB1573038F490BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [21
-
-]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-runsystem(pygmentize -l 'bash' -f latex -P commandprefix=PYG -F tokenmerge -P s
-tripnl='False' -o _minted-presentation/4B31B0D9F34F5A90E5A0F988A568401390BD4929
-54E31103FE9B3D194FA7CB77.pygtex presentation.pyg)...executed.
-
-
-(./_minted-presentation/4B31B0D9F34F5A90E5A0F988A568401390BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [22
-
-]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-runsystem(pygmentize -l 'bash' -f latex -P commandprefix=PYG -F tokenmerge -P s
-tripnl='False' -o _minted-presentation/0AA90A27CCE4B38BE3D02D8975F5963590BD4929
-54E31103FE9B3D194FA7CB77.pygtex presentation.pyg)...executed.
-
-
-(./_minted-presentation/0AA90A27CCE4B38BE3D02D8975F5963590BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [23
-
-]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-runsystem(pygmentize -l 'bash' -f latex -P commandprefix=PYG -F tokenmerge -P s
-tripnl='False' -o _minted-presentation/D00817DD46415417BDD78701AC1BFA1990BD4929
-54E31103FE9B3D194FA7CB77.pygtex presentation.pyg)...executed.
-
-
-(./_minted-presentation/D00817DD46415417BDD78701AC1BFA1990BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [24
-
-]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-runsystem(pygmentize -l 'bash' -f latex -P commandprefix=PYG -F tokenmerge -P s
-tripnl='False' -o _minted-presentation/DB16DC8B36E08CCCE36734EFAD57433A90BD4929
-54E31103FE9B3D194FA7CB77.pygtex presentation.pyg)...executed.
-
-
-(./_minted-presentation/DB16DC8B36E08CCCE36734EFAD57433A90BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [25
-
-]
-\openout4 = `presentation.vrb'.
-
- (./presentation.vrb
-\openout5 = `presentation.pyg'.
-
-runsystem(pygmentize -l 'bash' -f latex -P commandprefix=PYG -F tokenmerge -P s
-tripnl='False' -o _minted-presentation/10B1DA62D59FFD2EBDAD976B1C736F1890BD4929
-54E31103FE9B3D194FA7CB77.pygtex presentation.pyg)...executed.
-
-
-(./_minted-presentation/10B1DA62D59FFD2EBDAD976B1C736F1890BD492954E31103FE9B3D1
-94FA7CB77.pygtex)
-\openout5 = `presentation.pyg'.
-
-runsystem(pygmentize -l 'bash' -f latex -P commandprefix=PYG -F tokenmerge -P s
-tripnl='False' -o _minted-presentation/289C2286A78465D9EBEBF93FA1D943CF90BD4929
-54E31103FE9B3D194FA7CB77.pygtex presentation.pyg)...executed.
-
-
-(./_minted-presentation/289C2286A78465D9EBEBF93FA1D943CF90BD492954E31103FE9B3D1
-94FA7CB77.pygtex)) [26
-
-] [27
+] [21
 
 ]
 \tf@nav=\write8
@@ -1753,30 +1587,26 @@ L3 programming layer <2024-01-22>
  ***********
 Package rerunfilecheck Info: File `presentation.out' has not changed.
 (rerunfilecheck)             Checksum: D41D8CD98F00B204E9800998ECF8427E;0.
-runsystem(rm presentation.pyg)...executed.
-
  ) 
 Here is how much of TeX's memory you used:
- 29920 strings out of 474222
- 583009 string characters out of 5748732
- 1934975 words of memory out of 5000000
- 51422 multiletter control sequences out of 15000+600000
- 576650 words of font info for 85 fonts, out of 8000000 for 9000
+ 29629 strings out of 474222
+ 569432 string characters out of 5748732
+ 1938975 words of memory out of 5000000
+ 51223 multiletter control sequences out of 15000+600000
+ 577351 words of font info for 84 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 133i,14n,134p,444b,749s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/
-texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfit1095.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfss0800.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss100
-0.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/te
-xmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/fonts/type1/publ
-ic/cm-super/sfsx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1000
-.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
-Output written on presentation.pdf (27 pages, 3661244 bytes).
+ 133i,14n,134p,691b,581s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/symbols/msam10.pfb
+></usr/share/texmf/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf/f
+onts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf/fonts/type1/public/cm
+-super/sfss1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfss1200.pfb>
+</usr/share/texmf/fonts/type1/public/cm-super/sfss1440.pfb></usr/share/texmf/fo
+nts/type1/public/cm-super/sfsx1000.pfb></usr/share/texmf/fonts/type1/public/cm-
+super/sfsx1095.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1095.pfb>
+Output written on presentation.pdf (21 pages, 489906 bytes).
 PDF statistics:
- 804 PDF objects out of 1000 (max. 8388607)
- 709 compressed objects within 8 object streams
- 55 named destinations out of 1000 (max. 500000)
- 118 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 631 PDF objects out of 1000 (max. 8388607)
+ 556 compressed objects within 6 object streams
+ 43 named destinations out of 1000 (max. 500000)
+ 98 words of extra memory for PDF output out of 10000 (max. 10000000)
 

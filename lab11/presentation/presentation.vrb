@@ -1,16 +1,5 @@
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{5}
-    \item \textbf{Как настроить межсетевой экран для разрешения SSH через порт 2022?}
+\frametitle{Настройка маршрутизатора ansusenko-gw-1}
 
-    Для firewalld:
-    \begin{minted}{bash}
-firewall-cmd --add-port=2022/tcp
-firewall-cmd --add-port=2022/tcp --permanent
-    \end{minted}
-    Для iptables:
-    \begin{minted}{bash}
-iptables -A INPUT -p tcp --dport 2022 -j ACCEPT
-service iptables save
-    \end{minted}
-\end{enumerate}
+\begin{center}
+    \includegraphics[width=0.7\textwidth]{../images/06.png}
+\end{center}
