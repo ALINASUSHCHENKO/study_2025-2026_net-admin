@@ -1,9 +1,9 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 12. \\Синхронизация времени}
-\author{Сущенко Алина \\ НПИбд-01-23}
+\title{Лабораторная работа No. 12. \\Настройка NAT}
+\author{Сущенко Алина Николаевна\\ НПИбд-01-23}
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -12,236 +12,152 @@
 \begin{frame}
   \frametitle{Цель работы}
   \begin{itemize}
-  \item Получение навыков по управлению системным временем и настройке синхронизации времени.
+  \item Настроить преобразование сетевых адресов для обеспечения доступа локальных сетей организации во внешнюю сеть (Интернет) и организовать доступ из внешней сети к внутренним серверам (WWW, почтовый, файловый, RDP).
   \end{itemize}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Настройка параметров времени}
+  \frametitle{Первоначальная настройка маршрутизатора ansusenko-gw-1}
   \centering
-  \includegraphics[width=\textwidth]{../images/1.png}
-  \captionof{figure}{Информация о дате и времени на сервере (timedatectl).}
+  \includegraphics[width=\textwidth]{../images/01.png}
+  \captionof{figure}{Первоначальная настройка маршрутизатора ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Настройка параметров времени}
+  \frametitle{Первоначальная настройка коммутатора ansusenko-sw-1}
   \centering
-  \includegraphics[width=\textwidth]{../images/2.png}
-  \captionof{figure}{Информация о дате и времени на клиенте (timedatectl).}
+  \includegraphics[width=\textwidth]{../images/02.png}
+  \captionof{figure}{Первоначальная настройка коммутатора ansusenko-sw-1.}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Настройка параметров времени}
+  \frametitle{Настройка интерфейсов маршрутизатора ansusenko-gw-1}
   \centering
-  \includegraphics[width=\textwidth]{../images/4.png}
-  \captionof{figure}{Вывод команды \texttt{date} на сервере.}
+  \includegraphics[width=\textwidth]{../images/03.png}
+  \captionof{figure}{Настройка интерфейсов маршрутизатора ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-  \frametitle{Настройка параметров времени}
+  \frametitle{Настройка интерфейсов коммутатора ansusenko-sw-1}
   \centering
-  \includegraphics[width=\textwidth]{../images/3.png}
-  \captionof{figure}{Вывод команды \texttt{date} на клиенте.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Управление синхронизацией времени}
-  \begin{minted}{bash}
-    dnf -y install chrony
-  \end{minted}
+  \includegraphics[width=\textwidth]{../images/04.png}
+  \captionof{figure}{Настройка интерфейсов коммутатора ansusenko-sw-1}
 \end{frame}
 
 \begin{frame}
-\frametitle{Управление синхронизацией времени}
+\frametitle{Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1}
     \centering
-    \includegraphics[width=\textwidth]{../images/5.png}
-    \captionof{figure}{Проверка источников времени на клиенте.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Управление синхронизацией времени}
-На сервере открыли на редактирование файл \texttt{/etc/chrony.conf} и добавили строку:
-  \begin{minted}{bash}
-    allow 192.168.0.0/16
-  \end{minted}
-    \centering
-    \includegraphics[width=\textwidth]{../images/6.png}
-    \captionof{figure}{Строчка в конфиурационном файле.}
+    \includegraphics[width=\textwidth]{../images/05.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1 и маршрута по умолчанию.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Управление синхронизацией времени}
+\frametitle{Настройка пула адресов}
+    \centering
+    \includegraphics[width=\textwidth]{../images/06.png}
+    \captionof{figure}{Настройка пула адресов.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Настройка списка доступа}
+    \centering
+    \includegraphics[width=\textwidth]{../images/07.png}
+    \captionof{figure}{Настройка списка доступа.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Правила доступа для сети "Донская"}
 \centering
-    \includegraphics[width=\textwidth]{../images/7.png}
-    \captionof{figure}{Перезапуск \texttt{chronyd} и настройка межсетевого экрана.}
+    \includegraphics[width=\textwidth]{../images/08.png}
+    \captionof{figure}{Правила доступа для сети "Донская".}
 \end{frame}
 
 \begin{frame}
-\frametitle{Управление синхронизацией времени}
+\frametitle{Доступ для сети кафедры}
     \centering
-    \includegraphics[width=\textwidth]{../images/8.png}
-    \captionof{figure}{Изменение файла конфигурации \texttt{chrony}}
+    \includegraphics[width=\textwidth]{../images/09.png}
+    \captionof{figure}{Правила доступа для сети кафедры.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Управление синхронизацией времени}
+\frametitle{Доступ для сети администрации}
     \centering
     \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Просмотр источников времени на сервере.}
+    \captionof{figure}{Правила доступа для сети администрации}
 \end{frame}
 
 \begin{frame}
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
-    \centering
-    \includegraphics[width=\textwidth]{../images/9.png}
-    \captionof{figure}{Проверка добавленного источника времени на клиенте.}
-\end{frame}
-
-\begin{frame}[fragile]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
-  \begin{minted}{bash}
-    #!/bin/bash
-    echo "Provisioning script $0"
-    echo "Install needed packages"
-    dnf -y install chrony
-    echo "Copy configuration files"
-    cp -R /vagrant/provision/server/ntp/etc/* /etc
-    restorecon -vR /etc
-    echo "Configure firewall"
-    firewall-cmd --add-service=ntp
-    firewall-cmd --add-service=ntp --permanent
-    echo "Restart chronyd service"
-    systemctl restart chronyd
-  \end{minted}
-
-\end{frame}
-
-\begin{frame}
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
+\frametitle{Доступ для компьютера администратора}
     \centering
     \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Настройка внутреннего окружения виртуальной машины клиента.}
+    \captionof{figure}{Правила доступа для компьютера администратора.}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
-  \begin{minted}{bash}
-    #!/bin/bash
-    echo "Provisioning script $0"
-    echo "Copy configuration files"
-    cp -R /vagrant/provision/client/ntp/etc/* /etc
-    restorecon -vR /etc
-    echo "Restart chronyd service"
-    systemctl restart chronyd
-  \end{minted}
+\begin{frame}
+\frametitle{Настройка PAT и интерфейсов}
+ \centering
+    \includegraphics[width=\textwidth]{../images/12.png}
+    \captionof{figure}{Настройка PAT и интерфейсов.}
 \end{frame}
 
-\begin{frame}[fragile]
-\frametitle{Внесение изменений в настройки внутреннего окружения виртуальных машин}
-  \begin{minted}{bash}
-    server.vm.provision "server ntp",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/server/ntp.sh"
-    client.vm.provision "client ntp",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/client/ntp.sh"
-  \end{minted}
+\begin{frame}
+\frametitle{Статическое преобразование для WWW-сервера}
+    \centering
+    \includegraphics[width=\textwidth]{../images/13.png}
+    \captionof{figure}{Статическое преобразование для WWW-сервера.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Статическое преобразование для файлового сервера}
+    \centering
+    \includegraphics[width=\textwidth]{../images/14.png}
+    \captionof{figure}{Статическое преобразование для файлового сервера.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Статическое преобразование для почтового сервера}
+    \centering
+    \includegraphics[width=\textwidth]{../images/15.png}
+    \captionof{figure}{Статическое преобразование для почтового сервера.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Статическое преобразование для RDP-доступа}
+    \centering
+    \includegraphics[width=\textwidth]{../images/16.png}
+    \captionof{figure}{Статическое преобразование для RDP-доступа к компьютеру администратора.}
 \end{frame}
 
 \begin{frame}
 \frametitle{Контрольные вопросы}
+
 \begin{enumerate}
-    \item Почему важна точная синхронизация времени для служб баз данных?
-    \item Почему служба проверки подлинности Kerberos сильно зависит от правильной синхронизации времени?
-    \item Какая служба используется по умолчанию для синхронизации времени на RHEL 7?
-    \item Какова страта по умолчанию для локальных часов?
-    \item Какой порт брандмауэра должен быть открыт, если вы настраиваете свой сервер как одноранговый узел NTP?
-    \item Какую строку вам нужно включить в конфигурационный файл chrony, если вы хотите быть сервером времени, даже если внешние серверы NTP недоступны?
-    \item Какую страту имеет хост, если нет текущей синхронизации времени NTP?
-    \item Какую команду вы бы использовали на сервере с chrony, чтобы узнать, с какими серверами он синхронизируется?
-    \item Как вы можете получить подробную статистику текущих настроек времени для процесса chrony вашего сервера?
+    \item \textbf{В чём состоит основной принцип работы рассматриваемой технологии?}
+    
+    Основной принцип заключается в замене частных IP-адресов на публичные при выходе во внешнюю сеть и обратной замене при возврате ответов.
+    
+    \item \textbf{На каком оборудовании выполняется настройка?}
+    
+    Настройка выполняется на пограничном маршрутизаторе.
+    
+    \item \textbf{Можно ли применить средства Cisco IOS к субинтерфейсам?}
+    
+    Да, можно. Команды настройки применяются непосредственно к субинтерфейсам.
+    
+    \item \textbf{Что такое пулы IP-адресов?}
+    
+    Пул IP-адресов -- это диапазон публичных адресов, используемый для динамической трансляции частных адресов.
+    
+    \item \textbf{Что такое статические преобразования?}
+    
+    Статические преобразования -- это фиксированное соответствие между частным и публичным IP-адресом.
 \end{enumerate}
+
 \end{frame}
 
 \begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \item \textbf{Точная синхронизация времени важна для служб баз данных} потому что обеспечивает корректность временных меток транзакций, согласованность репликации данных между серверами и предотвращает конфликты при распределенных операциях.
-\end{enumerate}
+\frametitle{Вывод}
+В ходе лабораторной работы удалось настроить преобразование сетевых адресов для обеспечения доступа локальных сетей организации во внешнюю сеть (Интернет) и организовать доступ из внешней сети к внутренним серверам (WWW, почтовый, файловый, RDP).
 \end{frame}
 
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \setcounter{enumi}{1}
-    \item \textbf{Kerberos сильно зависит от синхронизации времени} потому что использует временные метки в билетах аутентификации для предотвращения replay-атак. Расхождение во времени более 5 минут обычно приводит к отказу в аутентификации.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \setcounter{enumi}{2}
-    \item \textbf{В RHEL 7 по умолчанию используется служба chronyd} для синхронизации времени.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \setcounter{enumi}{3}
-    \item \textbf{Страта по умолчанию для локальных часов} равна 10, что указывает на их низкую точность по сравнению с внешними NTP-серверами.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \setcounter{enumi}{4}
-    \item \textbf{Для NTP-сервера нужно открыть порт 123/UDP}, который используется для протокола NTP.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \setcounter{enumi}{5}
-    \item \textbf{Нужно добавить строку:} \texttt{local stratum 10} в файл \texttt{/etc/chrony.conf}, чтобы сервер мог работать как источник времени даже при отсутствии внешних серверов.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \setcounter{enumi}{6}
-    \item \textbf{При отсутствии синхронизации NTP хост имеет страту 16}, что означает несинхронизированное состояние.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \setcounter{enumi}{7}
-    \item \textbf{Команда для просмотра серверов синхронизации:} \texttt{chronyc sources} или \texttt{chronyc sources -v}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-    \setcounter{enumi}{8}
-    \item \textbf{Для получения подробной статистики используется команда:} \texttt{chronyc tracking} - показывает детальную информацию о текущих настройках времени и статистике синхронизации.
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Выводы}
-\begin{itemize}
-    \item В результате выполнения лабораторной работы получили навыки по управлению системным временем и настройке синхронизации времени.
-    \item Освоили работу с chrony для настройки NTP-сервера и клиента.
-    \item Изучили основные команды для мониторинга и управления синхронизацией времени.
-\end{itemize}
-\end{frame}
 \end{document}

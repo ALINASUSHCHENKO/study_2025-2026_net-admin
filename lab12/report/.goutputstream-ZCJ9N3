@@ -1,0 +1,199 @@
+\input{preamble.tex}
+
+\title{Отчет по лабораторной работе № 12. \\ Настройка NAT (Network Address Translation)}
+\author{Сущенко Алина Николаевна\\ НПИбд-01-23}
+\date{2026}
+
+\begin{document}
+
+\maketitle
+\newpage
+
+\tableofcontents
+
+\newpage
+\section{Цель работы}
+Настроить NAT (Network Address Translation) для обеспечения доступа локальных сетей организации во внешнюю сеть (Интернет) и организовать доступ из внешней сети к внутренним серверам (WWW, почтовый, файловый, RDP).
+
+\newpage
+\section{Выполнение работы}
+
+\subsection{Первоначальная настройка маршрутизатора ansusenko-gw-1}
+Выполнили первоначальную настройку маршрутизатора провайдера: задали имя устройства, настроили пароли для доступа по VTY и консоли, установили пароль enable secret, включили шифрование паролей и создали пользователя admin (Рис. \ref{01}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/01.png}
+    \captionof{figure}{Первоначальная настройка маршрутизатора ansusenko-gw-1.}
+    \label{01}
+\end{center}
+
+\subsection{Первоначальная настройка коммутатора ansusenko-sw-1}
+Выполнили первоначальную настройку коммутатора провайдера схожим способом с маршрутизатором. (Рис. \ref{02}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/02.png}
+    \captionof{figure}{Первоначальная настройка коммутатора ansusenko-sw-1.}
+    \label{02}
+\end{center}
+
+\subsection{Настройка интерфейсов маршрутизатора ansusenko-gw-1}
+Настроили интерфейсы маршрутизатора провайдера:
+\begin{itemize}
+    \item Интерфейс f0/0 - включили (no shutdown);
+    \item Создали сабинтерфейс f0/0.4 с инкапсуляцией dot1Q для VLAN 4, назначили IP-адрес 198.51.100.1/28;
+    \item Интерфейс f0/1 - включили, назначили IP-адрес 192.0.2.1/24 (возникла ошибка перекрытия с f0/0, но продолжили настройку). (Рис. \ref{03}):
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/03.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизатора ansusenko-gw-1.}
+    \label{03}
+\end{center}
+
+\subsection{Настройка интерфейсов коммутатора ansusenko-sw-1}
+Настроили интерфейсы коммутатора провайдера:
+\begin{itemize}
+    \item Интерфейсы f0/1 и f0/2 настроили как транковые (switchport mode trunk);
+    \item Создали VLAN 4 с именем \texttt{nat};
+    \item Настроили интерфейс VLAN 4 (SVI) и включили его (no shutdown). (Рис. \ref{04}):
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/04.png}
+    \captionof{figure}{Настройка интерфейсов коммутатора ansusenko-sw-1.}
+    \label{04}
+\end{center}
+
+\subsection{Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1}
+Настроили маршрутизатор сети «Донская»:
+\begin{itemize}
+    \item Интерфейс f0/1 - включили (no shutdown);
+    \item Создали сабинтерфейс f0/1.4 с инкапсуляцией dot1Q для VLAN 4, назначили IP-адрес 198.51.100.2/28;
+    \item Настроили маршрут по умолчанию (default gateway) через 198.51.100.1. (Рис. \ref{05}):
+\end{itemize}
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/05.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1 и маршрута по умолчанию.}
+    \label{05}
+\end{center}
+
+\subsection{Настройка пула адресов для NAT}
+Настроили пул внешних IP-адресов \texttt{main-pool} с диапазоном 198.51.100.2 - 198.51.100.14 и маской 255.255.255.240 (Рис. \ref{06}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/06.png}
+    \captionof{figure}{Настройка пула адресов для NAT.}
+    \label{06}
+\end{center}
+
+\subsection{Настройка списка доступа для NAT}
+Теперь настроим список доступа для NAT (Рис. \ref{07}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/07.png}
+    \captionof{figure}{Настройка списка доступа для NAT.}
+    \label{07}
+\end{center}
+
+\subsection{Настройка списка доступа для NAT}
+Создали расширенный список доступа \texttt{nat-inet} с правилами доступа в Интернет (Рис. \ref{08}, \ref{09}, \ref{10}, \ref{11}):
+
+\subsubsection*{Доступ для сети «Донская»}
+Разрешили доступ сети 10.128.3.0/24 к web-серверам yandex.ru (192.0.2.11) и stud.rudn.university (192.0.2.12) по порту TCP 80 (Рис. \ref{08}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/08.png}
+    \captionof{figure}{Правила доступа для сети «Донская» (dk).}
+    \label{08}
+\end{center}
+
+\subsubsection*{Доступ для сети кафедры}
+Разрешили доступ сети 10.128.4.0/24 к web-серверу esystem.pfur.ru (192.0.2.13) по порту TCP 80 (Рис. \ref{09}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/09.png}
+    \captionof{figure}{Правила доступа для сети кафедры.}
+    \label{09}
+\end{center}
+
+\subsubsection*{Доступ для сети администрации}
+Разрешили доступ сети 10.128.5.0/24 к web-серверу rudn.ru (192.0.2.14) по порту TCP 80 (Рис. \ref{10}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/10.png}
+    \captionof{figure}{Правила доступа для сети администрации.}
+    \label{10}
+\end{center}
+
+\subsubsection*{Доступ для компьютера администратора}
+Разрешили полный доступ в Интернет компьютеру администратора с IP-адресом 10.128.6.200 (Рис. \ref{11}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/11.png}
+    \captionof{figure}{Правила доступа для компьютера администратора.}
+    \label{11}
+\end{center}
+
+\subsection{Настройка NAT}
+\subsubsection*{Настроить Port Address Translation (PAT) и Настройка интерфейсов для NAТ:}
+Настроили перегрузку PAT, связав список доступа \texttt{nat-inet} с пулом адресов \texttt{main-pool} с ключевым словом \texttt{overload} (Рис. \ref{12}):
+
+\subsection{Настройка доступа из Интернета}
+
+\subsubsection*{WWW-сервер}
+Настроили статическую трансляцию порта TCP 80 для сервера 10.128.0.2 на внешний адрес 198.51.100.2 порт 80 (Рис. \ref{13}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/13.png}
+    \captionof{figure}{Статический NAT для WWW-сервера.}
+    \label{13}
+\end{center}
+
+\subsubsection*{Файловый сервер}
+Настроили статическую трансляцию порта TCP 20 и 21 (Рис. \ref{14}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/14.png}
+    \captionof{figure}{Статический NAT для Файлового сервера.}
+    \label{14}
+\end{center}
+
+\subsubsection*{Почтовый сервер}
+Настроили статическую трансляцию портов TCP 25 (SMTP) и 110 (POP3) для сервера 10.128.0.4 на внешние адреса 198.51.100.4 порты 25 и 110 соответственно (Рис. \ref{15}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/15.png}
+    \captionof{figure}{Статический NAT для почтового сервера.}
+    \label{15}
+\end{center}
+
+\subsubsection*{Доступ по RDP для компьютера администратора}
+Настроили статическую трансляцию порта TCP 3389 (RDP) для компьютера администратора 10.128.6.200 на внешний адрес 198.51.100.10 порт 3389 (Рис. \ref{16}):
+
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/16.png}
+    \captionof{figure}{Статический NAT для RDP-доступа к компьютеру администратора.}
+    \label{16}
+\end{center}
+
+\newpage
+\section{Вывод}
+В ходе лабораторной работы нам удалось настроить NAT (Network Address Translation) для обеспечения доступа локальных сетей организации во внешнюю сеть (Интернет) и организовать доступ из внешней сети к внутренним серверам (WWW, почтовый, файловый, RDP).
+
+

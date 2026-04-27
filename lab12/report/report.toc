@@ -1,7 +1,14 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
 \contentsline {section}{\numberline {2}Выполнение работы}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Настройка параметров времени}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Управление синхронизацией времени}{5}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Внесение изменений в настройки внутреннего окружения виртуальных машин}{7}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Выводы}{8}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Первоначальная настройка маршрутизатора ansusenko-gw-1}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Первоначальная настройка коммутатора ansusenko-sw-1}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Настройка интерфейсов маршрутизатора ansusenko-gw-1}{5}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Настройка интерфейсов коммутатора ansusenko-sw-1}{6}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1}{7}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Настройка пула адресов для NAT}{7}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Настройка списка доступа для NAT}{7}{subsection.2.7}%
+\contentsline {subsection}{\numberline {2.8}Настройка списка доступа для NAT (продолжение)}{7}{subsection.2.8}%
+\contentsline {subsection}{\numberline {2.9}Настройка NAT}{12}{subsection.2.9}%
+\contentsline {subsection}{\numberline {2.10}Настройка доступа из Интернета}{13}{subsection.2.10}%
+\contentsline {section}{\numberline {3}Вывод}{14}{section.3}%

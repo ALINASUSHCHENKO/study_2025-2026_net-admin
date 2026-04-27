@@ -1,8 +1,8 @@
 \input{preamble.tex}
 
-\title{Отчет по лабораторной работе № 12. \\ Синхронизация времени}
-\author{Сущенко Алина \\ НПИбд-01-23}
-\date{2025}
+\title{Отчет по лабораторной работе № 12. \\ Настройка NAT (Network Address Translation)}
+\author{Сущенко Алина Николаевна\\ НПИбд-01-23}
+\date{2026}
 
 \begin{document}
 
@@ -13,208 +13,194 @@
 
 \newpage
 \section{Цель работы}
-Получение навыков по управлению системным временем и настройке синхронизации времени.
+Настроить NAT (Network Address Translation) для обеспечения доступа локальных сетей организации во внешнюю сеть (Интернет) и организовать доступ из внешней сети к внутренним серверам (WWW, почтовый, файловый, RDP).
 
 \newpage
 \section{Выполнение работы}
-\subsection{Настройка параметров времени}
-\begin{enumerate}
-\item На сервере и клиенте посмотрели параметры настройки даты и времени (Рис. \ref{01} и \ref{02}):
-  \begin{minted}{bash}
-    timedatectl
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/1.png}
-    \captionof{figure}{Информация о дате и времени на сервере (timedatectl).}
-    \label{01}
-\end{center}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/2.png}
-    \captionof{figure}{Информация о дате и времени на клиенте (timedatectl).}
-    \label{02}
-\end{center}
 
-\item На сервере и клиенте посмотрели текущее системное время (Рис. \ref{04} и \ref{03}):
-  \begin{minted}{bash}
-    date
-  \end{minted}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/4.png}
-    \captionof{figure}{Вывод команды \texttt{date} на сервере.}
-    \label{04}
-\end{center}
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/3.png}
-    \captionof{figure}{Вывод команды \texttt{date} на клиенте.}
-    \label{03}
-\end{center}
+\subsection{Первоначальная настройка маршрутизатора ansusenko-gw-1}
+Выполнили первоначальную настройку маршрутизатора провайдера: задали имя устройства, настроили пароли для доступа по VTY и консоли, установили пароль enable secret, включили шифрование паролей и создали пользователя admin (Рис.~\ref{fig:01}):
 
-\item На сервере и клиенте посмотрели аппаратное время (Рис. \ref{07} и \ref{06}):
-  \begin{minted}{bash}
-    hwclock
-  \end{minted}
-  
-\subsection{Управление синхронизацией времени}
-\begin{enumerate}
-\item При необходимости установили на сервере необходимое программное обеспечение:
-  \begin{minted}{bash}
-    dnf -y install chrony
-  \end{minted}
-\item Проверили источники времени на клиенте и на сервере (Рис. \ref{08} и \ref{09}):
-  \begin{minted}{bash}
-    chronyc sources
-  \end{minted}
-\begin{center}
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../images/5.png}
-    \captionof{figure}{Проверка источников времени на сервере на клиенте тоже самое).}
-    \label{08}
-\end{center}
+    \includegraphics[width=\textwidth]{../images/01.png}
+    \caption{Первоначальная настройка маршрутизатора ansusenko-gw-1.}
+    \label{fig:01}
+\end{figure}
 
-%  В отчёте поясните выведенную информацию.
-\item На сервере открыли на редактирование файл \texttt{/etc/chrony.conf} и добавили строку:
-  \begin{minted}{bash}
-    allow 192.168.0.0/16
-  \end{minted}
-\begin{center}
+\subsection{Первоначальная настройка коммутатора ansusenko-sw-1}
+Выполнили первоначальную настройку коммутатора провайдера схожим способом с маршрутизатором (Рис.~\ref{fig:02}):
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../images/6.png}
-    \captionof{figure}{Строчка в конфиурационном файле.}
-    \label{11}
-\end{center}
-\item На сервере перезапустили службу \texttt{chronyd} (Рис. \ref{11}):
-  \begin{minted}{bash}
-    systemctl restart chronyd
-  \end{minted}
-\item Настроили межсетевой экран на сервере (Рис. \ref{11}):
-  \begin{minted}{bash}
-    firewall-cmd --add-service=ntp --permanent
-    firewall-cmd --reload
-  \end{minted}
-\begin{center}
+    \includegraphics[width=\textwidth]{../images/02.png}
+    \caption{Первоначальная настройка коммутатора ansusenko-sw-1.}
+    \label{fig:02}
+\end{figure}
+
+\subsection{Настройка интерфейсов маршрутизатора ansusenko-gw-1}
+Настроили интерфейсы маршрутизатора провайдера:
+\begin{itemize}
+    \item Интерфейс f0/0 - включили (no shutdown);
+    \item Создали сабинтерфейс f0/0.4 с инкапсуляцией dot1Q для VLAN 4, назначили IP-адрес 198.51.100.1/28;
+    \item Интерфейс f0/1 - включили, назначили IP-адрес 192.0.2.1/24 (возникла ошибка перекрытия с f0/0, но продолжили настройку) (Рис.~\ref{fig:03}):
+\end{itemize}
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../images/7.png}
-    \captionof{figure}{Перезапуск \texttt{chronyd} и настройка межсетевого экрана.}
-    \label{11}
-\end{center}
+    \includegraphics[width=\textwidth]{../images/03.png}
+    \caption{Настройка интерфейсов маршрутизатора ansusenko-gw-1.}
+    \label{fig:03}
+\end{figure}
 
-\item На клиенте откроили файл \texttt{/etc/chrony.conf} и добавили строку (Рис. \ref{12}):
-  \begin{minted}{bash}
-    server server.ansusenko.net iburst
-  \end{minted}
-\begin{center}
+\subsection{Настройка интерфейсов коммутатора ansusenko-sw-1}
+Настроили интерфейсы коммутатора провайдера:
+\begin{itemize}
+    \item Интерфейсы f0/1 и f0/2 настроили как транковые (switchport mode trunk);
+    \item Создали VLAN 4 с именем \texttt{nat};
+    \item Настроили интерфейс VLAN 4 (SVI) и включили его (no shutdown) (Рис.~\ref{fig:04}):
+\end{itemize}
+
+\begin{figure}[htbp]
     \centering
-    \includegraphics[width=\textwidth]{../images/8.png}
-    \captionof{figure}{Изменение файла конфигурации \texttt{chrony}.}
-    \label{12}
-\end{center}
+    \includegraphics[width=\textwidth]{../images/04.png}
+    \caption{Настройка интерфейсов коммутатора ansusenko-sw-1.}
+    \label{fig:04}
+\end{figure}
 
-  Удалили все остальные строки с директивой \texttt{server}.
-\item На клиенте перезапустили службу \texttt{chronyd}:
-  \begin{minted}{bash}
-    systemctl restart chronyd
-  \end{minted}
+\subsection{Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1}
+Настроили маршрутизатор сети «Донская»:
+\begin{itemize}
+    \item Интерфейс f0/1 - включили (no shutdown);
+    \item Создали сабинтерфейс f0/1.4 с инкапсуляцией dot1Q для VLAN 4, назначили IP-адрес 198.51.100.2/28;
+    \item Настроили маршрут по умолчанию (default gateway) через 198.51.100.1 (Рис.~\ref{fig:05}):
+\end{itemize}
 
-\item Проверили источники времени на клиенте и на сервере (Рис. \ref{14} и \ref{15}):
-  \begin{minted}{bash}
-    chronyc sources
-  \end{minted}
-\begin{center}
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/05.png}
+    \caption{Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1 и маршрута по умолчанию.}
+    \label{fig:05}
+\end{figure}
+
+\subsection{Настройка пула адресов для NAT}
+Настроили пул внешних IP-адресов \texttt{main-pool} с диапазоном 198.51.100.2 - 198.51.100.14 и маской 255.255.255.240 (Рис.~\ref{fig:06}):
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/06.png}
+    \caption{Настройка пула адресов для NAT.}
+    \label{fig:06}
+\end{figure}
+
+\subsection{Настройка списка доступа для NAT}
+Теперь настроим список доступа для NAT (Рис.~\ref{fig:07}):
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/07.png}
+    \caption{Настройка списка доступа для NAT.}
+    \label{fig:07}
+\end{figure}
+
+\subsection{Настройка списка доступа для NAT (продолжение)}
+Создали расширенный список доступа \texttt{nat-inet} с правилами доступа в Интернет (Рис.~\ref{fig:08}, \ref{fig:09}, \ref{fig:10}, \ref{fig:11}):
+
+\subsubsection*{Доступ для сети «Донская»}
+Разрешили доступ сети 10.128.3.0/24 к web-серверам yandex.ru (192.0.2.11) и stud.rudn.university (192.0.2.12) по порту TCP 80 (Рис.~\ref{fig:08}):
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/08.png}
+    \caption{Правила доступа для сети «Донская» (dk).}
+    \label{fig:08}
+\end{figure}
+
+\subsubsection*{Доступ для сети кафедры}
+Разрешили доступ сети 10.128.4.0/24 к web-серверу esystem.pfur.ru (192.0.2.13) по порту TCP 80 (Рис.~\ref{fig:09}):
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/09.png}
+    \caption{Правила доступа для сети кафедры.}
+    \label{fig:09}
+\end{figure}
+
+\subsubsection*{Доступ для сети администрации}
+Разрешили доступ сети 10.128.5.0/24 к web-серверу rudn.ru (192.0.2.14) по порту TCP 80 (Рис.~\ref{fig:10}):
+
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../images/10.png}
-    \captionof{figure}{Просмотр источников времени на сервере.}
-    \label{14}
-\end{center}
+    \caption{Правила доступа для сети администрации.}
+    \label{fig:10}
+\end{figure}
 
-\begin{center}
-    \centering
-    \includegraphics[width=\textwidth]{../images/9.png}
-    \captionof{figure}{Проверка добавленного источника времени на клиенте.}
-    \label{15}
-\end{center}
-\end{enumerate}
+\subsubsection*{Доступ для компьютера администратора}
+Разрешили полный доступ в Интернет компьютеру администратора с IP-адресом 10.128.6.200 (Рис.~\ref{fig:11}):
 
-\subsection{Внесение изменений в настройки внутреннего окружения виртуальных машин}
-\begin{enumerate}
-\item На виртуальной машине \texttt{server} перешли в каталог для внесения изменений в настройки внутреннего окружения \texttt{/vagrant/provision/server/}, создали в нём каталог \texttt{ntp}, в который поместили в соответствующие подкаталоги конфигурационные файлы (Рис. \ref{16}):
-  \begin{minted}{bash}
-    cd /vagrant/provision/server
-    mkdir -p /vagrant/provision/server/ntp/etc
-    cp -R /etc/chrony.conf /vagrant/provision/server/ntp/etc/
-  \end{minted}
-\item В каталоге \texttt{/vagrant/provision/server} создали исполняемый файл \texttt{ntp.sh} (Рис. \ref{16}):
-  \begin{minted}{bash}
-    cd /vagrant/provision/server
-    touch ntp.sh
-    chmod +x ntp.sh
-  \end{minted}
-\begin{center}
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../images/11.png}
-    \captionof{figure}{Настройка внутреннего окружения виртуальной машины сервера.}
-    \label{16}
-\end{center}
+    \caption{Правила доступа для компьютера администратора.}
+    \label{fig:11}
+\end{figure}
 
-  Открыв его на редактирование, прописали в нём следующий скрипт:
-  \begin{minted}{bash}
-    #!/bin/bash
-    echo "Provisioning script $0"
-    echo "Install needed packages"
-    dnf -y install chrony
-    echo "Copy configuration files"
-    cp -R /vagrant/provision/server/ntp/etc/* /etc
-    restorecon -vR /etc
-    echo "Configure firewall"
-    firewall-cmd --add-service=ntp
-    firewall-cmd --add-service=ntp --permanent
-    echo "Restart chronyd service"
-    systemctl restart chronyd
-  \end{minted}
-\item На виртуальной машине \texttt{client} перешли в каталог для внесения изменений в настройки внутреннего окружения \texttt{/vagrant/provision/client/}, создали в нём каталог \texttt{ntp}, в который поместили в соответствующие подкаталоги конфигурационные файлы (Рис. \ref{18}):
-  \begin{minted}{bash}
-    cd /vagrant/provision/client
-    mkdir -p /vagrant/provision/client/ntp/etc
-    cp -R /etc/chrony.conf /vagrant/provision/client/ntp/etc/
-  \end{minted}
-\item В каталоге \texttt{/vagrant/provision/client} создали исполняемый файл \texttt{ntp.sh} (Рис. \ref{18}):
-  \begin{minted}{bash}
-    cd /vagrant/provision/client
-    touch ntp.sh
-    chmod +x ntp.sh
-  \end{minted}
-\begin{center}
+\subsection{Настройка NAT}
+\subsubsection*{Port Address Translation (PAT) и настройка интерфейсов для NAT}
+Настроили перегрузку PAT, связав список доступа \texttt{nat-inet} с пулом адресов \texttt{main-pool} с ключевым словом \texttt{overload} (Рис.~\ref{fig:12}):
+
+\begin{figure}[htbp]
     \centering
     \includegraphics[width=\textwidth]{../images/12.png}
-    \captionof{figure}{Настройка внутреннего окружения виртуальной машины клиента.}
-    \label{18}
-\end{center}
-  Открыв его на редактирование, прописали в нём следующий скрипт:
-  \begin{minted}{bash}
-    #!/bin/bash
-    echo "Provisioning script $0"
-    echo "Copy configuration files"
-    cp -R /vagrant/provision/client/ntp/etc/* /etc
-    restorecon -vR /etc
-    echo "Restart chronyd service"
-    systemctl restart chronyd
-  \end{minted}
-\item Для отработки созданных скриптов во время загрузки виртуальных машин \texttt{server} и \texttt{client} в конфигурационном файле Vagrantfile добавили в соответствующих разделах конфигураций для сервера и клиента:
-  \begin{minted}{bash}
-    server.vm.provision "server ntp",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/server/ntp.sh"
-    client.vm.provision "client ntp",
-    type: "shell",
-    preserve_order: true,
-    path: "provision/client/ntp.sh"
-  \end{minted}
-\end{enumerate}
+    \caption{Настройка PAT и интерфейсов для NAT.}
+    \label{fig:12}
+\end{figure}
 
-\section{Выводы}
-В результате выполнения лабораторной работы получили навыки по управлению системным временем и настройке синхронизации времени.
+\subsection{Настройка доступа из Интернета}
+
+\subsubsection*{WWW-сервер}
+Настроили статическую трансляцию порта TCP 80 для сервера 10.128.0.2 на внешний адрес 198.51.100.2 порт 80 (Рис.~\ref{fig:13}):
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/13.png}
+    \caption{Статический NAT для WWW-сервера.}
+    \label{fig:13}
+\end{figure}
+
+\subsubsection*{Файловый сервер}
+Настроили статическую трансляцию порта TCP 20 и 21 (Рис.~\ref{fig:14}):
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/14.png}
+    \caption{Статический NAT для файлового сервера.}
+    \label{fig:14}
+\end{figure}
+
+\subsubsection*{Почтовый сервер}
+Настроили статическую трансляцию портов TCP 25 (SMTP) и 110 (POP3) для сервера 10.128.0.4 на внешние адреса 198.51.100.4 порты 25 и 110 соответственно (Рис.~\ref{fig:15}):
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/15.png}
+    \caption{Статический NAT для почтового сервера.}
+    \label{fig:15}
+\end{figure}
+
+\subsubsection*{Доступ по RDP для компьютера администратора}
+Настроили статическую трансляцию порта TCP 3389 (RDP) для компьютера администратора 10.128.6.200 на внешний адрес 198.51.100.10 порт 3389 (Рис.~\ref{fig:16}):
+
+\begin{figure}[htbp]
+    \centering
+    \includegraphics[width=\textwidth]{../images/16.png}
+    \caption{Статический NAT для RDP-доступа к компьютеру администратора.}
+    \label{fig:16}
+\end{figure}
+
+\newpage
+\section{Вывод}
+В ходе лабораторной работы нам удалось настроить NAT (Network Address Translation) для обеспечения доступа локальных сетей организации во внешнюю сеть (Интернет) и организовать доступ из внешней сети к внутренним серверам (WWW, почтовый, файловый, RDP).
+
 \end{document}
