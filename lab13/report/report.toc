@@ -1,9 +1,11 @@
 \babel@toc {russian}{}\relax 
 \contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
 \contentsline {section}{\numberline {2}Выполнение работы}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Настройки сервера NFSv4}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Монтирование NFS на клиенте}{9}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Подключение каталогов к дереву NFS}{10}{subsection.2.3}%
-\contentsline {subsection}{\numberline {2.4}Подключение каталогов для работы пользователей}{12}{subsection.2.4}%
-\contentsline {subsection}{\numberline {2.5}Внесение изменений в настройки внутреннего окружения виртуальных машин}{15}{subsection.2.5}%
-\contentsline {section}{\numberline {3}Выводы}{16}{section.3}%
+\contentsline {subsection}{\numberline {2.1}Изменение схемы сети}{4}{subsection.2.1}%
+\contentsline {subsection}{\numberline {2.2}Первоначальная настройка маршрутизатора ansusenko-q42-gw-1}{5}{subsection.2.2}%
+\contentsline {subsection}{\numberline {2.3}Добавление городов и зданий в физической схеме проекта}{8}{subsection.2.3}%
+\contentsline {subsection}{\numberline {2.4}Первоначальная настройка коммутатора ansusenko-q42-sw-1}{11}{subsection.2.4}%
+\contentsline {subsection}{\numberline {2.5}Первоначальная настройка маршрутизирующего коммутатора ansusenko-hostel-gw-1}{13}{subsection.2.5}%
+\contentsline {subsection}{\numberline {2.6}Первоначальная настройка коммутатора ansusenko-hostel-sw-1}{14}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Схема подключения подсети филиала в г. Сочи}{15}{subsection.2.7}%
+\contentsline {section}{\numberline {3}Выводы}{17}{section.3}%

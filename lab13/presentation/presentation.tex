@@ -1,9 +1,9 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 13. \\ Настройка NFS}
-\author{Сущенко Алина \\ НПИбд-01-23}
+\title{Лабораторная работа № 13. \\ Статическая маршрутизация в Интернете. Планирование}
+\author{Сущенко Алина Николаевна \\ НПИбд-01-23}
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -12,190 +12,124 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-    \item Приобретение навыков настройки сервера NFS для удалённого доступа к ресурсам.
+    \item Провести подготовку по организации взаимодействия через сеть провайдера посредством статической маршрутизации локальной сети с сетью основного здания, расположенного в 42-м квартале в Москве, и сетью филиала, расположенного в г. Сочи.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройки сервера NFSv4}
-    \includegraphics[width=\textwidth]{../images/1.png}
+\frametitle{Изменение схемы сети}
+    \includegraphics[width=\textwidth]{../images/01.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройки сервера NFSv4}
-    \includegraphics[width=\textwidth]{../images/2.png}
+\frametitle{Замена модулей на медиаконвертерах}
+    \includegraphics[width=\textwidth]{../images/02.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройки сервера NFSv4}
-    \includegraphics[width=\textwidth]{../images/3.png}
+\frametitle{Настройка маршрутизатора}
+    \includegraphics[width=\textwidth]{../images/03.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройки сервера NFSv4}
-    \includegraphics[width=\textwidth]{../images/4.png}
+\frametitle{Добавленный дополнительный интерфейс.}
+    \includegraphics[width=\textwidth]{../images/04.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройки сервера NFSv4}
-    \includegraphics[width=\textwidth]{../images/5.png}
+\frametitle{Окончание настройки маршрутизатора.}
+    \includegraphics[width=\textwidth]{../images/09.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройки сервера NFSv4}
-    \includegraphics[width=\textwidth]{../images/6.png}
+\frametitle{Схема города Москва.}
+    \includegraphics[width=\textwidth]{../images/05.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройки сервера NFSv4}
-    \includegraphics[width=\textwidth]{../images/7.png}
+\frametitle{Размещение объектов в основном здании 42-го квартала в Москве.}
+    \includegraphics[width=\textwidth]{../images/06.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройки сервера NFSv4}
-    \includegraphics[width=\textwidth]{../images/8.png}
+\frametitle{Размещение объектов в здании Provider.}
+    \includegraphics[width=\textwidth]{../images/07.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование NFS на клиенте}
-    \includegraphics[width=\textwidth]{../images/9.png}
+\frametitle{Размещение объектов в здании филиала в г. Сочи.}
+    \includegraphics[width=\textwidth]{../images/08.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование NFS на клиенте}
+\frametitle{Начальная настройка коммутатора ansusenko-q42-sw-1.}
     \includegraphics[width=\textwidth]{../images/10.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование NFS на клиенте}
+\frametitle{Начальная настройка ansusenko-hostel-gw-1.}
     \includegraphics[width=\textwidth]{../images/11.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование NFS на клиенte}
+\frametitle{Первоначальная настройка коммутатора ansusenko-hostel-sw-1}
     \includegraphics[width=\textwidth]{../images/12.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование NFS на клиенте}
+\frametitle{Схема подключения подсети филиала в г. Сочи}
     \includegraphics[width=\textwidth]{../images/13.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Подключение каталогов к дереву NFS}
-    \includegraphics[width=\textwidth]{../images/15.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов к дереву NFS}
-    \includegraphics[width=\textwidth]{../images/13.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов к дереву NFS}
+\frametitle{Начальная настройка sch-ansusenko-gw-1.}
     \includegraphics[width=\textwidth]{../images/14.png}
 \end{frame}
 
 \begin{frame}
-\frametitle{Подключение каталогов к дереву NFS}
-    \includegraphics[width=\textwidth]{../images/15.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов к дереву NFS}
-    \includegraphics[width=\textwidth]{../images/16.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов к дереву NFS}
-    \includegraphics[width=\textwidth]{../images/17.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов для работы пользователей}
-    \includegraphics[width=\textwidth]{../images/18.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов для работы пользователей}
-    \includegraphics[width=\textwidth]{../images/19.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов для работы пользователей}
-    \includegraphics[width=\textwidth]{../images/20.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов для работы пользователей}
-    \includegraphics[width=\textwidth]{../images/21.png}
-\end{frame}
-
-\begin{frame}
-\frametitle{Подключение каталогов для работы пользователей}
-    \includegraphics[width=\textwidth]{../images/23.png}
-\end{frame}
-
-\begin{frame}
 \frametitle{Контрольные вопросы 1}
-\textbf{1. Как называется файл конфигурации, содержащий общие ресурсы NFS?}
+\textbf{1. В каких случаях следует использовать статическую маршрутизацию? Приведите примеры.}
 
-Основной файл конфигурации NFS: \texttt{/etc/exports}
-
-В этом файле указываются:
+Статическую маршрутизацию следует использовать в следующих случаях:
 \begin{itemize}
-\item Экспортируемые каталоги
-\item Разрешенные клиенты или сети  
-\item Права доступа (ro/rw)
-\item Дополнительные опции
+\item Для небольших сетей, где не требуется высокая изменяемость маршрутов.
+\item Когда нужно обеспечить предсказуемость маршрутов для трафика.
+\item Для маршрутизации между филиалами, когда известны фиксированные пути.
+\item Для соединения с удаленными сетями, где нет динамических изменений.
+\end{itemize}
+
+Примеры использования:
+\begin{itemize}
+\item Соединение главного офиса с филиалом через статически заданный маршрут.
+\item Создание маршрутов к резервным интернет-провайдерам для повышения надежности.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
 \frametitle{Контрольные вопросы 2}
-\textbf{2. Какие порты должны быть открыты в брандмауэре?}
+\textbf{2. Укажите основные принципы статической маршрутизации между VLANs.}
 
-Необходимые службы:
+Основные принципы статической маршрутизации между VLANs:
 \begin{itemize}
-\item \texttt{nfs} - порт 2049
-\item \texttt{mountd} - динамический порт
-\item \texttt{rpc-bind} - порт 111
-\item \texttt{nfs3} - для NFSv3
+\item Разделение сетевого трафика для разных VLAN, чтобы обеспечить безопасность и управление трафиком.
+\item Настройка маршрутов вручную на маршрутизаторах или уровнях 3 коммутаторов для обмена пакетами между VLAN.
+\item Использование интерфейсов под каждую VLAN и их привязка к соответствующим статическим маршрутам.
+\item Проверка и корректировка маршрутов при изменении топологии сети или добавлении новых VLAN.
 \end{itemize}
 
-Команды для FirewallD:
+Пример настройки:
 \begin{itemize}
-\item \texttt{firewall-cmd --add-service=nfs --permanent}
-\item \texttt{firewall-cmd --add-service=mountd --permanent}
-\item \texttt{firewall-cmd --add-service=rpc-bind --permanent}
-\item \texttt{firewall-cmd --reload}
-\end{itemize}
-\end{frame}
-
-\begin{frame}
-\frametitle{Контрольные вопросы 3}
-\textbf{3. Опция для автоматического монтирования NFS при перезагрузке?}
-
-Опция: \texttt{\_netdev}
-
-Пример записи в \texttt{/etc/fstab}:
+\item Для VLAN 10 и VLAN 20 можно настроить маршруты:
 \begin{center}
-\texttt{server.ansusenko.net:/srv/nfs /mnt/nfs nfs \_netdev 0 0}
+\texttt{ip route add 192.168.10.0/24 via 192.168.1.1} \\
+\texttt{ip route add 192.168.20.0/24 via 192.168.1.2}
 \end{center}
-
-\begin{itemize}
-\item \texttt{\_netdev} - ждет инициализации сети
-\item \texttt{nfs} - тип файловой системы
-\item \texttt{0 0} - параметры для dump/fsck
 \end{itemize}
 \end{frame}
-
 \begin{frame}
 \frametitle{Выводы}
 \begin{itemize}
-    \item Приобрели навыки настройки сервера NFS
-    \item Настроили удаленный доступ к ресурсам
-    \item Создали каталоги для веб-сервера и пользователей
+    \item В результате лабораторной работы мы усложнили нашу сеть, успешно провели подготовку по организации взаимодействия через сеть провайдера посредством статической маршрутизации локальной сети с сетью основного здания, расположенного в 42-м квартале в Москве, и сетью филиала, расположенного в г. Сочи.
 \end{itemize}
 \end{frame}
 
