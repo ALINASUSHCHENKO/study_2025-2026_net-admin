@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  29 NOV 2025 08:54
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (TeX Live 2023/Debian) (preloaded format=pdflatex 2025.10.22)  12 MAY 2026 11:50
 entering extended mode
  \write18 enabled.
  %&-line parsing enabled.
@@ -944,536 +944,356 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}{/usr/share/texmf/fonts/enc/
-dvips/cm-super/cm-super-t2a.enc}] (./report.toc)
+dvips/cm-super/cm-super-t2a.enc}] (./report.toc [2])
 \tf@toc=\write6
 \openout6 = `report.toc'.
 
- [2] [3]
-\openout3 = `report.pyg'.
-
- (./_minted-report/default.pygstyle)
-(./_minted-report/DF4C0D73DCE919D16C8B3D753A70B43DA049E9CB418B57F70E24C639F7BA1
-365.pygtex
+ [3] [4]
 LaTeX Font Info:    Trying to load font information for T2A+cmtt on input line 
-1.
- (/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
+24.
+
+(/usr/share/texlive/texmf-dist/tex/latex/cyrillic/t2acmtt.fd
 File: t2acmtt.fd 2001/08/11 v1.0a Computer Modern Cyrillic font definitions
-))
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/9A5CE682FDECFDC2C50C5C51F746CCD7A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/B87C51D220FED0FC20808E51B1CA1AD2A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/01.png, id=55, 670.75594pt x 68.50594pt>
+)
+<../images/01.png, id=179, 633.11531pt x 815.29594pt>
 File: ../images/01.png Graphic file (type png)
 <use ../images/01.png>
-Package pdftex.def Info: ../images/01.png  used on input line 36.
-(pdftex.def)             Requested size: 386.95897pt x 39.52127pt.
+Package pdftex.def Info: ../images/01.png  used on input line 28.
+(pdftex.def)             Requested size: 483.69687pt x 622.89075pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 37.
+(caption)                particular \caption on input line 29.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/C6961F86319CEB6E72B3B2DAB1DF6705A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/6A7062318F7A829227B4ED39134B1E79A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/2665BB5F53E66CB931CA60FFA3C90738A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/6033BF100CBDA4533FC0F9783B7E0D4BA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/02.png, id=58, 414.04688pt x 172.39406pt>
+[5] [6 <../images/01.png>]
+<../images/02.png, id=194, 542.025pt x 688.07062pt>
 File: ../images/02.png Graphic file (type png)
 <use ../images/02.png>
-Package pdftex.def Info: ../images/02.png  used on input line 67.
-(pdftex.def)             Requested size: 386.95897pt x 161.11922pt.
+Package pdftex.def Info: ../images/02.png  used on input line 38.
+(pdftex.def)             Requested size: 483.69687pt x 614.05028pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 68.
+(caption)                particular \caption on input line 39.
 See the caption package documentation for explanation.
 
-[4 <../images/01.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/90A49BAAF18F78E8397855F0AAE87DBBA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/03.png, id=76, 767.11594pt x 515.67656pt>
+[7] [8 <../images/02.png>]
+<../images/03.png, id=207, 529.22719pt x 647.41875pt>
 File: ../images/03.png Graphic file (type png)
 <use ../images/03.png>
-Package pdftex.def Info: ../images/03.png  used on input line 80.
-(pdftex.def)             Requested size: 386.95897pt x 260.1274pt.
+Package pdftex.def Info: ../images/03.png  used on input line 48.
+(pdftex.def)             Requested size: 483.69687pt x 591.72047pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 81.
+(caption)                particular \caption on input line 49.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/52140CCE51032A375D55B7FA4C8B0B2BA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/04.png, id=78, 927.465pt x 242.40562pt>
+[9 <../images/03.png>]
+<../images/04.png, id=215, 510.40688pt x 628.59843pt>
 File: ../images/04.png Graphic file (type png)
 <use ../images/04.png>
-Package pdftex.def Info: ../images/04.png  used on input line 94.
-(pdftex.def)             Requested size: 386.95897pt x 101.13647pt.
+Package pdftex.def Info: ../images/04.png  used on input line 59.
+(pdftex.def)             Requested size: 483.69687pt x 595.73598pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 95.
+(caption)                particular \caption on input line 60.
 See the caption package documentation for explanation.
 
-[5 <../images/02.png> <../images/03.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/942B0971EC853C8F4EB57DF106493507A049E9CB418B57F70E24C639F7BA1
-365.pygtex
-Overfull \hbox (3.90076pt too wide) in paragraph at lines 99--1
-[]\T2A/cmr/m/n/12 ƒл€ про-вер-ки на-ли-чи€ об-ще-го до-сту-па под-клю-чи-лись к
- сер-ве-ру с по-мо-щью \T2A/cmtt/m/n/12 smbclient
- []
-
-)
-<../images/05.png, id=90, 642.90187pt x 385.44pt>
+[10] [11 <../images/04.png>]
+<../images/05.png, id=227, 536.75531pt x 633.11531pt>
 File: ../images/05.png Graphic file (type png)
 <use ../images/05.png>
-Package pdftex.def Info: ../images/05.png  used on input line 107.
-(pdftex.def)             Requested size: 386.95897pt x 232.00095pt.
+Package pdftex.def Info: ../images/05.png  used on input line 69.
+(pdftex.def)             Requested size: 483.69687pt x 570.53271pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 108.
+(caption)                particular \caption on input line 70.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/60B59BFE823EB70EDEAF14EB1392234DA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/06.png, id=92, 928.21782pt x 238.64156pt>
+[12 <../images/05.png>]
+<../images/06.png, id=235, 790.45313pt x 806.26219pt>
 File: ../images/06.png Graphic file (type png)
 <use ../images/06.png>
-Package pdftex.def Info: ../images/06.png  used on input line 119.
-(pdftex.def)             Requested size: 386.95897pt x 99.48592pt.
+Package pdftex.def Info: ../images/06.png  used on input line 81.
+(pdftex.def)             Requested size: 483.69687pt x 493.36934pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 120.
+(caption)                particular \caption on input line 82.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/E2FF9C21CF465AA48BA1F563E307DF53A049E9CB418B57F70E24C639F7BA1
-365.pygtex [6 <../images/04.png> <../images/05.png> <../images/06.png>])
-<../images/07.png, id=105, 799.48688pt x 158.84344pt>
+<../images/07.png, id=237, 523.20468pt x 570.63188pt>
 File: ../images/07.png Graphic file (type png)
 <use ../images/07.png>
-Package pdftex.def Info: ../images/07.png  used on input line 133.
-(pdftex.def)             Requested size: 386.95897pt x 76.88142pt.
-
+Package pdftex.def Info: ../images/07.png  used on input line 91.
+(pdftex.def)             Requested size: 483.69687pt x 527.5563pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 134.
+(caption)                particular \caption on input line 92.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/9D1CA805B9FAC7724F56815957247D26A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/4102A420EDBAF087180BFC73AC197F90A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/08.png, id=108, 823.57687pt x 124.96687pt>
+[13 <../images/06.png>]
+<../images/08.png, id=247, 681.29532pt x 913.16156pt>
 File: ../images/08.png Graphic file (type png)
 <use ../images/08.png>
-Package pdftex.def Info: ../images/08.png  used on input line 151.
-(pdftex.def)             Requested size: 386.95897pt x 58.71536pt.
+Package pdftex.def Info: ../images/08.png  used on input line 105.
+(pdftex.def)             Requested size: 483.69687pt x 648.32138pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 152.
+(caption)                particular \caption on input line 106.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/11B06FDCF0295B6F260C90957BF55E76A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/4102A420EDBAF087180BFC73AC197F90A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/09.png, id=111, 909.3975pt x 170.88844pt>
+[14{/usr/share/texmf/fonts/enc/dvips/cm-super/cm-super-ts1.enc} <../images/07.p
+ng>] [15 <../images/08.png>]
+<../images/09.png, id=261, 735.49782pt x 680.5425pt>
 File: ../images/09.png Graphic file (type png)
 <use ../images/09.png>
-Package pdftex.def Info: ../images/09.png  used on input line 169.
-(pdftex.def)             Requested size: 386.95897pt x 72.71658pt.
+Package pdftex.def Info: ../images/09.png  used on input line 122.
+(pdftex.def)             Requested size: 483.69687pt x 447.57065pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 123.
+See the caption package documentation for explanation.
+
+[16 <../images/09.png>]
+<../images/10.png, id=269, 621.82312pt x 664.73344pt>
+File: ../images/10.png Graphic file (type png)
+<use ../images/10.png>
+Package pdftex.def Info: ../images/10.png  used on input line 138.
+(pdftex.def)             Requested size: 483.69687pt x 517.08012pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 139.
+See the caption package documentation for explanation.
+
+[17 <../images/10.png>]
+<../images/11.png, id=277, 574.39594pt x 587.94656pt>
+File: ../images/11.png Graphic file (type png)
+<use ../images/11.png>
+Package pdftex.def Info: ../images/11.png  used on input line 153.
+(pdftex.def)             Requested size: 483.69687pt x 495.11876pt.
+
+
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 154.
+See the caption package documentation for explanation.
+
+[18 <../images/11.png>]
+<../images/12.png, id=285, 523.20468pt x 518.6878pt>
+File: ../images/12.png Graphic file (type png)
+<use ../images/12.png>
+Package pdftex.def Info: ../images/12.png  used on input line 169.
+(pdftex.def)             Requested size: 483.69687pt x 479.53336pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
 (caption)                particular \caption on input line 170.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/5E2D71B8CB1F5179A4DA26FD3D610D7CA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/10.png, id=113, 730.22812pt x 45.16875pt>
-File: ../images/10.png Graphic file (type png)
-<use ../images/10.png>
-Package pdftex.def Info: ../images/10.png  used on input line 182.
-(pdftex.def)             Requested size: 386.95897pt x 23.93518pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 183.
-See the caption package documentation for explanation.
-
-[7 <../images/07.png> <../images/08.png> <../images/09.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/49F96038F20AA062772267B640A18D79A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/11.png, id=133, 928.97063pt x 70.01157pt>
-File: ../images/11.png Graphic file (type png)
-<use ../images/11.png>
-Package pdftex.def Info: ../images/11.png  used on input line 194.
-(pdftex.def)             Requested size: 386.95897pt x 29.16321pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 195.
-See the caption package documentation for explanation.
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/CB87A522A1614EBEB87789D93C8B9AB1A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/12.png, id=135, 752.8125pt x 91.09032pt>
-File: ../images/12.png Graphic file (type png)
-<use ../images/12.png>
-Package pdftex.def Info: ../images/12.png  used on input line 207.
-(pdftex.def)             Requested size: 386.95897pt x 46.82376pt.
-
-
-Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 208.
-See the caption package documentation for explanation.
-
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/AEFE6683603E921054A950543F552136A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/13.png, id=137, 593.21625pt x 108.405pt>
+[19 <../images/12.png>]
+<../images/13.png, id=294, 514.92375pt x 520.19344pt>
 File: ../images/13.png Graphic file (type png)
 <use ../images/13.png>
-Package pdftex.def Info: ../images/13.png  used on input line 219.
-(pdftex.def)             Requested size: 386.95897pt x 70.71548pt.
+Package pdftex.def Info: ../images/13.png  used on input line 183.
+(pdftex.def)             Requested size: 483.69687pt x 488.65645pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 220.
+(caption)                particular \caption on input line 184.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/718D57287534C8A1BF01FBA7CE5A601BA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/44F9987933A1321477924C9AE3FEB1D6A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/14.png, id=139, 926.71219pt x 214.55156pt>
+[20 <../images/13.png>]
+<../images/14.png, id=304, 519.44063pt x 520.19344pt>
 File: ../images/14.png Graphic file (type png)
 <use ../images/14.png>
-Package pdftex.def Info: ../images/14.png  used on input line 239.
-(pdftex.def)             Requested size: 386.95897pt x 89.5905pt.
+Package pdftex.def Info: ../images/14.png  used on input line 196.
+(pdftex.def)             Requested size: 483.69687pt x 484.39401pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 240.
+(caption)                particular \caption on input line 197.
 See the caption package documentation for explanation.
 
-[8 <../images/10.png> <../images/11.png> <../images/12.png> <../images/13.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/19E7E994017BF579D246ED6FC04DB855A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/15.png, id=159, 749.80125pt x 157.33781pt>
+<../images/15.png, id=306, 521.69907pt x 516.42938pt>
 File: ../images/15.png Graphic file (type png)
 <use ../images/15.png>
-Package pdftex.def Info: ../images/15.png  used on input line 253.
-(pdftex.def)             Requested size: 386.95897pt x 81.19913pt.
-
+Package pdftex.def Info: ../images/15.png  used on input line 211.
+(pdftex.def)             Requested size: 483.69687pt x 478.81654pt.
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 254.
+(caption)                particular \caption on input line 212.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/ED7E917D2B2900CC0BBCD2F03397854AA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/16.png, id=161, 672.26157pt x 74.52844pt>
+[21 <../images/14.png>]
+<../images/16.png, id=314, 517.935pt x 517.18219pt>
 File: ../images/16.png Graphic file (type png)
 <use ../images/16.png>
-Package pdftex.def Info: ../images/16.png  used on input line 266.
-(pdftex.def)             Requested size: 386.95897pt x 42.89899pt.
+Package pdftex.def Info: ../images/16.png  used on input line 225.
+(pdftex.def)             Requested size: 483.69687pt x 483.01837pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 267.
+(caption)                particular \caption on input line 226.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/6A7062318F7A829227B4ED39134B1E79A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/6B7F7F3AEB7E8F769E2A58E46CF2373EA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/17.png, id=163, 406.51875pt x 231.86626pt>
+[22 <../images/15.png>]
+<../images/17.png, id=322, 539.01375pt x 555.57562pt>
 File: ../images/17.png Graphic file (type png)
 <use ../images/17.png>
-Package pdftex.def Info: ../images/17.png  used on input line 283.
-(pdftex.def)             Requested size: 386.95897pt x 220.71747pt.
+Package pdftex.def Info: ../images/17.png  used on input line 245.
+(pdftex.def)             Requested size: 483.69687pt x 498.5638pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 284.
+(caption)                particular \caption on input line 246.
 See the caption package documentation for explanation.
 
-[9 <../images/14.png> <../images/15.png> <../images/16.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/942B0971EC853C8F4EB57DF106493507A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/18.png, id=178, 632.3625pt x 389.95688pt>
+[23 <../images/16.png>]
+<../images/18.png, id=331, 526.21594pt x 518.6878pt>
 File: ../images/18.png Graphic file (type png)
 <use ../images/18.png>
-Package pdftex.def Info: ../images/18.png  used on input line 295.
-(pdftex.def)             Requested size: 386.95897pt x 238.62903pt.
+Package pdftex.def Info: ../images/18.png  used on input line 257.
+(pdftex.def)             Requested size: 483.69687pt x 476.79494pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 296.
+(caption)                particular \caption on input line 258.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/D594B529BBB7115531539EACDD73A06EA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/19.png, id=180, 697.8572pt x 378.66469pt>
+[24 <../images/17.png>]
+<../images/19.png, id=339, 512.66531pt x 504.38437pt>
 File: ../images/19.png Graphic file (type png)
 <use ../images/19.png>
-Package pdftex.def Info: ../images/19.png  used on input line 307.
-(pdftex.def)             Requested size: 386.95897pt x 209.9707pt.
+Package pdftex.def Info: ../images/19.png  used on input line 264.
+(pdftex.def)             Requested size: 483.69687pt x 475.88382pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 308.
+(caption)                particular \caption on input line 265.
 See the caption package documentation for explanation.
 
-[10 <../images/17.png> <../images/18.png>]
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/D518A356C9AE12ED54609708FDB10064A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/D612B7D1AAF454F9C5EB062FC15CCD97A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/20.png, id=193, 925.95938pt x 67.75313pt>
+[25 <../images/18.png>]
+<../images/20.png, id=346, 525.46312pt x 520.19344pt>
 File: ../images/20.png Graphic file (type png)
 <use ../images/20.png>
-Package pdftex.def Info: ../images/20.png  used on input line 324.
-(pdftex.def)             Requested size: 386.95897pt x 28.31447pt.
+Package pdftex.def Info: ../images/20.png  used on input line 271.
+(pdftex.def)             Requested size: 483.69687pt x 478.86157pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 325.
+(caption)                particular \caption on input line 272.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/785D0D5CBB0A424C9A4BA4FC9D681B40A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/21.png, id=195, 651.93562pt x 108.405pt>
+[26 <../images/19.png>]
+<../images/21.png, id=354, 517.18219pt x 513.41812pt>
 File: ../images/21.png Graphic file (type png)
 <use ../images/21.png>
-Package pdftex.def Info: ../images/21.png  used on input line 337.
-(pdftex.def)             Requested size: 386.95897pt x 64.34544pt.
+Package pdftex.def Info: ../images/21.png  used on input line 281.
+(pdftex.def)             Requested size: 483.69687pt x 480.19235pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 338.
+(caption)                particular \caption on input line 282.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/4D88B05FAAAA7275A201F73739DD3A83A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/B9CBD20500DB57DC54260E90FCE4BC0EA049E9CB418B57F70E24C639F7BA1
-365.pygtex [11 <../images/19.png> <../images/20.png> <../images/21.png>])
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/006C8822C15F49E48C03B6C53076C73CA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/22.png, id=215, 639.89063pt x 90.3375pt>
+[27 <../images/20.png>]
+<../images/22.png, id=362, 519.44063pt x 514.17094pt>
 File: ../images/22.png Graphic file (type png)
 <use ../images/22.png>
-Package pdftex.def Info: ../images/22.png  used on input line 361.
-(pdftex.def)             Requested size: 386.95897pt x 54.63022pt.
+Package pdftex.def Info: ../images/22.png  used on input line 290.
+(pdftex.def)             Requested size: 483.69687pt x 478.786pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 362.
+(caption)                particular \caption on input line 291.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/050BF87601FE808DDFB81461C9222DE4A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/23.png, id=217, 919.18407pt x 279.29344pt>
+[28 <../images/21.png>]
+<../images/23.png, id=370, 533.74406pt x 598.48593pt>
 File: ../images/23.png Graphic file (type png)
 <use ../images/23.png>
-Package pdftex.def Info: ../images/23.png  used on input line 373.
-(pdftex.def)             Requested size: 386.95897pt x 117.57945pt.
+Package pdftex.def Info: ../images/23.png  used on input line 306.
+(pdftex.def)             Requested size: 483.69687pt x 542.38567pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 374.
+(caption)                particular \caption on input line 307.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/FE9205FAC76D8C5D5024C0179A0D916AA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-<../images/24.png, id=220, 921.4425pt x 106.89937pt>
+[29 <../images/22.png>]
+<../images/24.png, id=379, 520.94624pt x 514.92375pt>
 File: ../images/24.png Graphic file (type png)
 <use ../images/24.png>
-Package pdftex.def Info: ../images/24.png  used on input line 386.
-(pdftex.def)             Requested size: 386.95897pt x 44.89088pt.
+Package pdftex.def Info: ../images/24.png  used on input line 315.
+(pdftex.def)             Requested size: 483.69687pt x 478.10414pt.
 
 
 Package caption Warning: The option `hypcap=true' will be ignored for this
-(caption)                particular \caption on input line 387.
+(caption)                particular \caption on input line 316.
 See the caption package documentation for explanation.
 
-\openout3 = `report.pyg'.
+[30 <../images/23.png>]
+<../images/25.png, id=387, 513.41812pt x 514.17094pt>
+File: ../images/25.png Graphic file (type png)
+<use ../images/25.png>
+Package pdftex.def Info: ../images/25.png  used on input line 322.
+(pdftex.def)             Requested size: 483.69687pt x 484.4113pt.
 
 
-(./_minted-report/3047941907D043312E3BCECE357CC99EA049E9CB418B57F70E24C639F7BA1
-365.pygtex [12 <../images/22.png> <../images/23.png> <../images/24.png>])
-\openout3 = `report.pyg'.
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 323.
+See the caption package documentation for explanation.
+
+[31 <../images/24.png>] [32 <../images/25.png>]
+<../images/26.png, id=401, 548.80031pt x 612.03656pt>
+File: ../images/26.png Graphic file (type png)
+<use ../images/26.png>
+Package pdftex.def Info: ../images/26.png  used on input line 348.
+(pdftex.def)             Requested size: 483.69687pt x 539.44368pt.
 
 
-(./_minted-report/6F171DD89A826484322A1C68A3AA059AA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
+Package caption Warning: The option `hypcap=true' will be ignored for this
+(caption)                particular \caption on input line 349.
+See the caption package documentation for explanation.
 
-
-(./_minted-report/D28790744482794F32C1FB6148B7BCCDA049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/EE6608A2D768D13174E8541373E08BD8A049E9CB418B57F70E24C639F7BA1
-365.pygtex [13])
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/B220C108D394049FEB881E01943E69D0A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/48F8316218AFE50D251EFF1AA8BD27B7A049E9CB418B57F70E24C639F7BA1
-365.pygtex)
-\openout3 = `report.pyg'.
-
-
-(./_minted-report/EBF67E1EED85FF0D8ED43C6FC478E735A049E9CB418B57F70E24C639F7BA1
-365.pygtex) [14] [15] (./report.aux)
+[33] [34 <../images/26.png>] [35] (./report.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-22>
  ***********
-Package rerunfilecheck Info: File `report.out' has not changed.
-(rerunfilecheck)             Checksum: 0C25DB63E35E175D6A4A4D416F6D4913;1654.
-runsystem(rm report.pyg)...executed.
 
+
+LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+
+Package rerunfilecheck Info: File `report.out' has not changed.
+(rerunfilecheck)             Checksum: BC853817DAA9D9FAF7D54C5C2D8F1286;9451.
  ) 
 Here is how much of TeX's memory you used:
- 19829 strings out of 474222
- 351154 string characters out of 5748732
+ 19461 strings out of 474222
+ 325888 string characters out of 5748732
  1934975 words of memory out of 5000000
- 41562 multiletter control sequences out of 15000+600000
- 573370 words of font info for 79 fonts, out of 8000000 for 9000
+ 41325 multiletter control sequences out of 15000+600000
+ 571638 words of font info for 74 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 91i,10n,134p,663b,1139s stack positions out of 10000i,1000n,20000p,200000b,200000s
-</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi6.pfb></usr
-/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy6.pfb></usr/share/
-texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/type1/pu
-blic/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfbx17
-28.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfit1200.pfb></usr/share/t
-exmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr/share/texmf/fonts/type1/pub
-lic/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm207
-4.pfb></usr/share/texmf/fonts/type1/public/cm-super/sftt1200.pfb>
-Output written on report.pdf (15 pages, 2911573 bytes).
+ 91i,6n,134p,744b,744s stack positions out of 10000i,1000n,20000p,200000b,200000s
+</usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></us
+r/share/texmf/fonts/type1/public/cm-super/sfbx1200.pfb></usr/share/texmf/fonts/
+type1/public/cm-super/sfbx1440.pfb></usr/share/texmf/fonts/type1/public/cm-supe
+r/sfbx1728.pfb></usr/share/texmf/fonts/type1/public/cm-super/sfrm1200.pfb></usr
+/share/texmf/fonts/type1/public/cm-super/sfrm1440.pfb></usr/share/texmf/fonts/t
+ype1/public/cm-super/sfrm2074.pfb></usr/share/texmf/fonts/type1/public/cm-super
+/sftt1200.pfb>
+Output written on report.pdf (35 pages, 1101808 bytes).
 PDF statistics:
- 319 PDF objects out of 1000 (max. 8388607)
- 231 compressed objects within 3 object streams
- 88 named destinations out of 1000 (max. 500000)
- 169 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 478 PDF objects out of 1000 (max. 8388607)
+ 368 compressed objects within 4 object streams
+ 93 named destinations out of 1000 (max. 500000)
+ 371 words of extra memory for PDF output out of 10000 (max. 10000000)
 

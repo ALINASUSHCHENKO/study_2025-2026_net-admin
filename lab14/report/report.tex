@@ -1,496 +1,357 @@
 \input{preamble.tex}
 
-\title{Отчет по лабораторной работе № 14. \\ Настройка файловых служб Samba}
-\author{Сущенко Алина \\ НПИбд-01-23}
-\date{2025}
+\title{Отчет по лабораторной работе № 14. \\ Статическая маршрутизация в Интернете. Настройка}
+\author{Сущенко Алина Николаевна\\ НПИбд-01-23}
+\date{2026}
 
 \begin{document}
 
 \maketitle
 \newpage
+
 \tableofcontents
 
 \newpage
 \section{Цель работы}
-Приобретение навыков настройки доступа групп пользователей к общим ресурсам по протоколу SMB.
+Настроить взаимодействие через сеть провайдера посредством статической маршрутизации локальной сети организации с сетью основного здания, расположенного в 42-м квартале в Москве, и сетью филиала, расположенного в г. Сочи.
+
 \newpage
-
 \section{Выполнение работы}
-\subsection{Настройка сервера Samba}
-\begin{enumerate}
-\item На сервере установили необходимые пакеты:
-    \begin{minted}{bash}
-dnf -y install samba samba-client cifs-utils
-    \end{minted}
-\item Создали группу {\tt sambagroup} для пользователей, которые будут работать с {\tt Samba}-сервером, и присвоили ей GID 1011 (Рис. \ref{img:01}):
-    \begin{minted}{bash}
-groupadd -g 1010 sambagroup
-    \end{minted}
-\item Добавили пользователя {\tt ansusenko} к группе {\tt sambagroup} (Рис. \ref{img:01}):
-    \begin{minted}{bash}
-usermod -aG sambagroup ansusenko
-    \end{minted}
+
+\subsection{Настройка связи между площадками}
+
+\subsubsection{Настройка коммутатора ansusenko-sw-1}
+В логическую рабочую область проекта добавлен коммутатор \texttt{ansusenko-sw-1}. Выполнена настройка trunk-портов и создание VLAN (Рис. \ref{01}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/01.png}
-    \captionof{figure}{Создание группы sambagroup и добавления в нее пользователя ansusenko.}
-    \label{img:01}
+    \includegraphics[width=\textwidth]{../images/01.png}
+    \captionof{figure}{Настройка интерфейсов коммутатора ansusenko-sw-1.}
+    \label{01}
 \end{center}
 
-\item Создали общий каталог в файловой системе {\tt Linux}, в который предполагается монтировать разделяемые ресурсы:
-    \begin{minted}{bash}
-mkdir -p /srv/sambashare
-    \end{minted}
-\item В файле конфигурации {\tt /etc/samba/smb.conf} (Рис. \ref{img:02}):
-    \begin{enumerate}
-        \item изменили параметр рабочей группы:
-    \begin{minted}{bash}
-[global]
-workgroup = ANSUSENKO-NET
-    \end{minted}
-    и добавили сразу после строки {\tt workgroup} поля для работы через SMB1 протокол:
-    \begin{minted}{bash}
-server min protocol = NT1
-client min protocol = NT1
-    \end{minted}
-\item в конце файла добавили раздел с описанием общего доступа к разделяемому ресурсу {\tt /srv/sambashare}:
-    \begin{minted}{bash}
-[sambashare]
-comment = My Samba Share
-path = /srv/sambashare
-write list = @sambagroup
-    \end{minted}
+\subsubsection{Настройка маршрутизатора msk-ansusenko-gw-1}
+Выполнена настройка subinterface-ов на маршрутизаторе \texttt{msk-ansusenko-gw-1} для связи с площадками. Создан subinterface f0/1.5 с VLAN 5, IP 10.128.255.1/30, description q42 и subinterface f0/1.6 с VLAN 6, IP 10.128.255.5/30, description sochi (Рис. \ref{02}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/02.png}
-    \captionof{figure}{Изменение конфигурации samba на сервере.}
-    \label{img:02}
+    \includegraphics[width=\textwidth]{../images/02.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1.}
+    \label{02}
 \end{center}
 
-    \end{enumerate}
-\item Убедились, что не сделали синтаксических ошибок в файле {\tt smb.conf}, используя команду (Рис. \ref{img:03}):
-    \begin{minted}{bash}
-testparm
-    \end{minted}
+\subsubsection{Настройка маршрутизатора ansusenko-q42-gw-1}
+Выполнена настройка интерфейса для связи с провайдером. Интерфейс f0/1 активирован командой \texttt{no shutdown}, создан subinterface f0/1.5 с IP 10.128.255.2/30, с описанием donskaya (Рис. \ref{03}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/03.png}
-    \captionof{figure}{Проверка правильности синтаксиса файла samba.conf.}
-    \label{img:03}
+    \includegraphics[width=\textwidth]{../images/03.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизатора ansusenko-q42-gw-1.}
+    \label{03}
 \end{center}
 
-\item Запустили демон {\tt Samba} и посмотрите его статус (Рис. \ref{img:04}):
-    \begin{minted}{bash}
-systemctl start smb
-systemctl enable smb
-systemctl status smb
-    \end{minted}
+
+\subsubsection{Настройка коммутатора sch-ansusenko-sw-1}
+Выполнена настройка коммутатора в филиале г. Сочи. Порты f0/23 и f0/24 переведены в режим trunk. Создан VLAN 6 (sochi). Интерфейс Vlan6 активирован (Рис. \ref{04}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/04.png}
-    \captionof{figure}{Включение демона Samba.}
-    \label{img:04}
+    \includegraphics[width=\textwidth]{../images/04.png}
+    \captionof{figure}{Настройка интерфейсов коммутатора sch-ansusenko-sw-1.}
+    \label{04}
 \end{center}
 
-\item Для проверки наличия общего доступа подключились к серверу с помощью {\tt smbclient} (Рис. \ref{img:05}):
-    \begin{minted}{bash}
-smbclient -L //server
-    \end{minted}
-(при запросе пароля нажмите {\tt Enter} для работы под анонимным пользователем).
+\subsubsection{Настройка маршрутизатора sch-ansusenko-gw-1}
+Выполнена настройка маршрутизатора в Сочи. Интерфейс f0/0 активирован. Создан subinterface f0/0.6 с IP 10.128.255.6/30, с описанием donskaya (Рис. \ref{05}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/05.png}
-    \captionof{figure}{Проверка наличия общего доступа к серверу.}
-    \label{img:05}
+    \includegraphics[width=\textwidth]{../images/05.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизатора sch-ansusenko-gw-1.}
+    \label{05}
 \end{center}
 
-\item Посмотрели файл конфигурации межсетевого экрана для {\tt Samba} (Рис. \ref{img:06}):
-    \begin{minted}{bash}
-less /usr/lib/firewalld/services/samba.xml
-    \end{minted}
+\subsection{Настройка площадки 42-го квартала}
+
+\subsubsection{Настройка маршрутизатора ansusenko-q42-gw-1}
+Выполнена настройка интерфейсов для локальных сетей 42-го квартала. (Рис. \ref{06})
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/06.png}
-    \captionof{figure}{Просмотр конфигурации межсетевого экрана Samba.}
-    \label{img:06}
+    \includegraphics[width=\textwidth]{../images/06.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизатора ansusenko-q42-gw-1.}
+    \label{06}
 \end{center}
 
-\item Настроили межсетевой экран (Рис. \ref{img:07}):
-    \begin{minted}{bash}
-firewall-cmd --add-service=samba
-firewall-cmd --add-service=samba --permanent
-firewall-cmd --reload
-    \end{minted}
+\subsubsection{Настройка коммутатора ansusenko-q42-sw-1}
+Выполнена настройка коммутатора в 42-м квартале (Рис. \ref{07}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/07.png}
-    \captionof{figure}{Настройка межсетевого экрана.}
-    \label{img:07}
+    \includegraphics[width=\textwidth]{../images/07.png}
+    \captionof{figure}{Настройка интерфейсов коммутатора ansusenko-q42-sw-1.}
+    \label{07}
 \end{center}
 
-\item Настроили права доступа для каталога с разделяемым ресурсом (Рис. \ref{img:08}):
-    \begin{minted}{bash}
-chgrp sambagroup /srv/sambashare
-chmod g=rwx /srv/sambashare
-    \end{minted}
-\item Посмотрели контекст безопасности {\tt SELinux} (Рис. \ref{img:08}):
-    \begin{minted}{bash}
-cd /srv
-ls -Z
-    \end{minted}
+\subsubsection{Настройка маршрутизирующего коммутатора ansusenko-hostel-gw-1}
+Выполнена настройка маршрутизирующего коммутатора для общежития (Рис. \ref{08}). Созданы:
+\begin{itemize}
+    \item VLAN 202 (q42-management) с интерфейсом Vlan202 и IP 10.129.1.2/24
+    \item VLAN 301 (hostel-main) с интерфейсом Vlan301 и IP 10.129.128.1/24
+\end{itemize}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/08.png}
-    \captionof{figure}{Настройка прав доступа для каталога с разделяемым ресурсом sambashare.}
-    \label{img:08}
+    \includegraphics[width=\textwidth]{../images/08.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизирующего коммутатора ansusenko-hostel-gw-1.}
+    \label{08}
 \end{center}
 
-\item Настроили контекст безопасности {\tt SELinux} для каталога с разделяемым ресурсом (Рис. \ref{img:09}):
-    \begin{minted}{bash}
-semanage fcontext -a -t samba_share_t "/srv/sambashare(/.*)?"
-restorecon -vR /srv/sambashare
-    \end{minted}
-\item Проверили, что контекст безопасности изменился (Рис. \ref{img:09}):
-    \begin{minted}{bash}
-cd /srv
-ls -Z
-    \end{minted}
+\subsubsection{Настройка коммутатора ansusenko-hostel-sw-1}
+Выполнена настройка коммутатора общежития (Рис. \ref{09}):
+
+\begin{itemize}
+    \item Порт g0/1 переведен в режим trunk
+    \item Порт f0/1 переведен в режим access в VLAN 301
+    \item Создан VLAN 301 (hostel-main)
+    \item Интерфейс Vlan301 активирован
+\end{itemize}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/09.png}
-    \captionof{figure}{Настройка SELinux для каталога с разделяемым ресурсом smbshare.}
-    \label{img:09}
+    \includegraphics[width=\textwidth]{../images/09.png}
+    \captionof{figure}{Настройка интерфейсов коммутатора ansusenko-hostel-sw-1.}
+    \label{09}
 \end{center}
 
-\item Разрешили экспортировать разделяемые ресурсы для чтения и записи (Рис. \ref{img:10}):
-    \begin{minted}{bash}
-setsebool samba_export_all_rw 1
-setsebool samba_export_all_rw 1 -P
-    \end{minted}
+\subsection{Настройка площадки в Сочи}
+
+\subsubsection{Настройка маршрутизатора sch-ansusenko-gw-1}
+Выполнена настройка subinterface-ов для локальных сетей Сочи (Рис. \ref{10}):
+\begin{itemize}
+    \item Создан subinterface f0/0.401 с IP 10.130.0.1/24, description sochi-main
+    \item Создан subinterface f0/0.402 с IP 10.130.1.1/24, description sochi-management
+\end{itemize}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/10.png}
-    \captionof{figure}{Настройка разрешений через флаги SELinux.}
-    \label{img:10}
+    \includegraphics[width=\textwidth]{../images/10.png}
+    \captionof{figure}{Настройка интерфейсов маршрутизатора sch-ansusenko-gw-1.}
+    \label{10}
 \end{center}
 
-\item Посмотрели {\tt UID} вашего пользователя и в какие группы он включён (Рис. \ref{img:11}):
-    \begin{minted}{bash}
-id
-    \end{minted}
+\subsubsection{Настройка коммутатора sch-ansusenko-sw-1}
+Выполнена настройка коммутатора в Сочи (Рис. \ref{11}):
+\begin{itemize}
+    \item Порт f0/1 переведен в режим access в VLAN 401
+    \item Создан VLAN 401 (sochi-main)
+    \item Интерфейс Vlan401 активирован
+\end{itemize}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/11.png}
-    \captionof{figure}{Просмотр групп пользователя ansusenko.}
-    \label{img:11}
+    \includegraphics[width=\textwidth]{../images/11.png}
+    \captionof{figure}{Настройка интерфейсов коммутатора sch-ansusenko-sw-1.}
+    \label{11}
 \end{center}
 
-\item Под пользователем ansusenko создали файл на разделяемом ресурсе (Рис. \ref{img:12}):
-    \begin{minted}{bash}
-cd /srv/sambashare
-touch ansusenko@server.txt
-    \end{minted}
+\subsection{Настройка статической маршрутизации между площадками}
+
+\subsubsection{Настройка маршрутизатора msk-ansusenko-gw-1}
+Выполнена настройка статических маршрутов до сетей Москвы и Сочи (Рис. \ref{12}):
+\begin{verbatim}
+ip route 10.129.0.0 255.255.0.0 10.128.255.2
+ip route 10.130.0.0 255.255.0.0 10.128.255.6
+\end{verbatim}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/12.png}
-    \captionof{figure}{Создание файла на разделяемой ресурсе.}
-    \label{img:12}
+    \includegraphics[width=\textwidth]{../images/12.png}
+    \captionof{figure}{Настройка маршрутизации на msk-ansusenko-gw-1.}
+    \label{12}
 \end{center}
 
-\item Добавили пользователя ansusenko в базу пользователей {\tt Samba} (Рис. \ref{img:13}):
-    \begin{minted}{bash}
-smbpasswd -L -a ansusenko
-    \end{minted}
+\subsubsection{Настройка маршрутизатора ansusenko-q42-gw-1}
+Выполнена настройка маршрута по умолчанию (Рис. \ref{13}):
+
+\begin{verbatim}
+ip route 0.0.0.0 0.0.0.0 10.128.255.1
+\end{verbatim}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/13.png}
-    \captionof{figure}{Добавление ansusenko в базу пользователей Samba.}
-    \label{img:13}
+    \includegraphics[width=\textwidth]{../images/13.png}
+    \captionof{figure}{Настройка маршрута по умолчанию на ansusenko-q42-gw-1.}
+    \label{13}
 \end{center}
 
-\end{enumerate}
-
-\subsection{Монтирование файловой системы Samba на клиенте}
-\begin{enumerate}
-\item На клиенте установили необходимые пакеты:
-    \begin{minted}{bash}
-dnf -y install samba-client cifs-utils
-    \end{minted}
-\item На клиенте посмотрели файл конфигурации межсетевого экрана для клиента {\tt Samba} (Рис. \ref{img:14}):
-\begin{minted}{bash}
-less /usr/lib/firewalld/services/samba-client.xml
-\end{minted}
+\subsubsection{Настройка маршрутизатора sch-ansusenko-gw-1}
+Выполнена настройка маршрута по умолчанию (Рис. \ref{14}):
+\begin{verbatim}
+ip route 0.0.0.0 0.0.0.0 10.128.255.5
+\end{verbatim}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/14.png}
-    \captionof{figure}{Просмотр конфигурации межсетевого экрана для клиента Samba.}
-    \label{img:14}
+    \includegraphics[width=\textwidth]{../images/14.png}
+    \captionof{figure}{Настройка маршрута по умолчанию на sch-ansusenko-gw-1.}
+    \label{14}
 \end{center}
 
-\item На клиенте настроили межсетевой экран (Рис. \ref{img:15}):
-    \begin{minted}{bash}
-firewall-cmd --add-service=samba-client
-firewall-cmd --add-service=samba-client --permanent
-firewall-cmd --reload
-    \end{minted}
+\subsection{Настройка маршрутизации на 42 квартале}
+
+\subsubsection{Настройка маршрутизатора ansusenko-q42-gw-1}
+Выполнена настройка маршрута до сети общежития (Рис. \ref{15}):
+\begin{verbatim}
+ip route 10.129.128.0 255.255.128.0 10.129.1.2
+\end{verbatim}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/15.png}
-    \captionof{figure}{Настройка межсетевого экрана клиента.}
-    \label{img:15}
+    \includegraphics[width=\textwidth]{../images/15.png}
+    \captionof{figure}{Настройка маршрута до сети общежития.}
+    \label{15}
 \end{center}
 
-\item На клиенте создали группу {\tt sambagroup} и добавили в неё пользователя {\tt ansusenko} (Рис. \ref{img:16}):
-    \begin{minted}{bash}
-groupadd -g 1010 sambagroup
-usermod -aG sambagroup ansusenko
-    \end{minted}
+\subsubsection{Настройка маршрутизирующего коммутатора ansusenko-hostel-gw-1}
+Выполнена настройка IP-маршрутизации и маршрута по умолчанию (Рис. \ref{16}):
+\begin{verbatim}
+ip routing
+ip route 0.0.0.0 0.0.0.0 10.129.1.1
+\end{verbatim}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/16.png}
-    \captionof{figure}{Создание аналогичной группы на клиенте и добавления в нее ansusenko.}
-    \label{img:16}
+    \includegraphics[width=\textwidth]{../images/16.png}
+    \captionof{figure}{Настройка маршрутизации на ansusenko-hostel-gw-1.}
+    \label{16}
 \end{center}
 
-\item На клиенте в файле конфигурации {\tt /etc/samba/smb.conf} изменили параметр рабочей группы (Рис. \ref{img:17}):
-    \begin{minted}{bash}
-[global]
-workgroup = ANSUSENKO-NET
-    \end{minted}
-    и добавили сразу после строки {\tt workgroup} поля для работы через SMB1 протокол:
-    \begin{minted}{bash}
-client min protocol = NT1
-    \end{minted}
+\subsection{Настройка NAT на маршрутизаторе msk-ansusenko-gw-1}
+
+Выполнена настройка NAT для трансляции адресов внутренних хостов (Рис. \ref{17}):
+\begin{itemize}
+    \item Интерфейсы f0/1.5 и f0/1.6 помечены как \texttt{ip nat inside}
+    \item Создан extended access-list \texttt{nat-inet} с разрешением для хостов:
+    \begin{itemize}
+        \item 10.129.0.200 (q42)
+        \item 10.129.128.200 (hostel)
+        \item 10.130.0.200 (sochi)
+    \end{itemize}
+\end{itemize}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/17.png}
-    \captionof{figure}{Изменение конфигурации samba на клиенте.}
-    \label{img:17}
+    \includegraphics[width=\textwidth]{../images/17.png}
+    \captionof{figure}{Настройка NAT на маршрутизаторе msk-ansusenko-gw-1.}
+    \label{17}
 \end{center}
 
-\item Для проверки наличия общего доступа подключились с клиента к серверу с помощью {\tt smbclient} под пользователем root (Рис. \ref{img:18}):
-    \begin{minted}{bash}
-smbclient -L //server
-    \end{minted}
+\subsection{Проверка корректности настроек}
+
+\subsubsection{Проверка VLAN}
+Выполнена проверка VLAN на коммутаторах (Рис. \ref{18}-\ref{20}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/18.png}
-    \captionof{figure}{Подключение к серверу под пользователем root.}
-    \label{img:18}
+    \includegraphics[width=\textwidth]{../images/18.png}
+    \captionof{figure}{Результат настроек на ansusenko-q42-sw-1.}
+    \label{18}
 \end{center}
-
-\item Подключились с клиента к серверу с помощью {\tt smbclient} под учётной записью своего пользователя под пользователем ansusenko (Рис. \ref{img:19}):
-    \begin{minted}{bash}
-smbclient -L //server -U ansusenko
-    \end{minted}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/19.png}
-    \captionof{figure}{Подключение к серверу под пользователем ansusenko.}
-    \label{img:19}
+    \includegraphics[width=\textwidth]{../images/19.png}
+    \captionof{figure}{Результат настроек на ansusenko-hostel-sw-1.}
+    \label{19}
 \end{center}
-
-\item На клиенте создали точку монтирования (Рис. \ref{img:20}):
-    \begin{minted}{bash}
-mkdir /mnt/samba
-    \end{minted}
-\item На клиенте получили доступ к общему ресурсу с помощью {\tt mount} (Рис. \ref{img:20}):
-    \begin{minted}{bash}
-mount -o username=ansusenko,user,rw,uid=ansusenko,gid=sambagroup //server/sambashare /mnt/samba
-    \end{minted}
-При появлении запроса пароля ввели пароль SMB-пользователя.
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/20.png}
-    \captionof{figure}{Монтирование разделяемого ресурса на клиенте.}
-    \label{img:20}
+    \includegraphics[width=\textwidth]{../images/20.png}
+    \captionof{figure}{Результат настроек на sch-ansusenko-sw-1.}
+    \label{20}
 \end{center}
 
-\item Убедились, что {\tt ansusenko} может записывать файлы на разделяемом ресурсе (Рис. \ref{img:21}):
-    \begin{minted}{bash}
-cd /mnt/samba
-touch ansusenko@client.txt
-    \end{minted}
+\subsubsection{Проверка состояния интерфейсов}
+Выполнена проверка состояния интерфейсов на маршрутизаторе \texttt{ansusenko-q42-gw-1} (Рис. \ref{21}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/21.png}
-    \captionof{figure}{Проверка возможности создавать файлы на разделяемом ресурсе.}
-    \label{img:21}
+    \includegraphics[width=\textwidth]{../images/21.png}
+    \captionof{figure}{Результат выполнения команды show ip interface brief на ansusenko-q42-gw-1.}
+    \label{21}
 \end{center}
 
-\item Отмонтировали каталог {\tt /mnt/samba} (Рис. \ref{img:22}):
-    \begin{minted}{bash}
-umount /mnt/samba
-    \end{minted}
-\item Для настройки работы с {\tt Samba} с помощью файла учётных данных:
-    \begin{enumerate}
-        \item на клиенте создали файл {\tt smbusers} в каталоге {\tt /etc/samba/} (Рис. \ref{img:22}):
-    \begin{minted}{bash}
-touch /etc/samba/smbusers
-chmod 600 /etc/samba/smbusers
-    \end{minted}
-с содержанием следующего формата:
-    \begin{minted}{bash}
-username=ansusenko
-password=3741
-    \end{minted}
+Выполнена проверка состояния интерфейсов на маршрутизаторе \texttt{sch-ansusenko-gw-1} (Рис. \ref{22}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/22.png}
-    \captionof{figure}{Отмонтирование каталога samba и создание файла smbusers.}
-    \label{img:22}
+    \includegraphics[width=\textwidth]{../images/22.png}
+    \captionof{figure}{Результат выполнения команды show ip interface brief на sch-ansusenko-gw-1.}
+    \label{22}
 \end{center}
 
-\item На клиенте в файле /etc/fstab добавили следующую строку (Рис. \ref{img:23}):
-    \begin{minted}{bash}
-//server/sambashare /mnt/samba cifs user,rw,uid=ansusenko,gid=sambagroup, credentials=/etc/samba/smbusers,_netdev 0 0
-    \end{minted}
+\subsubsection{Проверка VLAN}
+Выполнена проверка VLAN на коммутаторе \texttt{ansusenko-sw-1} (Рис. \ref{23}):
+
+\begin{itemize}
+    \item VLAN 5 (q42) - active
+    \item VLAN 6 (sochi) - active
+    \item VLAN 4 (nat) - active
+\end{itemize}
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/23.png}
-    \captionof{figure}{Изменение файла /etc/fstab.}
-    \label{img:23}
+    \includegraphics[width=\textwidth]{../images/23.png}
+    \captionof{figure}{Результат выполнения команды show vlan brief на ansusenko-sw-1.}
+    \label{23}
 \end{center}
 
-\item Подмонтировали общий ресурс (Рис. \ref{img:24}):
-    \begin{minted}{bash}
-mount -a
-    \end{minted}
-\item Убедившись, что ресурс монтируется, перезагрузили клиента для проверки, что ресурс монтируется и после перезагрузки, а у пользователя есть доступ к разделяемым ресурсам (Рис. \ref{img:24}).
+Вид нынешнего vlan. (Рис. \ref{24}-\ref{25}):
 
 \begin{center}
     \centering
-    \includegraphics[width=0.8\textwidth]{../images/24.png}
-    \captionof{figure}{Настройка автоматического монтирования каталога для разделяемых ресурсов.}
-    \label{img:24}
+    \includegraphics[width=\textwidth]{../images/24.png}
+    \captionof{figure}{Результат выполнения команды show vlan brief на аnsusenko-q42-gw-1.}
+    \label{24}
 \end{center}
 
-    \end{enumerate}
-\end{enumerate}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/25.png}
+    \captionof{figure}{Результат выполнения команды show vlan brief на sch-ansusenko-sw-1.}
+    \label{25}
+\end{center}
 
-\subsection{Внесение изменений в настройки внутреннего окружения виртуальных машин}
-\begin{enumerate}
-\item На виртуальной машине {\tt server} перешли в каталог для внесения изменений в настройки внутреннего окружения {\tt /vagrant/provision/server/}, создали в нём каталог {\tt smb}, в который поместили в соответствующие подкаталоги конфигурационные файлы:
-    \begin{minted}{bash}
-cd /vagrant/provision/server
-mkdir -p /vagrant/provision/server/smb/etc/samba
-cp -R /etc/samba/smb.conf /vagrant/provision/server/smb/etc/samba/
-    \end{minted}
-\item В каталоге {\tt /vagrant/provision/server} создайте исполняемый файл {\tt smb.sh}:
-    \begin{minted}{bash}
-cd /vagrant/provision/server
-touch smb.sh
-chmod +x smb.sh
-    \end{minted}
-Открыв его на редактирование, пропишите в нём следующий скрипт:
-    \begin{minted}{bash}
-#!/bin/bash
-LOGIN=dastarikov
-PASS=123456
-echo "Provisioning script $0"
-echo "Install needed packages"
-dnf -y install samba samba-client cifs-utils
-echo "Copy configuration files"
-cp -R /vagrant/provision/server/smb/etc/* /etc
-chown -R root:root /etc/samba/*
-restorecon -vR /etc
-echo "Configure firewall"
-firewall-cmd --add-service samba --permanent
-firewall-cmd --reload
-echo "Users and groups"
-groupadd -g 1010 sambagroup
-usermod -aG sambagroup $LOGIN
-echo -ne "$PASS\n$PASS\n" | smbpasswd -L -a -s $LOGIN
-echo "Make share dir"
-mkdir -p /srv/sambashare
-chgrp sambagroup /srv/sambashare
-chmod g=rwx /srv/sambashare
-echo "Tuning SELinux"
-semanage fcontext -a -t samba_share_t "/srv/sambashare(/.*)?"
-setsebool samba_export_all_rw 1
-setsebool samba_export_all_rw 1 -P
-restorecon -vR /srv/sambashare
-echo "Start smb service"
-systemctl enable smb
-systemctl start smb
-systemctl restart firewalld
-    \end{minted}
+\subsubsection{Проверка NAT}
+Выполнена проверка NAT-трансляций и статистики на \texttt{msk-ansusenko-gw-1} (Рис. \ref{26}):
+\textbf{Результаты проверки NAT:}
+\begin{itemize}
+    \item Всего трансляций: 6 (6 static, 0 dynamic, 6 extended)
+    \item Inside Interfaces: f0/0.3, f0/0.101-104, f0/1.5, f0/1.6
+    \item Outside Interfaces: f0/1.4
+    \item Hits: 0, Misses: 250
+    \item Пул main-pool: 198.51.100.2 — 198.51.100.14 (13 адресов)
+\end{itemize}
 
-\item На виртуальной машине {\tt client} перешли в каталог для внесения изменений в настройки внутреннего окружения {\tt /vagrant/provision/client/}, создали в нём каталог {\tt smb}, в который поместили в соответствующие подкаталоги конфигурационные файлы:
-    \begin{minted}{bash}
-cd /vagrant/provision/client
-mkdir -p /vagrant/provision/client/smb/etc/samba
-cp -R /etc/samba/smb.conf /vagrant/provision/client/smb/etc/samba/
-cp -R /etc/samba/smbusers /vagrant/provision/client/smb/etc/samba/
-    \end{minted}
-\item В каталоге {\tt /vagrant/provision/client} создали исполняемый файл {\tt smb.sh}:
-    \begin{minted}{bash}
-cd /vagrant/provision/client
-touch smb.sh
-chmod +x smb.sh
-    \end{minted}
-Открыв его на редактирование, прописали в нём следующий скрипт:
-    \begin{minted}{bash}
-#!/bin/bash
-LOGIN=dastarikov
-echo "Provisioning script $0"
-mkdir -p /mnt/samba
-echo "Install needed packages"
-dnf -y install samba-client cifs-utils
-echo "Copy configuration files"
-cp -R /vagrant/provision/client/smb/etc/* /etc
-chown -R root:root /etc/samba/*
-restorecon -vR /etc
-echo "Configure firewall"
-firewall-cmd --add-service samba-client --permanent
-firewall-cmd --reload
-echo "Users and groups"
-groupadd -g 1010 sambagroup
-usermod -aG sambagroup $LOGIN
-echo "Mounting dirs"
-mkdir -p /srv/sambashare
-echo "//server/sambashare /mnt/samba cifs user,rw,credentials=/etc/samba/smbusers,uid=user, gid=sambagroup,_netdev 0 0" >> /etc/fstab
-restorecon -vR /etc
-umount /mnt/samba
-mount /mnt/samba
-    \end{minted}
+Статические NAT-трансляции настроены для серверов:
+\begin{itemize}
+    \item 198.51.100.10:3389 $\rightarrow$ 10.128.6.200:3389
+    \item 198.51.100.2:80 $\rightarrow$ 10.128.0.2:80
+    \item 198.51.100.3:20-21 $\rightarrow$ 10.128.0.3:20-21
+    \item 198.51.100.4:110,25 $\rightarrow$ 10.128.0.4:110,25
+\end{itemize}
 
-\item Для отработки созданных скриптов во время загрузки виртуальных машин {\tt server} и {\tt client} в конфигурационном файле {\tt Vagrantfile} добавили в соответствующих разделах конфигураций для сервера и клиента:
-    \begin{minted}{bash}
-server.vm.provision "SMB server",
-type: "shell",
-preserve_order: true,
-path: "provision/server/smb.sh"
-client.vm.provision "SMB client",
-type: "shell",
-preserve_order: true,
-path: "provision/client/smb.sh"
-    \end{minted}
-\end{enumerate}
+\begin{center}
+    \centering
+    \includegraphics[width=\textwidth]{../images/26.png}
+    \captionof{figure}{Результат выполнения команд show ip nat translations и show ip nat statistics.}
+    \label{26}
+\end{center}
 
-\section{Выводы}
-В результате лабораторной работы познакомились с настройкой доступа групп пользователей к общим ресурсам по протоколу SMB.
+\section{Вывод}
+
+В ходе выполнения лабораторной работы настроена статическая маршрутизация между тремя площадками (провайдер, 42-й квартал в Москве, филиал в Сочи) с использованием технологии VLAN и subinterface-ов. На маршрутизаторах настроены статические маршруты, включая маршруты по умолчанию и суммарные маршруты. На маршрутизаторе msk-ansusenko-gw-1 выполнена настройка NAT для трансляции адресов внутренних хостов.
+
 \end{document}

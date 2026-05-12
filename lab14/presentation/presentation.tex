@@ -1,9 +1,9 @@
 \input{preamble.tex}
 
-\title{Лабораторная работа № 14. \ Настройка файловых служб Samba}
-\author{Сущенко Алина \ НПИбд-01-23}
+\title{Лабораторная работа № 14. \\ Статическая маршрутизация в Интернете. Настройка}
+\author{Сущенко Алина Николаевна \\ НПИбд-01-23}
 \institute{Российский университет дружбы народов имени Патриса Лумумбы}
-\date{2025}
+\date{2026}
 
 \begin{document}
 
@@ -12,164 +12,167 @@
 \begin{frame}
 \frametitle{Цель работы}
 \begin{itemize}
-\item Приобретение навыков настройки доступа групп пользователей к общим ресурсам по протоколу SMB.
+\item Настроить взаимодействие через сеть провайдера посредством статической маршрутизации локальной сети организации с сетью основного здания, расположенного в 42-м квартале в Москве, и сетью филиала, расположенного в г. Сочи.
 \end{itemize}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка связи между площадками}
 \includegraphics[width=0.8\textwidth]{../images/01.png}
-\captionof{figure}{Создание группы sambagroup и добавления в нее пользователя ansusenko.}
+\captionof{figure}{Настройка интерфейсов коммутатора ansusenko-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка связи между площадками}
 \includegraphics[width=0.8\textwidth]{../images/02.png}
-\captionof{figure}{Изменение конфигурации samba на сервере.}
+\captionof{figure}{Настройка интерфейсов маршрутизатора msk-ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка связи между площадками}
 \includegraphics[width=0.8\textwidth]{../images/03.png}
-\captionof{figure}{Проверка правильности синтаксиса файла samba.conf.}
+\captionof{figure}{Настройка интерфейсов маршрутизатора ansusenko-q42-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка связи между площадками}
 \includegraphics[width=0.8\textwidth]{../images/04.png}
-\captionof{figure}{Включение демона Samba.}
+\captionof{figure}{Настройка интерфейсов коммутатора sch-ansusenko-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка связи между площадками}
 \includegraphics[width=0.8\textwidth]{../images/05.png}
-\captionof{figure}{Проверка наличия общего доступа к серверу.}
+\captionof{figure}{Настройка интерфейсов маршрутизатора sch-ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка площадки 42-го квартала}
 \includegraphics[width=0.8\textwidth]{../images/06.png}
-\captionof{figure}{Просмотр конфигурации межсетевого экрана Samba.}
+\captionof{figure}{Настройка интерфейсов маршрутизатора ansusenko-q42-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка площадки 42-го квартала}
 \includegraphics[width=0.8\textwidth]{../images/07.png}
-\captionof{figure}{Настройка межсетевого экрана.}
+\captionof{figure}{Настройка интерфейсов коммутатора ansusenko-q42-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка площадки 42-го квартала}
 \includegraphics[width=0.8\textwidth]{../images/08.png}
-\captionof{figure}{Настройка прав доступа для каталога с разделяемым ресурсом sambashare.}
+\captionof{figure}{Настройка интерфейсов маршрутизирующего коммутатора ansusenko-hostel-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка площадки 42-го квартала}
 \includegraphics[width=0.8\textwidth]{../images/09.png}
-\captionof{figure}{Настройка SELinux для каталога с разделяемым ресурсом smbshare.}
+\captionof{figure}{Настройка интерфейсов коммутатора ansusenko-hostel-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка площадки в Сочи}
 \includegraphics[width=0.8\textwidth]{../images/10.png}
-\captionof{figure}{Настройка разрешений через флаги SELinux.}
+\captionof{figure}{Настройка интерфейсов маршрутизатора sch-ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка площадки в Сочи}
 \includegraphics[width=0.8\textwidth]{../images/11.png}
-\captionof{figure}{Просмотр групп пользователя ansusenko.}
+\captionof{figure}{Настройка интерфейсов коммутатора sch-ansusenko-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка статической маршрутизации между площадками}
 \includegraphics[width=0.8\textwidth]{../images/12.png}
-\captionof{figure}{Создание файла на разделяемой ресурсе.}
+\captionof{figure}{Настройка маршрутизации на msk-ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Настройка сервера Samba}
+\frametitle{Настройка статической маршрутизации между площадками}
 \includegraphics[width=0.8\textwidth]{../images/13.png}
-\captionof{figure}{Добавление ansusenko в базу пользователей Samba.}
+\captionof{figure}{Настройка маршрута по умолчанию на ansusenko-q42-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Настройка статической маршрутизации между площадками}
 \includegraphics[width=0.8\textwidth]{../images/14.png}
-\captionof{figure}{Просмотр конфигурации межсетевого экрана для клиента Samba.}
+\captionof{figure}{Настройка маршрута по умолчанию на sch-ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Настройка маршрутизации на 42 квартале}
 \includegraphics[width=0.8\textwidth]{../images/15.png}
-\captionof{figure}{Настройка межсетевого экрана клиента.}
+\captionof{figure}{Настройка маршрута до сети общежития.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Настройка маршрутизации на 42 квартале}
 \includegraphics[width=0.8\textwidth]{../images/16.png}
-\captionof{figure}{Создание аналогичной группы на клиенте и добавления в нее ansusenko.}
+\captionof{figure}{Настройка маршрутизации на ansusenko-hostel-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Настройка NAT на маршрутизаторе msk-ansusenko-gw-1}
 \includegraphics[width=0.8\textwidth]{../images/17.png}
-\captionof{figure}{Изменение конфигурации samba на клиенте.}
+\captionof{figure}{Настройка NAT на маршрутизаторе msk-ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Проверка корректности настроек}
 \includegraphics[width=0.8\textwidth]{../images/18.png}
-\captionof{figure}{Подключение к серверу под пользователем root.}
+\captionof{figure}{Результат настроек на ansusenko-q42-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Проверка корректности настроек}
 \includegraphics[width=0.8\textwidth]{../images/19.png}
-\captionof{figure}{Подключение к серверу под пользователем ansusenko.}
+\captionof{figure}{Результат настроек на ansusenko-hostel-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенte}
+\frametitle{Проверка корректности настроек}
 \includegraphics[width=0.8\textwidth]{../images/20.png}
-\captionof{figure}{Монтирование разделяемого ресурса на клиенте.}
+\captionof{figure}{Результат настроек на sch-ansusenko-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Проверка состояния интерфейсов}
 \includegraphics[width=0.8\textwidth]{../images/21.png}
-\captionof{figure}{Проверка возможности создавать файлы на разделяемом ресурсе.}
+\captionof{figure}{show ip interface brief на ansusenko-q42-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Проверка состояния интерфейсов}
 \includegraphics[width=0.8\textwidth]{../images/22.png}
-\captionof{figure}{Отмонтирование каталога samba и создание файла smbusers.}
+\captionof{figure}{show ip interface brief на sch-ansusenko-gw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
+\frametitle{Проверка VLAN}
 \includegraphics[width=0.8\textwidth]{../images/23.png}
-\captionof{figure}{Изменение файла /etc/fstab.}
+\captionof{figure}{show vlan brief на ansusenko-sw-1.}
 \end{frame}
 
 \begin{frame}
-\frametitle{Монтирование файловой системы Samba на клиенте}
-\includegraphics[width=0.8\textwidth]{../images/24.png}
-\captionof{figure}{Настройка автоматического монтирования каталога для разделяемых ресурсов.}
+\frametitle{Проверка VLAN}
+\includegraphics[width=0.8\textwidth]{../images/25.png}
+\captionof{figure}{show vlan brief на sch-ansusenko-sw-1.}
+\end{frame}
+
+\begin{frame}
+\frametitle{Проверка NAT}
+\includegraphics[width=0.8\textwidth]{../images/26.png}
+\captionof{figure}{show ip nat translations и show ip nat statistics.}
 \end{frame}
 
 \begin{frame}
 \frametitle{Ответы на контрольные вопросы}
 \begin{enumerate}
-\item Минимальная конфигурация для smb.conf для создания общего ресурса, который предоставляет доступ к каталогу /data:
+\item \textbf{Пример настройки статической маршрутизации между двумя подсетями организации:}
 \begin{verbatim}
-[data]
-path = /data
-browseable = yes
-read only = no
-guest ok = no
+ip route 192.168.2.0 255.255.255.0 192.168.1.2
+ip route 192.168.3.0 255.255.255.0 192.168.1.2
 \end{verbatim}
 \end{enumerate}
 \end{frame}
@@ -178,15 +181,14 @@ guest ok = no
 \frametitle{Ответы на контрольные вопросы}
 \begin{enumerate}
 \setcounter{enumi}{1}
-\item Настроить общий ресурс с доступом на запись всем пользователям, имеющим права на запись в файловой системе Linux:
-\begin{verbatim}
-[shared]
-path = /srv/samba/shared
-browseable = yes
-read only = no
-guest ok = no
-writeable = yes
-\end{verbatim}
+\item \textbf{Процесс обращения устройства из одного VLAN к устройству из другого VLAN:}
+\begin{itemize}
+    \item Устройство-источник отправляет ARP-запрос на шлюз по умолчанию
+    \item Пакет передается на маршрутизатор (или L3-коммутатор)
+    \item Маршрутизатор проверяет таблицу маршрутизации и определяет исходящий интерфейс
+    \item Маршрутизатор отправляет ARP-запрос в целевом VLAN
+    \item После получения MAC-адреса пакет инкапсулируется и отправляется устройству-назначения
+\end{itemize}
 \end{enumerate}
 \end{frame}
 
@@ -194,14 +196,11 @@ writeable = yes
 \frametitle{Ответы на контрольные вопросы}
 \begin{enumerate}
 \setcounter{enumi}{2}
-\item Ограничить доступ на запись к ресурсу только членам определённой группы:
+\item \textbf{Как проверить работоспособность маршрута?}
 \begin{verbatim}
-[restricted]
-path = /srv/samba/restricted
-browseable = yes
-read only = no
-write list = @sambagroup
-valid users = @sambagroup
+ping <IP-адрес назначения>
+traceroute <IP-адрес назначения>
+show ip route <IP-адрес>
 \end{verbatim}
 \end{enumerate}
 \end{frame}
@@ -210,86 +209,11 @@ valid users = @sambagroup
 \frametitle{Ответы на контрольные вопросы}
 \begin{enumerate}
 \setcounter{enumi}{3}
-\item Переключатель SELinux для доступа к домашним каталогам через SMB:
+\item \textbf{Как посмотреть таблицу маршрутизации?}
 \begin{verbatim}
-setsebool -P samba_enable_home_dirs on
-\end{verbatim}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{4}
-\item Ограничить доступ к ресурсу только узлам из сети 192.168.10.0/24:
-\begin{verbatim}
-[restricted]
-path = /srv/samba/restricted
-hosts allow = 192.168.10.0/24
-hosts deny = 0.0.0.0/0
-\end{verbatim}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{5}
-\item Команда для отображения списка всех пользователей Samba на сервере:
-\begin{verbatim}
-pdbedit -L
-\end{verbatim}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{6}
-\item Для доступа к многопользовательскому ресурсу пользователю необходимо:
-\begin{itemize}
-\item Иметь учётную запись на сервере Samba
-\item Быть добавленным в базу пользователей Samba (smbpasswd -a)
-\item Принадлежать к группе, которой разрешён доступ к ресурсу
-\end{itemize}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{7}
-\item Установить общий ресурс Samba как многопользовательскую учётную запись с alice в качестве минимальной учётной записи:
-\begin{verbatim}
-[multiuser]
-path = /srv/samba/multiuser
-browseable = yes
-read only = no
-guest ok = no
-force user = alice
-\end{verbatim}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{8}
-\item Запретить пользователям просматривать учётные данные монтирования Samba в /etc/fstab:
-\begin{itemize}
-\item Использовать файл credentials с ограничением прав доступа (600)
-\item В /etc/fstab указать: \texttt{credentials=/etc/samba/credentials}
-\end{itemize}
-\end{enumerate}
-\end{frame}
-
-\begin{frame}
-\frametitle{Ответы на контрольные вопросы}
-\begin{enumerate}
-\setcounter{enumi}{9}
-\item Команда для перечисления всех экспортируемых ресурсов Samba на сервере:
-\begin{verbatim}
-smbclient -L server_name -U username
+show ip route           # полная таблица
+show ip route static    # только статические маршруты
+show ip route connected # только подключенные сети
 \end{verbatim}
 \end{enumerate}
 \end{frame}
@@ -297,9 +221,9 @@ smbclient -L server_name -U username
 \begin{frame}
 \frametitle{Выводы}
 \begin{itemize}
-\item В результате лабораторной работы познакомились с настройкой доступа групп пользователей к общим ресурсам по протоколу SMB.
-\item Освоили настройку сервера Samba, управление доступом пользователей и групп.
-\item Изучили монтирование файловых систем Samba на клиенте и настройку автоматического монтирования.
+    \item В ходе выполнения лабораторной работы настроена статическая маршрутизация между тремя площадками (провайдер, 42-й квартал в Москве, филиал в Сочи) с использованием технологии VLAN и subinterface-ов. На маршрутизаторах настроены статические маршруты, включая маршруты по умолчанию и суммарные маршруты. На маршрутизаторе msk-ansusenko-gw-1 выполнена настройка NAT для трансляции адресов внутренних хостов.
+    
 \end{itemize}
 \end{frame}
+
 \end{document}

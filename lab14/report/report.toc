@@ -1,7 +1,31 @@
 \babel@toc {russian}{}\relax 
-\contentsline {section}{\numberline {1}Цель работы}{3}{section.1}%
-\contentsline {section}{\numberline {2}Выполнение работы}{4}{section.2}%
-\contentsline {subsection}{\numberline {2.1}Настройка сервера Samba}{4}{subsection.2.1}%
-\contentsline {subsection}{\numberline {2.2}Монтирование файловой системы Samba на клиенте}{8}{subsection.2.2}%
-\contentsline {subsection}{\numberline {2.3}Внесение изменений в настройки внутреннего окружения виртуальных машин}{12}{subsection.2.3}%
-\contentsline {section}{\numberline {3}Выводы}{15}{section.3}%
+\contentsline {section}{\numberline {1}Цель работы}{4}{section.1}%
+\contentsline {section}{\numberline {2}Выполнение работы}{5}{section.2}%
+\contentsline {subsection}{\numberline {2.1}Настройка связи между площадками}{5}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}Настройка коммутатора ansusenko-sw-1}{5}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}Настройка маршрутизатора msk-ansusenko-gw-1}{7}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}Настройка маршрутизатора ansusenko-q42-gw-1}{9}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}Настройка коммутатора sch-ansusenko-sw-1}{10}{subsubsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.5}Настройка маршрутизатора sch-ansusenko-gw-1}{12}{subsubsection.2.1.5}%
+\contentsline {subsection}{\numberline {2.2}Настройка площадки 42-го квартала}{13}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}Настройка маршрутизатора ansusenko-q42-gw-1}{13}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}Настройка коммутатора ansusenko-q42-sw-1}{13}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}Настройка маршрутизирующего коммутатора ansusenko-hostel-gw-1}{14}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}Настройка коммутатора ansusenko-hostel-sw-1}{16}{subsubsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.3}Настройка площадки в Сочи}{17}{subsection.2.3}%
+\contentsline {subsubsection}{\numberline {2.3.1}Настройка маршрутизатора sch-ansusenko-gw-1}{17}{subsubsection.2.3.1}%
+\contentsline {subsubsection}{\numberline {2.3.2}Настройка коммутатора sch-ansusenko-sw-1}{18}{subsubsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.4}Настройка статической маршрутизации между площадками}{19}{subsection.2.4}%
+\contentsline {subsubsection}{\numberline {2.4.1}Настройка маршрутизатора msk-ansusenko-gw-1}{19}{subsubsection.2.4.1}%
+\contentsline {subsubsection}{\numberline {2.4.2}Настройка маршрутизатора ansusenko-q42-gw-1}{20}{subsubsection.2.4.2}%
+\contentsline {subsubsection}{\numberline {2.4.3}Настройка маршрутизатора sch-ansusenko-gw-1}{20}{subsubsection.2.4.3}%
+\contentsline {subsection}{\numberline {2.5}Настройка маршрутизации на 42 квартале}{21}{subsection.2.5}%
+\contentsline {subsubsection}{\numberline {2.5.1}Настройка маршрутизатора ansusenko-q42-gw-1}{21}{subsubsection.2.5.1}%
+\contentsline {subsubsection}{\numberline {2.5.2}Настройка маршрутизирующего коммутатора ansusenko-hostel-gw-1}{22}{subsubsection.2.5.2}%
+\contentsline {subsection}{\numberline {2.6}Настройка NAT на маршрутизаторе msk-ansusenko-gw-1}{23}{subsection.2.6}%
+\contentsline {subsection}{\numberline {2.7}Проверка корректности настроек}{24}{subsection.2.7}%
+\contentsline {subsubsection}{\numberline {2.7.1}Проверка VLAN}{24}{subsubsection.2.7.1}%
+\contentsline {subsubsection}{\numberline {2.7.2}Проверка состояния интерфейсов}{27}{subsubsection.2.7.2}%
+\contentsline {subsubsection}{\numberline {2.7.3}Проверка VLAN}{29}{subsubsection.2.7.3}%
+\contentsline {subsubsection}{\numberline {2.7.4}Проверка NAT}{32}{subsubsection.2.7.4}%
+\contentsline {section}{\numberline {3}Вывод}{34}{section.3}%
